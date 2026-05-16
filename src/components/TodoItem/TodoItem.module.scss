@@ -1,0 +1,195 @@
+@use "@/styles/helpers" as *;
+
+@keyframes itemContentHighlightFade {
+  0% {
+    background-color: var(--color-surface-thirdly);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--element-base-height);
+  border-bottom: var(--border);
+  background-color: var(--color-surface-primary);
+  will-change: transform;
+
+  &.isAdding {
+    opacity: 0.6 !important;
+    pointer-events: none;
+  }
+
+  &.highlight::before {
+    content: "";
+    position: absolute;
+    inset: -1px 0 0 0;
+    z-index: 1;
+    pointer-events: none;
+    animation: itemContentHighlightFade 2s ease;
+  }
+}
+
+.checkbox {
+  --pseudoElementSize: 24px;
+
+  @include flex-center;
+
+  position: relative;
+  align-self: stretch;
+  height: auto;
+  width: calc(var(--pseudoElementSize) + var(--element-padding-inline) * 2);
+  flex-shrink: 0;
+  margin: 0 0 calc(var(--border-height) * -1) 0;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+
+  &:checked {
+    & + .label {
+      text-decoration: line-through;
+      color: var(--color-text-muted);
+      transition: opacity var(--transition-duration);
+
+      @include hover {
+        opacity: 0.7;
+      }
+    }
+
+    &::before {
+      background: url("@/assets/icons/checked-circle.svg") center/contain
+        no-repeat;
+      mask: none;
+      -webkit-mask: none;
+
+      @include mobile-s {
+        @include square(20px);
+      }
+    }
+  }
+
+  &::before,
+  &::after {
+    @include abs-center;
+    @include square(var(--pseudoElementSize));
+
+    content: "";
+    cursor: pointer;
+    transition:
+      opacity calc(var(--transition-duration) * 2),
+      scale var(--transition-duration);
+
+    @include mobile-s {
+      @include square(20px);
+    }
+  }
+
+  &::before {
+    background: var(--color-icon-secondary);
+    mask: url("@/assets/icons/circle.svg") center/contain no-repeat;
+    -webkit-mask: url("@/assets/icons/circle.svg") center/contain no-repeat;
+    opacity: 1;
+  }
+
+  &::after {
+    background: var(--linear-gradient);
+    mask: url("@/assets/icons/circle.svg") center/contain no-repeat;
+    -webkit-mask: url("@/assets/icons/circle.svg") center/contain no-repeat;
+    opacity: 0;
+  }
+
+  &:active {
+    &::after {
+      scale: 1.1;
+    }
+    &::before {
+      scale: 1.1;
+    }
+  }
+
+  &:not(:checked) {
+    @include hover {
+      &::before {
+        opacity: 0;
+      }
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  flex-grow: 1;
+  min-height: calc(var(--element-base-height) - 10px);
+  padding-block: 10px;
+  margin-bottom: calc(var(--border-height) * -1);
+  margin-right: var(--element-padding-inline);
+  color: var(--color-text-primary);
+  overflow: hidden;
+  user-select: none;
+  overflow-wrap: anywhere;
+  transition:
+    color var(--transition-duration),
+    transform var(--transition-duration);
+
+  @include hover {
+    color: var(--color-surface-secondary);
+  }
+
+  &:active {
+    transform: translateX(1px);
+  }
+}
+
+.buttonGroup {
+  --paddingButton: 5px;
+
+  display: flex;
+  margin-right: calc(var(--element-padding-inline) - var(--paddingButton));
+}
+
+.actionButton {
+  @include reset-button;
+
+  display: flex;
+  margin-left: auto;
+  padding: var(--paddingButton);
+  align-self: center;
+
+  @include hover {
+    .actionIcon {
+      color: var(--color-surface-secondary);
+      transform: scale(1.05);
+    }
+  }
+
+  &:active {
+    .actionIcon {
+      scale: 0.85;
+    }
+  }
+
+  @include mobile-s {
+    @include square(30px);
+  }
+}
+
+.actionIcon {
+  color: var(--color-icon-primary);
+  transition-duration: var(--transition-duration);
+
+  @include mobile-s {
+    @include square(20px);
+  }
+}

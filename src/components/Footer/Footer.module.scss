@@ -1,0 +1,58 @@
+@use "@/styles/helpers" as *;
+
+.footer {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  bottom: 0;
+  right: 0;
+  gap: 5px;
+  min-height: 25px;
+  padding-inline: 8px;
+  z-index: 100;
+  background-color: var(--color-surface-primary);
+  color: var(--color-text-primary);
+  box-shadow: var(--box-shadow);
+  border-top-left-radius: var(--border-radius);
+  border: var(--border);
+  cursor: pointer;
+  transition-duration: var(--transition-duration);
+
+  @include hover {
+    transform: translateY(1px);
+  }
+
+  &:active {
+    transform: translateY(2px);
+  }
+}
+
+.footerCollapsed {
+  justify-content: center;
+  width: 25px;
+  padding-inline: 0;
+}
+
+.info {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.filledCircle {
+  filter: drop-shadow(0px 0px 4px #00000040);
+}
+
+.online {
+  color: #04e7b6c7;
+}
+
+.offline {
+  color: #e00404d4;
+}
+
+.checking {
+  color: #e6e30b;
+}

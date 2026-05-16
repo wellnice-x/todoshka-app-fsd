@@ -1,0 +1,39 @@
+@use "@/styles/helpers" as *;
+
+.form {
+  display: flex;
+  column-gap: 8px;
+}
+
+.field {
+  flex-grow: 1;
+  z-index: 1;
+  outline: var(--border);
+}
+
+.clearButton {
+  @include reset-button;
+  @include flex-center;
+
+  margin-left: auto;
+  color: var(--color-icon-primary);
+  transition-duration: var(--transition-duration);
+
+  @include hover {
+    color: var(--color-text-primary);
+  }
+
+  &:active {
+    scale: 0.9;
+  }
+}
+
+.circle {
+  color: var(--color-icon-primary);
+}
+
+.createButton {
+  @include fluid-text(20, 16);
+
+  text-transform: uppercase;
+}

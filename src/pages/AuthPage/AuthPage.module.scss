@@ -1,0 +1,83 @@
+@use "@/styles/helpers" as *;
+
+@keyframes authAppearFormLeft {
+  0% {
+    transform: translateX(-300px);
+  }
+
+  70% {
+    transform: translateX(30px);
+  }
+}
+
+@keyframes authAppearHeaderRight {
+  0% {
+    transform: translateX(300px);
+  }
+
+  70% {
+    transform: translateX(-30px);
+  }
+}
+
+.main {
+  @include flex-center;
+
+  flex-grow: 1;
+  background-color: var(--color-surface-thirdly);
+}
+
+.mainTitle {
+  @include visually-hidden;
+}
+
+.authSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 100px;
+}
+
+.header {
+  flex-grow: 1;
+}
+
+.title {
+  text-align: center;
+  color: var(--color-text-primary);
+  user-select: none;
+  transition-duration: calc(var(--transition-duration) * 2);
+  will-change: transform;
+
+  @include hover {
+    scale: 1.05;
+  }
+}
+
+.appName {
+  background-image: linear-gradient(155deg, #27d4ff 10%, #d53eff 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.authForm {
+  max-width: 500px;
+}
+
+.appear {
+  .header {
+    animation: authAppearHeaderRight 0.7s ease-in-out;
+  }
+
+  .authForm {
+    animation: authAppearFormLeft 0.7s ease-in-out;
+  }
+}
+
+.themeToggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}

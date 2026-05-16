@@ -1,0 +1,73 @@
+@use "@/styles/helpers" as *;
+
+.toggleButton {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.checkbox {
+  --checkboxMinWidth: 38px;
+  --checkboxMinHeight: 20px;
+
+  position: relative;
+  appearance: none;
+  min-width: var(--checkboxMinWidth);
+  min-height: var(--checkboxMinHeight);
+  margin: 0;
+  border: 2px solid var(--color-icon-thirdly);
+  border-radius: 10px;
+  background-color: var(--color-surface-primary);
+  cursor: pointer;
+  will-change: transform;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 3px;
+    width: calc(var(--checkboxMinHeight) - 8px);
+    height: calc(var(--checkboxMinHeight) - 8px);
+    transform: translate(0, -50%);
+    border-radius: 50%;
+    background-color: var(--color-surface-primary);
+    box-shadow: 0px 0px 10px -2px rgb(0, 0, 0);
+    transition-duration: var(--transition-duration);
+    cursor: pointer;
+    will-change: transform;
+  }
+
+  &:checked {
+    background-color: var(--color-icon-thirdly);
+
+    &::after {
+      transform: translate(120%, -50%) scale(1.1);
+    }
+  }
+
+  &:not(:checked) {
+    &::after {
+      background-color: var(--color-icon-thirdly);
+    }
+  }
+
+  @include hover {
+    border: 2px solid var(--color-surface-secondary);
+
+    &:not(:checked) {
+      &::after {
+        background-color: var(--color-surface-secondary);
+      }
+    }
+
+    &:checked {
+      background-color: var(--color-surface-secondary);
+    }
+  }
+}
+
+.label {
+  color: var(--color-text-primary);
+  user-select: none;
+  pointer-events: none;
+}

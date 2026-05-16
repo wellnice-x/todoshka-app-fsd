@@ -1,0 +1,31 @@
+@use "@/styles/helpers" as *;
+
+.button {
+  @include reset-button;
+
+  padding-inline: var(--element-padding-inline);
+  background: var(--linear-gradient);
+  background-size: 120% 120%;
+  background-position: 0% 50%;
+  font-weight: 700;
+  text-shadow: 0px 0px 35px var(--color-surface-primary);
+  color: var(--color-surface-primary);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  transition: var(--transition-duration) ease;
+  user-select: none;
+  will-change: transform;
+
+  @include hover {
+    background-position: 100% 50%;
+    scale: 1.03;
+  }
+
+  &:active {
+    scale: 0.95;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

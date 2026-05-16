@@ -1,0 +1,55 @@
+@use "@/styles/helpers" as *;
+
+:root {
+  --color-surface-primary: #FFFFFF;
+  --color-surface-secondary: #000000;
+  --color-surface-thirdly: #D1D2DA;
+
+  --color-text-primary: #494C6B; 
+  --color-text-secondary: #9495A5;
+  --color-text-thirdly: #000000;
+  --color-text-muted: #D1D2DA;
+ 
+  --color-icon-primary: #9495A5;
+  --color-icon-secondary: #D1D2DA;
+  --color-icon-thirdly: #494C6B; 
+
+  --color-border-default: #e3e4f1;
+
+  --color-accent: #3A7CFD;
+
+  --color-text-error: rgb(255, 50, 16);
+
+  --linear-gradient: linear-gradient(135deg, #28d4ff 5%, #bb36fd 90%);
+  --linear-gradient-muted: linear-gradient(135deg, rgba(85, 221, 255, 0.766) 0%, #bf58f3be 100%);
+  
+  --box-shadow: 0px 2px 20px -5px rgba(0, 0, 0, 0.345);
+  --box-shadow-alt: 0px 1px 20px -5px rgba(0, 0, 0, 0.455);
+
+  --header-height: 90px;
+
+  --background-height: 300px;
+
+  --border: var(--border-height) solid var(--color-border-default);
+  --border-radius: 5px;
+  --border-height: 1px;
+
+  --element-base-height: 64px;
+  --element-padding-inline: 24px;
+
+  --min-input-height: 34px;
+
+  --font-family-primary: "TikTok Sans", sans-serif;
+ 
+  --transition-duration: 0.2s;
+
+
+  @include mobile {
+    --element-padding-inline: 20px;
+  }
+
+  @include mobile-s {
+    --element-padding-inline: 14px;
+    --element-base-height: 54px;
+  }
+}

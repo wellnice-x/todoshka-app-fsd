@@ -1,0 +1,55 @@
+.dark {
+  --color-surface-primary: #25273D;
+  --color-surface-secondary:  #FFFFFF;
+  --color-surface-thirdly: #4D5067;
+
+  --color-text-primary: #C8CBE7;
+  --color-text-secondary: #767992;
+  --color-text-thirdly: #FFFFFF;
+  --color-text-muted: #4D5067;
+  
+  --color-icon-thirdly: #C8CBE7;
+
+  --color-border-default: #393A4B;
+
+  --box-shadow: 0px 5px 25px 6px rgba(0, 0, 0, 0.345);
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  font-family: var(--font-family-primary);
+  font-optical-sizing: auto;
+  font-size: 18px;
+  font-weight: 400;
+  background-color: var(--color-surface-thirdly);
+}
+
+#root { 
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+}
+
+input,
+label,
+button {
+  transition-duration: var(--transition-duration);
+}
+
+.keyboard-focus :focus-visible,
+.keyboard-focus :focus {
+  outline: 1px dashed var(--color-surface-secondary);
+  outline-offset: 5px;
+  transition-duration: 0s !important;
+}
+
+:focus {
+  outline: none;
+}

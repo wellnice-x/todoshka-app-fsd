@@ -1,0 +1,20 @@
+<svg version="1.1" viewBox="0 0 35 35" height="35" width="35" xmlns="http://www.w3.org/2000/svg">
+  
+  <g>
+    
+    <polygon fill="currentColor" points="7.82,9.7 21.19,9.7 21.19,10.62 22.53,10.62 22.53,8.36 6.48,8.36 6.48,21.61 8.76,21.61 8.76,20.26 7.82,20.26"></polygon>
+
+    
+    <polygon fill="currentColor" points="12.56,27.66 12.56,25.41 13.91,25.41 13.91,26.32 27.28,26.32 27.28,15.76 26.34,15.76 26.34,14.42 28.62,14.42 28.62,27.66"></polygon>
+
+    
+    <path fill="currentColor" d="M9.61,24.66 h16.05 V11.41 H9.61 Z M10.95,12.76 h13.37 v10.57 H10.95 Z"></path>
+
+    
+    <polygon fill="currentColor" points="18.46,20.75 15.84,16.21 12.16,22.59 17.4,22.59 19.53,22.59 23.12,22.59 20.26,17.63"></polygon>
+
+    
+    <circle fill="currentColor" r="1.1" cy="16.08" cx="18.25"></circle>
+  </g>
+
+</svg>

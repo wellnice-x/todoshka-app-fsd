@@ -1,0 +1,21 @@
+@use "@/styles/helpers" as *;
+
+.button {
+  @include reset-button;
+  @include flex-center;
+
+  color: var(--color-icon-thirdly);
+  filter: drop-shadow(
+    1px 3px 5px color-mix(in srgb, var(--color-icon-primary) 30%, transparent)
+  );
+  transition-duration: var(--transition-duration);
+
+  @include hover {
+    transform: translateY(-1px);
+    color: var(--color-surface-secondary);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}

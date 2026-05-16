@@ -1,0 +1,106 @@
+@use "@/styles/helpers" as *;
+
+.panel {
+  @include fluid-text(14, 12);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 50px;
+  padding-inline: var(--element-padding-inline);
+  background-color: var(--color-surface-primary);
+  box-shadow: var(--box-shadow);
+  color: var(--color-text-secondary);
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  user-select: none;
+  overflow: hidden;
+
+  @include mobile-s {
+    flex-wrap: wrap;
+    padding-block: 15px;
+    row-gap: 12px;
+  }
+
+  & button {
+    @include reset-button;
+
+    color: inherit;
+
+    @include hover {
+      color: var(--color-text-primary);
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.buttonGroup {
+  display: flex;
+  column-gap: 18px;
+  font-weight: 700;
+
+  & button {
+    padding: 0;
+  }
+
+  & button.isActive {
+    color: var(--color-accent);
+  }
+
+  @include mobile-s {
+    justify-content: center;
+    order: 3;
+    flex-grow: 1;
+    flex-basis: 100%;
+    padding-block: 10px;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    border-radius: var(--border-radius);
+  }
+}
+
+.completeAllButton {
+  position: relative;
+  min-width: 80px;
+
+  & .defaultText,
+  & .hoverText {
+    transition: opacity var(--transition-duration);
+  }
+
+  & .hoverText {
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    opacity: 0;
+  }
+
+  @include hover {
+    & .defaultText {
+      opacity: 0;
+    }
+
+    & .hoverText {
+      opacity: 1;
+    }
+  }
+
+  @include mobile-s {
+    min-width: 0px;
+  }
+}
+
+.clearButton {
+  @include mobile-s {
+    padding: 0;
+  }
+}

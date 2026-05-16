@@ -1,0 +1,13 @@
+@use "@/styles/helpers" as *;
+
+.titleWrapper {
+  @include flex-center;
+  
+  flex-grow: 1;
+}
+
+.title {
+  @include fluid-text(50, 25);
+
+  color: var(--color-text-primary);
+}
