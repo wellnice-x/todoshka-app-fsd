@@ -5,9 +5,9 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { isSyncError, isNetworkError } from "@/lib/errors/errorUtils";
+import { isSyncError, isNetworkError } from "@/shared/lib/errors/errorUtils";
 import { useAppRuntimeStore } from "@/stores/appRuntimeStore";
-import { BulkDeleteError } from "@/lib/errors/mutations/BulkDeleteError";
+import { BulkDeleteError } from "@/shared/lib/errors/mutations/BulkDeleteError";
 import { useErrorStore } from "@/stores/errorStore";
 import { useConnection } from "@/stores/connectionStore";
 import useServerHealth from "./useServerHealth";

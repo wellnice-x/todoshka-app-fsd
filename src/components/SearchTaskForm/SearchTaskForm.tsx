@@ -1,7 +1,7 @@
 import Field from "../Field";
-import XIcon from "@/assets/icons/x-icon.svg?react";
+import XIcon from "@/shared/assets/icons/x-icon.svg?react";
 import styles from "./SearchTaskForm.module.scss";
-import SearchIcon from "@/assets/icons/search-icon.svg?react";
+import SearchIcon from "@/shared/assets/icons/search-icon.svg?react";
 import { useFilter } from "@/stores/filterStore";
 import { ChangeEvent, useState } from "react";
 

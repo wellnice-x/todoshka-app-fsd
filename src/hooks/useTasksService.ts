@@ -1,8 +1,8 @@
 import type { Task, CreateTaskPayload } from "@/types/task";
-import { SimulatedBlockedMutationError } from "@/lib/errors/simulation/SimulatedBlockedMutationError";
+import { SimulatedBlockedMutationError } from "@/shared/lib/errors/simulation/SimulatedBlockedMutationError";
 import { mapFromDTO, mapToDTO } from "@/mappers/taskMapper";
 import { useAppSettingsStore } from "@/stores/appSettingsStore";
-import { BulkDeleteError } from "@/lib/errors/mutations/BulkDeleteError";
+import { BulkDeleteError } from "@/shared/lib/errors/mutations/BulkDeleteError";
 import { tasksService } from "@/services/tasksService";
 
 type UseTasksServiceResult = {

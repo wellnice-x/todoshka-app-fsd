@@ -2,8 +2,8 @@ import useAnonUser from "@/hooks/useAnonUser";
 import ThemeToggle from "@/components/ThemeToggle";
 import PageIntro from "@/components/PageIntro";
 import AuthForm from "@/components/AuthForm";
-import MoonIcon from "@/assets/icons/moon.svg?react";
-import SunIcon from "@/assets/icons/sun.svg?react";
+import MoonIcon from "@/shared/assets/icons/moon.svg?react";
+import SunIcon from "@/shared/assets/icons/sun.svg?react";
 import styles from "./AuthPage.module.scss";
 import { Navigate } from "react-router";
 

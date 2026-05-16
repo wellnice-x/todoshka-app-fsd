@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useQuerySyncWithOptionalToast } from "./useQuerySyncWithOptionalToast";
 import { useQuerySyncScheduler } from "./useQuerySyncScheduler";
 import { useTasksService } from "./useTasksService";
-import { throwIfOffline } from "@/lib/errors/network/throwIfOffline";
+import { throwIfOffline } from "@/shared/lib/errors/network/throwIfOffline";
 import { useUIKeyStore } from "@/stores/uiKeyStore";
 import { useEffect } from "react";
 import useServerAccessState from "./useServerAccessState";

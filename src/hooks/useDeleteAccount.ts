@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { withTimeout } from "@/lib/async/withTimeout";
+import { withTimeout } from "@/shared/lib/async/withTimeout";
 import { useErrorStore } from "@/stores/errorStore";
 import { useUIKeyStore } from "@/stores/uiKeyStore";
 import { useFilterStore } from "@/stores/filterStore";

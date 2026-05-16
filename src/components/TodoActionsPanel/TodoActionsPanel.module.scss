@@ -1,4 +1,4 @@
-@use "@/styles/helpers" as *;
+@use "@/shared/styles/helpers" as *;
 
 .panel {
   @include fluid-text(14, 12);

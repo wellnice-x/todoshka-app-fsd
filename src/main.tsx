@@ -1,4 +1,4 @@
-import "./styles";
+import "./shared/styles";
 import AppRoutes from "./routes/AppRoutes";
 import AppProviders from "./context/AppProviders";
 import { createRoot } from "react-dom/client";

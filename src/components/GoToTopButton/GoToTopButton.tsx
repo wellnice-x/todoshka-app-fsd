@@ -1,5 +1,5 @@
 import styles from "./GoToTopButton.module.scss";
-import CircledArrowUpIcon from "@/assets/icons/circled-arrow-up.svg?react";
+import CircledArrowUpIcon from "@/shared/assets/icons/circled-arrow-up.svg?react";
 import { useEffect, useState } from "react";
 
 type GoToTopButtonProps = {

@@ -1,7 +1,7 @@
 import axios from "axios";
-import { TimeoutError } from "@/lib/errors/network/TimeoutError";
-import { NoResponseError } from "@/lib/errors/network/NoResponseError";
-import { UnauthorizedError } from "@/lib/errors/auth/UnauthorizedError";
+import { TimeoutError } from "@/shared/lib/errors/network/TimeoutError";
+import { NoResponseError } from "@/shared/lib/errors/network/NoResponseError";
+import { UnauthorizedError } from "@/shared/lib/errors/auth/UnauthorizedError";
 
 export const handleAxiosError = (error: unknown): never => {
   if (axios.isAxiosError(error)) {

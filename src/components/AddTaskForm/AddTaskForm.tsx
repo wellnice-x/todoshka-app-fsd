@@ -1,15 +1,15 @@
 import type { Task } from "@/types/task";
 import type { FieldHandle } from "../Field";
 import { useState, useRef, useEffect, ChangeEvent, SubmitEvent } from "react";
-import { handleMutationError } from "@/lib/errors/handlers/with-toast/handleMutationError";
+import { handleMutationError } from "@/shared/lib/errors/handlers/with-toast/handleMutationError";
 import { UseMutationResult } from "@tanstack/react-query";
 import { useAnimationStore } from "@/stores/animationStore";
 import { useFilter } from "@/stores/filterStore";
-import PlusCircleIcon from "@/assets/icons/plus-circle.svg?react";
+import PlusCircleIcon from "@/shared/assets/icons/plus-circle.svg?react";
 import useIsMobile from "@/hooks/useIsMobile";
 import styles from "./AddTaskForm.module.scss";
 import Button from "../Button";
-import XIcon from "@/assets/icons/x-icon.svg?react";
+import XIcon from "@/shared/assets/icons/x-icon.svg?react";
 import Field from "../Field";
 import toast from "react-hot-toast";
 

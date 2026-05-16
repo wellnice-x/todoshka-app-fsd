@@ -1,7 +1,7 @@
-import { UserNotFoundError } from "@/lib/errors/auth/UserNotFoundError";
-import { isNetworkError } from "@/lib/errors/errorUtils";
-import { TimeoutError } from "@/lib/errors/network/TimeoutError";
-import { OfflineError } from "@/lib/errors/network/OfflineError";
+import { UserNotFoundError } from "@/shared/lib/errors/auth/UserNotFoundError";
+import { isNetworkError } from "@/shared/lib/errors/errorUtils";
+import { TimeoutError } from "@/shared/lib/errors/network/TimeoutError";
+import { OfflineError } from "@/shared/lib/errors/network/OfflineError";
 import toast from "react-hot-toast";
 
 export const handleMutationError = (error: unknown) => {

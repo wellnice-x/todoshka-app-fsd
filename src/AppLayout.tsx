@@ -1,8 +1,8 @@
 import GlobalLayoutEffects from "./context/GlobalLayoutEffects";
 import useKeyboardFocus from "./hooks/useKeyboardFocus";
-import lightBackground from "@/assets/images/bg-decor.webp";
+import lightBackground from "@/shared/assets/images/bg-decor.webp";
 import ThemeBackground from "./components/ThemeBackground";
-import darkBackground from "@/assets/images/bg-decor-alt.webp";
+import darkBackground from "@/shared/assets/images/bg-decor-alt.webp";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Toaster } from "react-hot-toast";

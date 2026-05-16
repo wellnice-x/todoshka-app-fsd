@@ -1,5 +1,5 @@
 import styles from "./Footer.module.scss";
-import FilledCircle from "@/assets/icons/filled-circle.svg?react";
+import FilledCircle from "@/shared/assets/icons/filled-circle.svg?react";
 import { useAppearanceStore } from "@/stores/appearanceStore";
 import { useConnectionStore } from "@/stores/connectionStore";
 

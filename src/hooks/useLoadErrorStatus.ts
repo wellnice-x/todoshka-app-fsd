@@ -1,4 +1,4 @@
-import { TimeoutError } from "@/lib/errors/network/TimeoutError";
+import { TimeoutError } from "@/shared/lib/errors/network/TimeoutError";
 import { useErrorStore } from "@/stores/errorStore";
 import { useAppSettingsStore } from "@/stores/appSettingsStore";
 import useAuth from "@/hooks/useAuth";
