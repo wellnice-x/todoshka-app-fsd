@@ -1,7 +1,7 @@
 import styles from "./TaskPage.module.scss";
 import Button from "@/shared/ui/Button";
 import useTasks from "@/hooks/useTasks";
-import TaskUpdateForm from "@/components/TaskUpdateForm";
+import TaskUpdateForm from "@/features/update-task/ui/TaskUpdateForm";
 import useServerAccessState from "@/hooks/useServerAccessState";
 import { ClipLoader } from "react-spinners";
 import { useNavigate, useParams } from "react-router";

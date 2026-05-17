@@ -3,8 +3,8 @@ import { useTasksPageStore } from "@/stores/tasksPageStore";
 import { AnimatePresence } from "motion/react";
 import { useFilter } from "@/stores/filterStore";
 import { useEffect } from "react";
-import MotionListItem from "../MotionListItem";
-import TodoItem from "../TodoItem";
+import MotionListItem from "@/features/task-animation";
+import TodoItem from "@/widgets/task-item";
 import styles from "./TodoList.module.scss";
 
 export type ToggleTaskFn = (

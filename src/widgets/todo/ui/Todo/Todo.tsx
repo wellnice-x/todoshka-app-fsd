@@ -1,11 +1,11 @@
 import styles from "./Todo.module.scss";
-import TodoList from "../TodoList";
+import TodoList from "@/widgets/task-list";
 import useTasks from "@/hooks/useTasks";
 import ReactIcon from "@/shared/assets/icons/react-icon.svg?react";
 import useIsMobile from "@/hooks/useIsMobile";
-import AddTaskForm from "../AddTaskForm/AddTaskForm";
-import SearchTaskForm from "../SearchTaskForm";
-import TodoActionsPanel from "../TodoActionsPanel";
+import AddTaskForm from "@/features/add-task";
+import SearchTaskForm from "@/features/search-task";
+import TodoActionsPanel from "@/widgets/todo-actions-panel";
 import useIsMutatingByMode from "@/hooks/useIsMutatingByMode";
 import { useFilter } from "@/stores/filterStore";
 import { BeatLoader } from "react-spinners";

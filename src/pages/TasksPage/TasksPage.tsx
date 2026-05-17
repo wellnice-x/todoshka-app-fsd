@@ -1,4 +1,4 @@
-import Todo from "@/components/Todo";
+import Todo from "@/widgets/todo";
 import styles from "./TasksPage.module.scss";
 import GoToTopButton from "@/shared/ui/GoToTopButton";
 
