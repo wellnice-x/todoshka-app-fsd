@@ -1,4 +1,4 @@
-import type { Task } from "@/types/task";
+import type { Task } from "@/entities/task/model/types/task";
 import type { FieldHandle } from "@/shared/ui/Field";
 import { useState, useRef, useEffect, ChangeEvent, SubmitEvent } from "react";
 import { handleMutationError } from "@/shared/lib/errors/handlers/with-toast/handleMutationError";

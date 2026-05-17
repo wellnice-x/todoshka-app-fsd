@@ -1,4 +1,4 @@
-import type { Task, UITask } from "@/types/task";
+import type { Task, UITask } from "@/entities/task/model/types/task";
 import { useTasksPageStore } from "@/stores/tasksPageStore";
 import { AnimatePresence } from "motion/react";
 import { useFilter } from "@/stores/filterStore";

@@ -1,5 +1,5 @@
 import { useIsMutating } from "@tanstack/react-query";
-import type { OptimisticMode } from "@/types/optimisticMode";
+import type { OptimisticMode } from "@/features/change-optimistic-mode";
 
 const useIsMutatingByMode = (optimisticMode: OptimisticMode) => {
   const isMutating = useIsMutating({

@@ -1,4 +1,4 @@
-import type { Task, UITask } from "@/types/task";
+import type { Task, UITask } from "@/entities/task/model/types/task";
 import { useMemo, useRef } from "react";
 import { useUIKeyStore } from "@/stores/uiKeyStore";
 

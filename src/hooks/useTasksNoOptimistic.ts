@@ -1,5 +1,5 @@
-import type { Task } from "@/types/task";
-import type { OptimisticMode } from "@/types/optimisticMode";
+import type { Task } from "@/entities/task/model/types/task";
+import type { OptimisticMode } from "@/features/change-optimistic-mode";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useQuerySyncWithOptionalToast } from "./useQuerySyncWithOptionalToast";
 import { useQuerySyncScheduler } from "./useQuerySyncScheduler";

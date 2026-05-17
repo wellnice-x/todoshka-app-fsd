@@ -1,5 +1,5 @@
-import type { Task } from "@/types/task";
-import type { OptimisticMode } from "@/types/optimisticMode";
+import type { Task } from "@/entities/task/model/types/task";
+import type { OptimisticMode } from "@/features/change-optimistic-mode";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useQuerySyncWithOptionalToast } from "./useQuerySyncWithOptionalToast";
 import { isBulkDeleteNetworkError } from "@/shared/lib/errors/errorUtils";
@@ -15,7 +15,7 @@ import { throwIfOffline } from "@/shared/lib/errors/network/throwIfOffline";
 import { useUIKeyStore } from "@/stores/uiKeyStore";
 import useServerAccessState from "./useServerAccessState";
 import useTasksWithUIKeys from "./useTasksWithUIKeys";
-import fallbackTasks from "@/mocks/fallbackTasks";
+import fallbackTasks from "@/entities/task/mocks/fallbackTasks";
 
 const useTasksSnapshots = (optimisticMode: OptimisticMode) => {
   const tasksService = useTasksService();

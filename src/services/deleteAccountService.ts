@@ -1,4 +1,4 @@
-import supabase from "../api/supabaseClient";
+import supabase from "../shared/api/supabase/supabaseClient";
 import { tasksService } from "./tasksService";
 
 const deleteServerUserData = async (): Promise<void> => {

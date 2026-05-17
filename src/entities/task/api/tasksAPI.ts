@@ -1,4 +1,4 @@
-import axiosClient from "./axiosClient";
+import axiosClient from "@/shared/api/base/axiosClient";
 import type { TaskDTO, CreateTaskDTO } from "./tasksAPI.types";
 
 export const tasksAPI = {

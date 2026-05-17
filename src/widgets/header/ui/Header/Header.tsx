@@ -22,7 +22,7 @@ import { useNavigate } from "react-router";
 import { createPortal } from "react-dom";
 import { useAppSettings } from "@/stores/appSettingsStore";
 import { useAnimationStore } from "@/stores/animationStore";
-import type { OptimisticMode } from "@/types/optimisticMode";
+import type { OptimisticMode } from "@/features/change-optimistic-mode";
 
 type ModalAction = "deleteConfirm" | "deleteForce" | null;
 

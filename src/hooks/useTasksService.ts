@@ -1,6 +1,6 @@
-import type { Task, CreateTaskPayload } from "@/types/task";
+import type { Task, CreateTaskPayload } from "@/entities/task/model/types/task";
 import { SimulatedBlockedMutationError } from "@/shared/lib/errors/simulation/SimulatedBlockedMutationError";
-import { mapFromDTO, mapToDTO } from "@/mappers/taskMapper";
+import { mapFromDTO, mapToDTO } from "@/entities/task/lib/mappers/taskMapper";
 import { useAppSettingsStore } from "@/stores/appSettingsStore";
 import { BulkDeleteError } from "@/shared/lib/errors/mutations/BulkDeleteError";
 import { tasksService } from "@/services/tasksService";

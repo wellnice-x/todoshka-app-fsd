@@ -1,5 +1,5 @@
 import type { AuthState, AuthContextValue } from "./types";
-import supabase from "@/api/supabaseClient";
+import supabase from "@/shared/api/supabase/supabaseClient";
 import {
   useState,
   useEffect,
@@ -9,8 +9,8 @@ import {
   useMemo,
 } from "react";
 import { AuthContext } from "./AuthContext";
-import { setAccessToken } from "@/auth/accessToken";
-import { setUnauthorizedHandler } from "@/auth/authBridge";
+import { setAccessToken } from "@/shared/auth/accessToken";
+import { setUnauthorizedHandler } from "@/shared/auth/authBridge";
 import type { Session } from "@supabase/supabase-js";
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {

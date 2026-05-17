@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { useShallow } from "zustand/shallow";
 import { useAppRuntimeStore } from "./appRuntimeStore";
-import type { OptimisticMode } from "@/types/optimisticMode";
+import type { OptimisticMode } from "@/features/change-optimistic-mode";
 
 type ActionResult = {
   ok: boolean;

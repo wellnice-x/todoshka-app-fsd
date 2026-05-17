@@ -1,11 +1,11 @@
-import supabase from "@/api/supabaseClient";
-import { tasksAPI } from "@/api/tasksAPI";
+import supabase from "@/shared/api/supabase/supabaseClient";
+import { tasksAPI } from "@/entities/task/api/tasksAPI";
 import { handleAxiosError } from "@/shared/lib/errors/handlers/handleAxiosError";
 import { UserNotFoundError } from "@/shared/lib/errors/auth/UserNotFoundError";
 import { useAppSettingsStore } from "@/stores/appSettingsStore";
 import { SimulatedRequestError } from "@/shared/lib/errors/simulation/SimulatedRequestError";
 import { SimulatedNetworkLikeError } from "@/shared/lib/errors/simulation/SimulatedNetworkLikeError";
-import type { TaskDTO, CreateTaskDTO } from "@/api/tasksAPI.types";
+import type { TaskDTO, CreateTaskDTO } from "@/entities/task/api/tasksAPI.types";
 
 const randomTime = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min + 1)) + min;

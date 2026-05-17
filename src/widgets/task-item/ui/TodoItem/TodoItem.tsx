@@ -1,4 +1,4 @@
-import type { UITask } from "@/types/task";
+import type { UITask } from "@/entities/task/model/types/task";
 import type { ToggleTaskFn, DeleteTaskFn } from "@/widgets/task-list";
 import { memo, useEffect, useRef, useState } from "react";
 import { handleMutationError } from "@/shared/lib/errors/handlers/with-toast/handleMutationError";

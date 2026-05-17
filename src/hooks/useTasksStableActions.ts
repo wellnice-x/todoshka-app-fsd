@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 import { UseMutationResult } from "@tanstack/react-query";
-import type { Task } from "@/types/task";
+import type { Task } from "@/entities/task/model/types/task";
 
 type ToggleTaskVariables = {
   taskId: string;

@@ -6,9 +6,9 @@ import { useState, ChangeEvent, SubmitEvent, useEffect } from "react";
 import { handleMutationError } from "@/shared/lib/errors/handlers/with-toast/handleMutationError";
 import { UseMutationResult } from "@tanstack/react-query";
 import { useTasksPageStore } from "@/stores/tasksPageStore";
-import { formatDate } from "@/utils/dateTimeFormatter";
+import { formatDate } from "@/shared/lib/date/dateTimeFormatter";
 import { ClipLoader } from "react-spinners";
-import type { Task } from "@/types/task";
+import type { Task } from "@/entities/task/model/types/task";
 
 type TaskUpdateFormProps = {
   className?: string;
