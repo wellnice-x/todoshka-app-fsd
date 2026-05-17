@@ -1,6 +1,6 @@
 import useAnonUser from "@/hooks/useAnonUser";
 import ThemeToggle from "@/components/ThemeToggle";
-import PageIntro from "@/components/PageIntro";
+import PageIntro from "@/shared/ui/PageIntro";
 import AuthForm from "@/components/AuthForm";
 import MoonIcon from "@/shared/assets/icons/moon.svg?react";
 import SunIcon from "@/shared/assets/icons/sun.svg?react";

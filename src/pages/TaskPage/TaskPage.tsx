@@ -1,5 +1,5 @@
 import styles from "./TaskPage.module.scss";
-import Button from "@/components/Button";
+import Button from "@/shared/ui/Button";
 import useTasks from "@/hooks/useTasks";
 import TaskUpdateForm from "@/components/TaskUpdateForm";
 import useServerAccessState from "@/hooks/useServerAccessState";

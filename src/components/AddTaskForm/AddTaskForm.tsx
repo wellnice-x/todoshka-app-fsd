@@ -1,5 +1,5 @@
 import type { Task } from "@/types/task";
-import type { FieldHandle } from "../Field";
+import type { FieldHandle } from "@/shared/ui/Field";
 import { useState, useRef, useEffect, ChangeEvent, SubmitEvent } from "react";
 import { handleMutationError } from "@/shared/lib/errors/handlers/with-toast/handleMutationError";
 import { UseMutationResult } from "@tanstack/react-query";
@@ -8,9 +8,9 @@ import { useFilter } from "@/stores/filterStore";
 import PlusCircleIcon from "@/shared/assets/icons/plus-circle.svg?react";
 import useIsMobile from "@/hooks/useIsMobile";
 import styles from "./AddTaskForm.module.scss";
-import Button from "../Button";
+import Button from "@/shared/ui/Button";
 import XIcon from "@/shared/assets/icons/x-icon.svg?react";
-import Field from "../Field";
+import Field from "@/shared/ui/Field";
 import toast from "react-hot-toast";
 
 type AddTaskVariables = {

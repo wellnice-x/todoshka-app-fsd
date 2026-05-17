@@ -1,4 +1,4 @@
-import Field from "../Field";
+import Field from "@/shared/ui/Field";
 import XIcon from "@/shared/assets/icons/x-icon.svg?react";
 import styles from "./SearchTaskForm.module.scss";
 import SearchIcon from "@/shared/assets/icons/search-icon.svg?react";

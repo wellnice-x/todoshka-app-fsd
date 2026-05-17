@@ -6,7 +6,7 @@ import { useAnimation } from "@/stores/animationStore";
 import { UseMutationResult } from "@tanstack/react-query";
 import { handleMutationError } from "@/shared/lib/errors/handlers/with-toast/handleMutationError";
 import { handleBulkMutationError } from "@/shared/lib/errors/handlers/with-toast/handleBulkMutationError";
-import ConfirmModal from "../ConfirmModal";
+import ConfirmModal from "@/shared/ui/ConfirmModal";
 import styles from "./TodoActionsPanel.module.scss";
 import toast from "react-hot-toast";
 

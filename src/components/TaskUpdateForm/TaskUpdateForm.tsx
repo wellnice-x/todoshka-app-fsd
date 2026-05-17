@@ -1,6 +1,6 @@
-import Field from "../Field";
+import Field from "@/shared/ui/Field";
 import toast from "react-hot-toast";
-import Button from "../Button";
+import Button from "@/shared/ui/Button";
 import styles from "./TaskUpdateForm.module.scss";
 import { useState, ChangeEvent, SubmitEvent, useEffect } from "react";
 import { handleMutationError } from "@/shared/lib/errors/handlers/with-toast/handleMutationError";
