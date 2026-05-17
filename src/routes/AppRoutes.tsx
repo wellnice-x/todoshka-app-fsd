@@ -1,8 +1,8 @@
-import AuthPage from "@/pages/AuthPage";
-import TaskPage from "@/pages/TaskPage";
-import TasksPage from "@/pages/TasksPage";
+import AuthPage from "@/pages/auth";
+import TaskPage from "@/pages/task";
+import TasksPage from "@/pages/tasks";
 import AppLayout from "@/AppLayout";
-import NotFoundPage from "@/pages/NotFoundPage";
+import NotFoundPage from "@/pages/not-found";
 import ProtectedRoute from "./ProtectedRoute";
 import { Route, Routes, Navigate } from "react-router";
 
