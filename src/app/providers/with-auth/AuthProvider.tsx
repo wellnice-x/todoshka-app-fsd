@@ -1,3 +1,4 @@
+import type { AuthState, AuthContextValue } from "./types";
 import supabase from "@/api/supabaseClient";
 import {
   useState,
@@ -7,10 +8,8 @@ import {
   useCallback,
   useMemo,
 } from "react";
-import { AuthState } from "./AuthContext";
 import { AuthContext } from "./AuthContext";
 import { setAccessToken } from "@/auth/accessToken";
-import { AuthContextValue } from "./AuthContext";
 import { setUnauthorizedHandler } from "@/auth/authBridge";
 import type { Session } from "@supabase/supabase-js";
 

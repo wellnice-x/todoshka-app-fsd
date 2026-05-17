@@ -1,5 +1,3 @@
-import { createContext } from "react";
-
 export type AuthState =
   | { authStatus: "init" | "checking" }
   | { authStatus: "unauthenticated" | "closed" }
@@ -10,5 +8,3 @@ export type AuthContextValue = AuthState & {
   isUncertain: boolean;
   authAnonymously: () => Promise<void>;
 };
-
-export const AuthContext = createContext<AuthContextValue | null>(null);

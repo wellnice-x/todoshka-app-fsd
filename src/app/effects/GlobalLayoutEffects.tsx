@@ -8,10 +8,11 @@ import useSettingsAutoDisableToast from "@/hooks/useSettingsAutoDisableToast";
 const GlobalLayoutEffects = () => {
   useSlowServerToast();
   useAuthCheckingToast();
-  useConnectionManager();
-  useConnectionEffects();
   useGlobalLoadErrorToast();
   useSettingsAutoDisableToast();
+
+  useConnectionManager();
+  useConnectionEffects();
 
   return null;
 };
