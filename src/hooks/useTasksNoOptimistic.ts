@@ -3,16 +3,14 @@ import type { OptimisticMode } from "@/features/change-optimistic-mode";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useQuerySyncWithOptionalToast } from "./useQuerySyncWithOptionalToast";
 import { useQuerySyncScheduler } from "./useQuerySyncScheduler";
-import { useTasksService } from "./useTasksService";
 import { throwIfOffline } from "@/shared/lib/errors/network/throwIfOffline";
 import { useUIKeyStore } from "@/stores/uiKeyStore";
+import { tasksUseCases } from "@/entities/task";
 import { useEffect } from "react";
 import useServerAccessState from "./useServerAccessState";
 import useTasksWithUIKeys from "./useTasksWithUIKeys";
 
 const useTasksNoOptimistic = (optimisticMode: OptimisticMode) => {
-  const tasksService = useTasksService();
-
   const queryClient = useQueryClient();
 
   const { isServerAccessBlocked } = useServerAccessState();
@@ -29,7 +27,7 @@ const useTasksNoOptimistic = (optimisticMode: OptimisticMode) => {
 
   const { data, error, isLoading, isFetching, isRefetching } = useQuery({
     queryKey: ["tasks", optimisticMode],
-    queryFn: tasksService.getAll,
+    queryFn: tasksUseCases.getAll,
     enabled: optimisticMode === "none" && !isServerAccessBlocked,
   });
 
@@ -41,7 +39,7 @@ const useTasksNoOptimistic = (optimisticMode: OptimisticMode) => {
     mutationFn: ({ title }: { title: string }) => {
       throwIfOffline();
 
-      return tasksService.addTask({
+      return tasksUseCases.addTask({
         title,
         description: "",
         isDone: false,
@@ -74,7 +72,7 @@ const useTasksNoOptimistic = (optimisticMode: OptimisticMode) => {
     }) => {
       throwIfOffline();
 
-      return tasksService.updateTaskInfo(taskId, title, description);
+      return tasksUseCases.updateTaskInfo(taskId, title, description);
     },
 
     onSuccess: (_data, vars) => {
@@ -108,7 +106,7 @@ const useTasksNoOptimistic = (optimisticMode: OptimisticMode) => {
     }) => {
       throwIfOffline();
 
-      return tasksService.toggleTask(taskId, newIsDone);
+      return tasksUseCases.toggleTask(taskId, newIsDone);
     },
 
     onSuccess: (_data, vars) => {
@@ -130,7 +128,7 @@ const useTasksNoOptimistic = (optimisticMode: OptimisticMode) => {
     mutationFn: ({ taskId }: { taskId: string }) => {
       throwIfOffline();
 
-      return tasksService.deleteTask(taskId);
+      return tasksUseCases.deleteTask(taskId);
     },
 
     onSuccess: (_data, vars) => {
@@ -150,7 +148,7 @@ const useTasksNoOptimistic = (optimisticMode: OptimisticMode) => {
     mutationFn: ({ taskIds }: { taskIds: string[] }) => {
       throwIfOffline();
 
-      return tasksService.deleteSome(taskIds);
+      return tasksUseCases.deleteSome(taskIds);
     },
 
     onSuccess: (_data, vars) => {
@@ -170,7 +168,7 @@ const useTasksNoOptimistic = (optimisticMode: OptimisticMode) => {
     mutationFn: () => {
       throwIfOffline();
 
-      return tasksService.markAllCompleted();
+      return tasksUseCases.markAllCompleted();
     },
 
     onSuccess: () => {

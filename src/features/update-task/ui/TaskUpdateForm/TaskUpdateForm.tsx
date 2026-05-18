@@ -6,7 +6,7 @@ import { useState, ChangeEvent, SubmitEvent, useEffect } from "react";
 import { handleMutationError } from "@/shared/lib/errors/handlers/with-toast/handleMutationError";
 import { UseMutationResult } from "@tanstack/react-query";
 import { useTasksPageStore } from "@/stores/tasksPageStore";
-import { formatDate } from "@/shared/lib/date/dateTimeFormatter";
+import { formatDate } from "@/shared/lib/date/formatDate";
 import { ClipLoader } from "react-spinners";
 import type { Task } from "@/entities/task/model/types/task";
 

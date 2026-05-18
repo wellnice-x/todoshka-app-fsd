@@ -1,4 +1,4 @@
-import Button from "../Button";
+import Button from "@/shared/ui/Button";
 import styles from "./ConfirmModal.module.scss";
 import { useRef, useEffect, useId } from "react";
 

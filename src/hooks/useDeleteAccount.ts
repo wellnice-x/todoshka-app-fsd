@@ -10,7 +10,7 @@ import { useConnectionStore } from "@/stores/connectionStore";
 import { useAppRuntimeStore } from "@/stores/appRuntimeStore";
 import { useAppearanceStore } from "@/stores/appearanceStore";
 import { useAppSettingsStore } from "@/stores/appSettingsStore";
-import deleteServerUserData from "@/services/deleteAccountService";
+import deleteServerUserData from "@/features/delete-account/model/deleteUserAccount";
 
 type DeleteResult = { status: "success" } | { status: "failed" };
 

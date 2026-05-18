@@ -2,8 +2,6 @@ import axiosClient from "@/shared/api/base/axiosClient";
 import type { TaskDTO, CreateTaskDTO } from "./tasksAPI.types";
 
 export const tasksAPI = {
-  checkHealth: () => axiosClient.get("/tasks?select=id&limit=1"),
-
   getAll: () => axiosClient.get<TaskDTO[]>(`/tasks?order=order_index.asc`),
 
   addTask: (task: CreateTaskDTO) =>

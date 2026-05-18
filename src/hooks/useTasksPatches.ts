@@ -9,7 +9,7 @@ import { useQuerySyncScheduler } from "./useQuerySyncScheduler";
 import { useAppRuntimeStore } from "@/stores/appRuntimeStore";
 import { useConnectionStore } from "@/stores/connectionStore";
 import { isBulkDeleteError } from "@/shared/lib/errors/guards";
-import { useTasksService } from "./useTasksService";
+import { tasksUseCases } from "@/entities/task";
 import { throwIfOffline } from "@/shared/lib/errors/network/throwIfOffline";
 import { useUIKeyStore } from "@/stores/uiKeyStore";
 import useServerAccessState from "./useServerAccessState";
@@ -26,8 +26,6 @@ type Patch = {
 };
 
 const useTasksPatches = (optimisticMode: OptimisticMode) => {
-  const tasksService = useTasksService();
-
   const queryClient = useQueryClient();
 
   const { isServerAccessBlocked, isServerAccessUncertain } = useServerAccessState();
@@ -125,7 +123,7 @@ const useTasksPatches = (optimisticMode: OptimisticMode) => {
 
   const { data, error, isLoading, isFetching, isRefetching } = useQuery({
     queryKey: ["tasks", optimisticMode],
-    queryFn: tasksService.getAll,
+    queryFn: tasksUseCases.getAll,
     enabled: optimisticMode === "patches" && !isServerAccessBlocked,
   });
 
@@ -151,7 +149,7 @@ const useTasksPatches = (optimisticMode: OptimisticMode) => {
       if (isServerAccessBlocked) return;
       throwIfOffline();
 
-      return tasksService.addTask({
+      return tasksUseCases.addTask({
         title,
         description: "",
         isDone: false,
@@ -241,7 +239,7 @@ const useTasksPatches = (optimisticMode: OptimisticMode) => {
       if (isServerAccessBlocked) return;
       throwIfOffline();
 
-      return tasksService.updateTaskInfo(taskId, title, description);
+      return tasksUseCases.updateTaskInfo(taskId, title, description);
     },
 
     onMutate: async ({ taskId, title, description }) => {
@@ -296,7 +294,7 @@ const useTasksPatches = (optimisticMode: OptimisticMode) => {
       if (isServerAccessBlocked) return;
       throwIfOffline();
 
-      return tasksService.toggleTask(taskId, newIsDone);
+      return tasksUseCases.toggleTask(taskId, newIsDone);
     },
 
     onMutate: async ({ taskId, newIsDone }) => {
@@ -345,7 +343,7 @@ const useTasksPatches = (optimisticMode: OptimisticMode) => {
       if (isServerAccessBlocked) return;
       throwIfOffline();
 
-      return tasksService.deleteTask(taskId);
+      return tasksUseCases.deleteTask(taskId);
     },
 
     onMutate: async ({ taskId }) => {
@@ -391,7 +389,7 @@ const useTasksPatches = (optimisticMode: OptimisticMode) => {
       if (isServerAccessBlocked) return;
       throwIfOffline();
 
-      return tasksService.deleteSome(taskIds);
+      return tasksUseCases.deleteSome(taskIds);
     },
 
     onMutate: async ({ taskIds }) => {
@@ -464,7 +462,7 @@ const useTasksPatches = (optimisticMode: OptimisticMode) => {
       if (isServerAccessBlocked) return;
       throwIfOffline();
 
-      return tasksService.markAllCompleted();
+      return tasksUseCases.markAllCompleted();
     },
 
     onMutate: async () => {

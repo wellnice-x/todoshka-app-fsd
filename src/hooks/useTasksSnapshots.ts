@@ -9,20 +9,19 @@ import { useAppRuntimeStore } from "@/stores/appRuntimeStore";
 import { useConnectionStore } from "@/stores/connectionStore";
 import { useEffect, useRef } from "react";
 import { isBulkDeleteError } from "@/shared/lib/errors/guards";
-import { useTasksService } from "./useTasksService";
 import { isNetworkError } from "@/shared/lib/errors/errorUtils";
 import { throwIfOffline } from "@/shared/lib/errors/network/throwIfOffline";
 import { useUIKeyStore } from "@/stores/uiKeyStore";
+import { tasksUseCases } from "@/entities/task";
 import useServerAccessState from "./useServerAccessState";
 import useTasksWithUIKeys from "./useTasksWithUIKeys";
 import fallbackTasks from "@/entities/task/mocks/fallbackTasks";
 
 const useTasksSnapshots = (optimisticMode: OptimisticMode) => {
-  const tasksService = useTasksService();
-
   const queryClient = useQueryClient();
 
-  const { isServerAccessBlocked, isServerAccessUncertain } = useServerAccessState();
+  const { isServerAccessBlocked, isServerAccessUncertain } =
+    useServerAccessState();
 
   const { setUIKey, transferUIKey, cleanupUIKeys } = useUIKeyStore.getState();
 
@@ -59,7 +58,7 @@ const useTasksSnapshots = (optimisticMode: OptimisticMode) => {
 
   const { data, error, isLoading, isFetching, isRefetching } = useQuery({
     queryKey: ["tasks", optimisticMode],
-    queryFn: tasksService.getAll,
+    queryFn: tasksUseCases.getAll,
     enabled: optimisticMode === "snapshots" && !isServerAccessBlocked,
   });
 
@@ -72,7 +71,7 @@ const useTasksSnapshots = (optimisticMode: OptimisticMode) => {
       if (isServerAccessBlocked) return;
       throwIfOffline();
 
-      return tasksService.addTask({
+      return tasksUseCases.addTask({
         title,
         description: "",
         isDone: false,
@@ -168,7 +167,7 @@ const useTasksSnapshots = (optimisticMode: OptimisticMode) => {
       if (isServerAccessBlocked) return;
       throwIfOffline();
 
-      return tasksService.updateTaskInfo(taskId, title, description);
+      return tasksUseCases.updateTaskInfo(taskId, title, description);
     },
 
     onMutate: async ({ taskId, title, description }) => {
@@ -220,7 +219,7 @@ const useTasksSnapshots = (optimisticMode: OptimisticMode) => {
       if (isServerAccessBlocked) return;
       throwIfOffline();
 
-      return tasksService.toggleTask(taskId, newIsDone);
+      return tasksUseCases.toggleTask(taskId, newIsDone);
     },
 
     onMutate: async ({ taskId, newIsDone }) => {
@@ -277,7 +276,7 @@ const useTasksSnapshots = (optimisticMode: OptimisticMode) => {
       if (isServerAccessBlocked) return;
       throwIfOffline();
 
-      return tasksService.deleteTask(taskId);
+      return tasksUseCases.deleteTask(taskId);
     },
 
     onMutate: async ({ taskId }) => {
@@ -341,7 +340,7 @@ const useTasksSnapshots = (optimisticMode: OptimisticMode) => {
       if (isServerAccessBlocked) return;
       throwIfOffline();
 
-      return tasksService.deleteSome(taskIds);
+      return tasksUseCases.deleteSome(taskIds);
     },
 
     onMutate: async () => {
@@ -363,7 +362,7 @@ const useTasksSnapshots = (optimisticMode: OptimisticMode) => {
       }
 
       const previousTasks = context?.previousTasks;
-      
+
       if (!previousTasks) return;
 
       if (!isBulkDeleteError(error)) {
@@ -426,7 +425,7 @@ const useTasksSnapshots = (optimisticMode: OptimisticMode) => {
       if (isServerAccessBlocked) return;
       throwIfOffline();
 
-      return tasksService.markAllCompleted();
+      return tasksUseCases.markAllCompleted();
     },
 
     onMutate: async () => {

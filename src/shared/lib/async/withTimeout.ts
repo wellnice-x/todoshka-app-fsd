@@ -1,4 +1,4 @@
-import { TimeoutError } from "../errors/network/TimeoutError";
+import { TimeoutError } from "@/shared/lib/errors/network/TimeoutError";
 
 export const withTimeout = <T>(promise: Promise<T>, ms: number): Promise<T> => {
   return new Promise((resolve, reject) => {

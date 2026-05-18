@@ -1,6 +1,6 @@
 import useServerAccessState from "./useServerAccessState";
 import { useQuery } from "@tanstack/react-query";
-import { tasksService } from "@/services/tasksService";
+import { checkHealth } from "@/shared/api/health/healthService";
 
 const useServerHealth = (isAggressiveProbe: boolean) => {
   const { isServerAccessBlocked } = useServerAccessState();
@@ -11,7 +11,7 @@ const useServerHealth = (isAggressiveProbe: boolean) => {
       if (isServerAccessBlocked) {
         return false;
       }
-      return tasksService.checkHealth();
+      return checkHealth();
     },
     enabled: !isServerAccessBlocked,
     refetchInterval: () => (isAggressiveProbe ? 10_000 : 60_000),
