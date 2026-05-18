@@ -1,6 +1,6 @@
-import { Task } from "@/entities/task/model/types/task";
+import { Task } from "@/entities/task";
 
-const fallbackTasks = (): Task[] => {
+export const fallbackTasks = (): Task[] => {
   return [
     {
       id: "fallback-1",
@@ -45,5 +45,3 @@ const fallbackTasks = (): Task[] => {
     },
   ];
 };
-
-export default fallbackTasks;

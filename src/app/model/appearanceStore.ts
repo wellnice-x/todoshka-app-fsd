@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { isMobileDevice } from "@/shared/lib/device/isMobileDevice";
 
 type Theme = "light" | "dark";
 
@@ -14,15 +15,11 @@ type AppearanceStore = {
   reset: () => void;
 };
 
-const isMobileDefault = () =>
-  typeof window !== "undefined" &&
-  window.matchMedia("(pointer: coarse)").matches;
-
 export const useAppearanceStore = create<AppearanceStore>()(
   persist(
     (set) => ({
       theme: "dark",
-      isParallax: !isMobileDefault(),
+      isParallax: !isMobileDevice(),
       isFooterCollapsed: false,
 
       toggleTheme: () =>
@@ -45,7 +42,7 @@ export const useAppearanceStore = create<AppearanceStore>()(
       reset: () =>
         set({
           theme: "dark",
-          isParallax: !isMobileDefault(),
+          isParallax: !isMobileDevice(),
           isFooterCollapsed: false,
         }),
     }),

@@ -7,11 +7,11 @@ import AddTaskForm from "@/features/add-task";
 import SearchTaskForm from "@/features/search-task";
 import TodoActionsPanel from "@/widgets/todo-actions-panel";
 import useIsMutatingByMode from "@/hooks/useIsMutatingByMode";
-import { useFilter } from "@/stores/filterStore";
+import { useFilter } from "@/features/filter-tasks";
 import { BeatLoader } from "react-spinners";
 import { PuffLoader } from "react-spinners";
-import { useAnimationStore } from "@/stores/animationStore";
-import { useTasksPageStore } from "@/stores/tasksPageStore";
+import { useAnimationStore } from "@/shared/lib/animation/model/animationStore";
+import { useTasksPageStore } from "@/pages/tasks";
 import { useTaskStableActions } from "@/hooks/useTasksStableActions";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 

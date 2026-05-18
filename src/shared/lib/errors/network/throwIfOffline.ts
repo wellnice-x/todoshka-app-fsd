@@ -1,4 +1,4 @@
-import { useAppRuntimeStore } from "@/stores/appRuntimeStore";
+import { useAppRuntimeStore } from "@/app/model/appRuntimeStore";
 import { OfflineError } from "@/shared/lib/errors/network/OfflineError";
 
 export const throwIfOffline = () => {

@@ -1,21 +1,21 @@
-import type { Task } from "@/entities/task/model/types/task";
+import type { Task } from "@/entities/task";
 import type { OptimisticMode } from "@/features/change-optimistic-mode";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useQuerySyncWithOptionalToast } from "./useQuerySyncWithOptionalToast";
 import { isBulkDeleteNetworkError } from "@/shared/lib/errors/errorUtils";
 import { handlePromiseWithToast } from "@/shared/lib/toast/handlePromiseWithToast";
 import { useQuerySyncScheduler } from "./useQuerySyncScheduler";
-import { useAppRuntimeStore } from "@/stores/appRuntimeStore";
-import { useConnectionStore } from "@/stores/connectionStore";
+import { useAppRuntimeStore } from "@/app/model/appRuntimeStore";
+import { useConnectionStore } from "@/shared/api/network/model/connectionStore";
 import { useEffect, useRef } from "react";
 import { isBulkDeleteError } from "@/shared/lib/errors/guards";
 import { isNetworkError } from "@/shared/lib/errors/errorUtils";
 import { throwIfOffline } from "@/shared/lib/errors/network/throwIfOffline";
-import { useUIKeyStore } from "@/stores/uiKeyStore";
+import { useUIKeyStore } from "@/entities/task";
 import { tasksUseCases } from "@/entities/task";
+import { fallbackTasks } from "@/entities/task";
 import useServerAccessState from "./useServerAccessState";
 import useTasksWithUIKeys from "./useTasksWithUIKeys";
-import fallbackTasks from "@/entities/task/mocks/fallbackTasks";
 
 const useTasksSnapshots = (optimisticMode: OptimisticMode) => {
   const queryClient = useQueryClient();

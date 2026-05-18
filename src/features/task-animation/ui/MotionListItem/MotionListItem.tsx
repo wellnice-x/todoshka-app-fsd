@@ -1,8 +1,8 @@
 import styles from "./MotionListItem.module.scss";
 import { motion } from "motion/react";
 import { ReactNode } from "react";
-import { useAnimation } from "@/stores/animationStore";
-import { useAppSettingsStore } from "@/stores/appSettingsStore";
+import { useAnimation } from "@/shared/lib/animation/model/animationStore";
+import { useAppSettingsStore } from "@/app/model/settings/appSettingsStore";
 
 type MotionListItemProps = {
   children: ReactNode;

@@ -1,13 +1,13 @@
 import { TimeoutError } from "@/shared/lib/errors/network/TimeoutError";
-import { useErrorStore } from "@/stores/errorStore";
-import { useAppSettingsStore } from "@/stores/appSettingsStore";
+import { useGlobalErrorStore } from "@/app/model/globalErrorStore";
+import { useAppSettingsStore } from "@/app/model/settings/appSettingsStore";
 import useAuth from "@/hooks/useAuth";
 
 const useLoadErrorStatus = (error: unknown) => {
   const { isAuthenticated, isUncertain } = useAuth();
 
   const isOfflineMode = useAppSettingsStore((state) => state.isOfflineMode);
-  const loadErrorShown = useErrorStore((state) => state.loadErrorShown);
+  const loadErrorShown = useGlobalErrorStore((state) => state.loadErrorShown);
 
   if (loadErrorShown || isOfflineMode || isUncertain) {
     return null;

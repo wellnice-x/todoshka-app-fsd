@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useAppearanceStore } from "@/stores/appearanceStore";
+import { useAppearanceStore } from "@/app/model/appearanceStore";
 
 const useThemeSync = () => {
   const theme = useAppearanceStore((state) => state.theme);

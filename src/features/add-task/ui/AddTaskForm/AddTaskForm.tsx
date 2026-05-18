@@ -1,10 +1,10 @@
-import type { Task } from "@/entities/task/model/types/task";
+import type { Task } from "@/entities/task";
 import type { FieldHandle } from "@/shared/ui/Field";
 import { useState, useRef, useEffect, ChangeEvent, SubmitEvent } from "react";
 import { handleMutationError } from "@/shared/lib/errors/handlers/with-toast/handleMutationError";
 import { UseMutationResult } from "@tanstack/react-query";
-import { useAnimationStore } from "@/stores/animationStore";
-import { useFilter } from "@/stores/filterStore";
+import { useAnimationStore } from "@/shared/lib/animation/model/animationStore";
+import { useFilter } from "@/features/filter-tasks";
 import PlusCircleIcon from "@/shared/assets/icons/plus-circle.svg?react";
 import useIsMobile from "@/hooks/useIsMobile";
 import styles from "./AddTaskForm.module.scss";

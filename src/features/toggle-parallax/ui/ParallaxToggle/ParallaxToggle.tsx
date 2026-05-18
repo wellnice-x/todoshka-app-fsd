@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { useAppearanceStore } from "@/stores/appearanceStore";
+import { useAppearanceStore } from "@/app/model/appearanceStore";
 import toast from "react-hot-toast";
 import styles from "./ParallaxToggle.module.scss";
 import useIsMobile from "@/hooks/useIsMobile";

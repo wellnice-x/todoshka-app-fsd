@@ -1,8 +1,8 @@
-import type { FilterState } from "@/stores/filterStore";
+import type { FilterState } from "@/features/filter-tasks/model/filterStore";
 import { useState } from "react";
-import { useFilter } from "@/stores/filterStore";
+import { useFilter } from "@/features/filter-tasks";
 import { createPortal } from "react-dom";
-import { useAnimation } from "@/stores/animationStore";
+import { useAnimation } from "@/shared/lib/animation/model/animationStore";
 import { UseMutationResult } from "@tanstack/react-query";
 import { handleMutationError } from "@/shared/lib/errors/handlers/with-toast/handleMutationError";
 import { handleBulkMutationError } from "@/shared/lib/errors/handlers/with-toast/handleBulkMutationError";

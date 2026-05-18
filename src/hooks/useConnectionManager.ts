@@ -1,4 +1,4 @@
-import type { ConnectionStatus } from "@/stores/connectionStore";
+import type { ConnectionStatus } from "@/shared/api/network/model/connectionStore";
 import {
   MutationCacheNotifyEvent,
   QueryCacheNotifyEvent,
@@ -6,10 +6,10 @@ import {
 } from "@tanstack/react-query";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { isSyncError, isNetworkError } from "@/shared/lib/errors/errorUtils";
-import { useAppRuntimeStore } from "@/stores/appRuntimeStore";
+import { useGlobalErrorStore } from "@/app/model/globalErrorStore";
+import { useAppRuntimeStore } from "@/app/model/appRuntimeStore";
 import { BulkDeleteError } from "@/shared/lib/errors/mutations/BulkDeleteError";
-import { useErrorStore } from "@/stores/errorStore";
-import { useConnection } from "@/stores/connectionStore";
+import { useConnection } from "@/shared/api/network/model/connectionStore";
 import useServerHealth from "./useServerHealth";
 import useNetworkListeners from "./useNetworkListeners";
 import useServerAccessState from "./useServerAccessState";
@@ -26,7 +26,7 @@ const useConnectionManager = () => {
   const setIsNoInternetConnection = useAppRuntimeStore(
     (state) => state.setIsNoInternetConnection,
   );
-  const resetErrorStore = useErrorStore((state) => state.reset);
+  const resetErrorStore = useGlobalErrorStore((state) => state.reset);
   const {
     hasConnectionJustRecovered,
     setConnectionStatus,

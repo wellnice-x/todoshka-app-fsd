@@ -1,10 +1,10 @@
-import type { Task } from "@/entities/task/model/types/task";
+import type { Task } from "@/entities/task";
 import type { OptimisticMode } from "@/features/change-optimistic-mode";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useQuerySyncWithOptionalToast } from "./useQuerySyncWithOptionalToast";
 import { useQuerySyncScheduler } from "./useQuerySyncScheduler";
 import { throwIfOffline } from "@/shared/lib/errors/network/throwIfOffline";
-import { useUIKeyStore } from "@/stores/uiKeyStore";
+import { useUIKeyStore } from "@/entities/task";
 import { tasksUseCases } from "@/entities/task";
 import { useEffect } from "react";
 import useServerAccessState from "./useServerAccessState";

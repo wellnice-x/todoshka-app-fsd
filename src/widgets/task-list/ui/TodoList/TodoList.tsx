@@ -1,7 +1,7 @@
-import type { Task, UITask } from "@/entities/task/model/types/task";
-import { useTasksPageStore } from "@/stores/tasksPageStore";
+import type { Task, UITask } from "@/entities/task";
+import { useTasksPageStore } from "@/pages/tasks";
 import { AnimatePresence } from "motion/react";
-import { useFilter } from "@/stores/filterStore";
+import { useFilter } from "@/features/filter-tasks";
 import { useEffect } from "react";
 import MotionListItem from "@/features/task-animation";
 import TodoItem from "@/widgets/task-item";

@@ -1,7 +1,7 @@
 import { AuthProvider } from "./with-auth/AuthProvider";
 import { BrowserRouter } from "react-router";
 import { PropsWithChildren } from "react";
-import { useAppRuntimeStore } from "@/stores/appRuntimeStore";
+import { useAppRuntimeStore } from "@/app/model/appRuntimeStore";
 import { QueryClientProvider } from "@tanstack/react-query";
 import queryClient from "@/shared/lib/react-query/queryClient";
 import GlobalAppEffects from "@/app/effects/GlobalAppEffects";

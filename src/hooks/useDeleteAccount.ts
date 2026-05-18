@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { withTimeout } from "@/shared/lib/async/withTimeout";
-import { useErrorStore } from "@/stores/errorStore";
-import { useUIKeyStore } from "@/stores/uiKeyStore";
-import { useFilterStore } from "@/stores/filterStore";
+import { useUIKeyStore } from "@/entities/task";
+import { useFilterStore } from "@/features/filter-tasks";
 import { useQueryClient } from "@tanstack/react-query";
-import { useTasksPageStore } from "@/stores/tasksPageStore";
-import { useAnimationStore } from "@/stores/animationStore";
-import { useConnectionStore } from "@/stores/connectionStore";
-import { useAppRuntimeStore } from "@/stores/appRuntimeStore";
-import { useAppearanceStore } from "@/stores/appearanceStore";
-import { useAppSettingsStore } from "@/stores/appSettingsStore";
-import deleteServerUserData from "@/features/delete-account/model/deleteUserAccount";
+import { useTasksPageStore } from "@/pages/tasks";
+import { useAnimationStore } from "@/shared/lib/animation/model/animationStore";
+import { useConnectionStore } from "@/shared/api/network/model/connectionStore";
+import { useAppRuntimeStore } from "@/app/model/appRuntimeStore";
+import { useAppearanceStore } from "@/app/model/appearanceStore";
+import { useAppSettingsStore } from "@/app/model/settings/appSettingsStore";
+import { useGlobalErrorStore } from "@/app/model/globalErrorStore";
+import { deleteServerUserData } from "@/features/delete-account";
 
 type DeleteResult = { status: "success" } | { status: "failed" };
 
@@ -21,13 +21,13 @@ const useDeleteAccount = () => {
 
   const resetAllStores = () => {
     useUIKeyStore.getState().reset();
-    useErrorStore.getState().reset();
     useFilterStore.getState().reset();
     useTasksPageStore.getState().reset();
     useAnimationStore.getState().reset();
     useAppearanceStore.getState().reset();
     useConnectionStore.getState().reset();
     useAppSettingsStore.getState().reset();
+    useGlobalErrorStore.getState().reset();
   };
 
   const deleteLocalUserData = () => {

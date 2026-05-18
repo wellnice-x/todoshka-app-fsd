@@ -1,7 +1,7 @@
 import supabase from "@/shared/api/supabase/supabaseClient";
 import { tasksService } from "@/entities/task";
 
-const deleteServerUserData = async (): Promise<void> => {
+export const deleteServerUserData = async (): Promise<void> => {
   await tasksService.deleteAll();
 
   const { error } = await supabase.auth.signOut();
@@ -11,5 +11,3 @@ const deleteServerUserData = async (): Promise<void> => {
     throw error;
   }
 };
-
-export default deleteServerUserData;

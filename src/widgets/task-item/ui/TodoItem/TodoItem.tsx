@@ -1,9 +1,9 @@
-import type { UITask } from "@/entities/task/model/types/task";
+import type { UITask } from "@/entities/task";
 import type { ToggleTaskFn, DeleteTaskFn } from "@/widgets/task-list";
 import { memo, useEffect, useRef, useState } from "react";
 import { handleMutationError } from "@/shared/lib/errors/handlers/with-toast/handleMutationError";
-import { useTasksPageStore } from "@/stores/tasksPageStore";
-import { useAnimationStore } from "@/stores/animationStore";
+import { useTasksPageStore } from "@/pages/tasks";
+import { useAnimationStore } from "@/shared/lib/animation/model/animationStore";
 import { useNavigate } from "react-router";
 import DeleteIcon from "@/shared/assets/icons/delete-icon.svg?react";
 import GoToIcon from "@/shared/assets/icons/chevrons-left.svg?react";

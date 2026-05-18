@@ -1,4 +1,4 @@
-import { useAppSettingsStore } from "@/stores/appSettingsStore";
+import { useAppSettingsStore } from "@/app/model/settings/appSettingsStore";
 import { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 

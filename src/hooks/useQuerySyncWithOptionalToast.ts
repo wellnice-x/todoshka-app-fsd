@@ -1,5 +1,5 @@
 import { isNetworkError } from "@/shared/lib/errors/errorUtils";
-import { useAppRuntimeStore } from "@/stores/appRuntimeStore";
+import { useAppRuntimeStore } from "@/app/model/appRuntimeStore";
 import { handlePromiseWithToast } from "@/shared/lib/toast/handlePromiseWithToast";
 import type { ScheduleQuerySyncFn } from "./useQuerySyncScheduler";
 

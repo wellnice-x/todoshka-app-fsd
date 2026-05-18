@@ -20,8 +20,9 @@ import { useState } from "react";
 import { ClipLoader } from "react-spinners";
 import { useNavigate } from "react-router";
 import { createPortal } from "react-dom";
-import { useAppSettings } from "@/stores/appSettingsStore";
-import { useAnimationStore } from "@/stores/animationStore";
+import { useAppSettings } from "@/app/model/settings/appSettingsStore";
+import { settingsUseCases } from "@/app/model/settings/settingsUseCases";
+import { useAnimationStore } from "@/shared/lib/animation/model/animationStore";
 import type { OptimisticMode } from "@/features/change-optimistic-mode";
 
 type ModalAction = "deleteConfirm" | "deleteForce" | null;
@@ -31,16 +32,8 @@ type HeaderProps = {
 };
 
 const Header = ({ className }: HeaderProps) => {
-  const {
-    optimisticMode,
-    isChaosMode,
-    isOfflineMode,
-    isBlockMutation,
-    setOptimisticMode,
-    toggleOfflineMode,
-    toggleBlockMutation,
-    toggleChaosMode,
-  } = useAppSettings();
+  const { optimisticMode, isChaosMode, isOfflineMode, isBlockMutation } =
+    useAppSettings();
 
   const blockTasksAnimation = useAnimationStore(
     (state) => state.blockTasksAnimation,
@@ -89,9 +82,7 @@ const Header = ({ className }: HeaderProps) => {
   };
 
   const handleBlockMutationChange = () => {
-    const nextValue = !isBlockMutation;
-
-    const result = toggleBlockMutation(canAccessServer);
+    const result = settingsUseCases.toggleBlockMutation(canAccessServer);
 
     if (!result.ok) {
       toast(result.reason ?? "Unknown error", { icon: "⚠️" });
@@ -99,14 +90,12 @@ const Header = ({ className }: HeaderProps) => {
     }
 
     toast.success(
-      nextValue ? "Server mutations blocked" : "Server mutations unblocked",
+      result.enabled ? "Server mutations blocked" : "Server mutations unblocked",
     );
   };
 
   const handleOfflineModeChange = () => {
-    const nextValue = !isOfflineMode;
-
-    const result = toggleOfflineMode(canAccessServer);
+    const result = settingsUseCases.toggleOfflineMode(canAccessServer);
 
     if (!result.ok) {
       toast(result.reason ?? "Unknown error", { icon: "⚠️" });
@@ -114,7 +103,7 @@ const Header = ({ className }: HeaderProps) => {
     }
 
     toast.success(
-      nextValue
+      result.enabled
         ? "Offline mode activated. \n Your changes won't be saved"
         : "Offline mode deactivated",
       { duration: 3500 },
@@ -122,9 +111,7 @@ const Header = ({ className }: HeaderProps) => {
   };
 
   const handleChaosModeChange = () => {
-    const nextValue = !isChaosMode;
-
-    const result = toggleChaosMode(canAccessServer);
+    const result = settingsUseCases.toggleChaosMode(canAccessServer);
 
     if (!result.ok) {
       toast(result.reason ?? "Unknown error", { icon: "⚠️" });
@@ -132,7 +119,7 @@ const Header = ({ className }: HeaderProps) => {
     }
 
     toast.success(
-      nextValue
+      result.enabled
         ? "Chaotic server mode activated. \n Get random delay and error chance"
         : "Chaotic server mode deactivated",
       { duration: 3500 },
@@ -153,7 +140,7 @@ const Header = ({ className }: HeaderProps) => {
 
     blockTasksAnimation();
 
-    setOptimisticMode(value);
+    settingsUseCases.changeOptimisticMode(value);
   };
 
   const modalConfig = {
@@ -211,12 +198,8 @@ const Header = ({ className }: HeaderProps) => {
         <div className={styles.appActions}>
           <ParallaxToggle
             title="Toggle parallax"
-            enabledParallaxIcon={
-              <ParallaxOnIcon />
-            }
-            disabledParallaxIcon={
-              <ParallaxOffIcon />
-            }
+            enabledParallaxIcon={<ParallaxOnIcon />}
+            disabledParallaxIcon={<ParallaxOffIcon />}
           />
           <ThemeToggle
             title="Change theme"

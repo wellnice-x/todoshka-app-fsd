@@ -2,14 +2,14 @@ import useLoadErrorStatus from "./useLoadErrorStatus";
 import useTasks from "./useTasks";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
-import { useErrorStore } from "@/stores/errorStore";
+import { useGlobalErrorStore } from "@/app/model/globalErrorStore";
 
 function useGlobalLoadErrorToast() {
   const { error, tasksIsFetching } = useTasks();
 
   const loadError = useLoadErrorStatus(tasksIsFetching ? null : error);
 
-  const setLoadErrorShown = useErrorStore((state) => state.setLoadErrorShown);
+  const setLoadErrorShown = useGlobalErrorStore((state) => state.setLoadErrorShown);
 
   const showErrorToast = (title: string) => {
     toast.error(title, {

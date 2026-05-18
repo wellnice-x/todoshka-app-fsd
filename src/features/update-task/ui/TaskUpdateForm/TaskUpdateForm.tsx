@@ -5,10 +5,10 @@ import styles from "./TaskUpdateForm.module.scss";
 import { useState, ChangeEvent, SubmitEvent, useEffect } from "react";
 import { handleMutationError } from "@/shared/lib/errors/handlers/with-toast/handleMutationError";
 import { UseMutationResult } from "@tanstack/react-query";
-import { useTasksPageStore } from "@/stores/tasksPageStore";
+import { useTasksPageStore } from "@/pages/tasks";
 import { formatDate } from "@/shared/lib/date/formatDate";
 import { ClipLoader } from "react-spinners";
-import type { Task } from "@/entities/task/model/types/task";
+import type { Task } from "@/entities/task";
 
 type TaskUpdateFormProps = {
   className?: string;

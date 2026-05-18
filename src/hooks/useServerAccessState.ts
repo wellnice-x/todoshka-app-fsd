@@ -1,5 +1,5 @@
-import { useAppSettingsStore } from "@/stores/appSettingsStore";
-import { useAppRuntimeStore } from "@/stores/appRuntimeStore";
+import { useAppSettingsStore } from "@/app/model/settings/appSettingsStore";
+import { useAppRuntimeStore } from "@/app/model/appRuntimeStore";
 import useAuth from "./useAuth";
 
 const useServerAccessState = () => {

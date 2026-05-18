@@ -1,4 +1,4 @@
-import { useAppRuntime } from "@/stores/appRuntimeStore";
+import { useAppRuntime } from "@/app/model/appRuntimeStore";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 

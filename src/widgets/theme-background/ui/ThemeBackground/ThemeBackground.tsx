@@ -1,7 +1,7 @@
 import useIsMobile from "@/hooks/useIsMobile";
 import styles from "./ThemeBackground.module.scss";
 import { useEffect, useRef } from "react";
-import { useAppearanceStore } from "@/stores/appearanceStore";
+import { useAppearanceStore } from "@/app/model/appearanceStore";
 
 type ThemeBackgroundProps = {
   isAltPosition?: boolean;

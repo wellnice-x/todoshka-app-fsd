@@ -1,4 +1,4 @@
-import { useAppSettingsStore } from "@/stores/appSettingsStore";
+import { useAppSettingsStore } from "@/app/model/settings/appSettingsStore";
 import { SimulatedBlockedMutationError } from "@/shared/lib/errors/simulation/SimulatedBlockedMutationError";
 
 export const ensureMutationNotBlocked = async () => {

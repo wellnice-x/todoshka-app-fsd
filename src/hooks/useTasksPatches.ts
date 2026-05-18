@@ -1,4 +1,4 @@
-import type { Task } from "@/entities/task/model/types/task";
+import type { Task } from "@/entities/task";
 import type { OptimisticMode } from "@/features/change-optimistic-mode";
 import { isBulkDeleteNetworkError, isNetworkError } from "@/shared/lib/errors/errorUtils";
 import { useCallback, useEffect, useMemo, useRef } from "react";
@@ -6,15 +6,15 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useQuerySyncWithOptionalToast } from "./useQuerySyncWithOptionalToast";
 import { handlePromiseWithToast } from "@/shared/lib/toast/handlePromiseWithToast";
 import { useQuerySyncScheduler } from "./useQuerySyncScheduler";
-import { useAppRuntimeStore } from "@/stores/appRuntimeStore";
-import { useConnectionStore } from "@/stores/connectionStore";
+import { useAppRuntimeStore } from "@/app/model/appRuntimeStore";
+import { useConnectionStore } from "@/shared/api/network/model/connectionStore";
 import { isBulkDeleteError } from "@/shared/lib/errors/guards";
-import { tasksUseCases } from "@/entities/task";
 import { throwIfOffline } from "@/shared/lib/errors/network/throwIfOffline";
-import { useUIKeyStore } from "@/stores/uiKeyStore";
+import { tasksUseCases } from "@/entities/task";
+import { useUIKeyStore } from "@/entities/task";
+import { fallbackTasks } from "@/entities/task";
 import useServerAccessState from "./useServerAccessState";
 import useTasksWithUIKeys from "./useTasksWithUIKeys";
-import fallbackTasks from "@/entities/task/mocks/fallbackTasks";
 
 type PatchOperation = "create" | "update" | "delete";
 

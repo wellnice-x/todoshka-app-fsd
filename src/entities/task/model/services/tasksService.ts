@@ -1,7 +1,7 @@
 import type {
   TaskDTO,
   CreateTaskDTO,
-} from "@/entities/task/api/tasksAPI.types";
+} from "@/entities/task";
 import {
   maybeFailHard,
   maybeFailWithUnknownOutcome,
@@ -9,7 +9,7 @@ import {
 } from "@/shared/lib/simulation";
 import { handleAxiosError } from "@/shared/lib/errors/handlers/handleAxiosError";
 import { getCurrentUserId } from "@/shared/auth/lib/getCurrentUserId";
-import { tasksAPI } from "@/entities/task/api/tasksAPI";
+import { tasksAPI } from "@/entities/task";
 
 const withErrorHandler = async <T>(func: () => Promise<T>): Promise<T> => {
   try {

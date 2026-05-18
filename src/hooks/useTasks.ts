@@ -1,7 +1,7 @@
 import useTasksPatches from "./useTasksPatches";
 import useTasksSnapshots from "./useTasksSnapshots";
 import useTasksNoOptimistic from "./useTasksNoOptimistic";
-import { useAppSettingsStore } from "@/stores/appSettingsStore";
+import { useAppSettingsStore } from "@/app/model/settings/appSettingsStore";
 
 const useTasks = () => {
   const optimisticMode = useAppSettingsStore((state) => state.optimisticMode);
