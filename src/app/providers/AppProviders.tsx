@@ -1,13 +1,13 @@
 import { AuthProvider } from "./with-auth/AuthProvider";
 import { BrowserRouter } from "react-router";
+import { useRuntimeStore } from "@/app/model";
 import { PropsWithChildren } from "react";
-import { useAppRuntimeStore } from "@/app/model/appRuntimeStore";
 import { QueryClientProvider } from "@tanstack/react-query";
 import queryClient from "@/shared/lib/react-query/queryClient";
 import GlobalAppEffects from "@/app/effects/GlobalAppEffects";
 
 const AppProviders = ({ children }: PropsWithChildren) => {
-  const sessionId = useAppRuntimeStore((state) => state.sessionId);
+  const sessionId = useRuntimeStore((state) => state.sessionId);
 
   return (
     <>

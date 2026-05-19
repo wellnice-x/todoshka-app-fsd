@@ -2,7 +2,7 @@ import { useConnection } from "@/shared/api/network/model/connectionStore";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 
-const useConnectionEffects = () => {
+export const useConnectionEffects = () => {
   const { hasConnectionJustLost, hasConnectionJustRecovered } = useConnection();
 
   useEffect(() => {
@@ -22,5 +22,3 @@ const useConnectionEffects = () => {
     }
   }, [hasConnectionJustRecovered]);
 };
-
-export default useConnectionEffects;

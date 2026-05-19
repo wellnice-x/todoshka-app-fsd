@@ -1,9 +1,9 @@
-import { useAppSettingsStore } from "@/app/model/settings/appSettingsStore";
+import { useSettingsStore } from "@/app/model";
 import { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 
-const useOptimisticModeToast = () => {
-  const optimisticMode = useAppSettingsStore((state) => state.optimisticMode);
+export const useOptimisticModeToast = () => {
+  const optimisticMode = useSettingsStore((state) => state.optimisticMode);
 
   const firstPageLoadRef = useRef(true);
   const prevModeRef = useRef(optimisticMode);
@@ -30,5 +30,3 @@ const useOptimisticModeToast = () => {
     });
   }, [optimisticMode]);
 };
-
-export default useOptimisticModeToast;

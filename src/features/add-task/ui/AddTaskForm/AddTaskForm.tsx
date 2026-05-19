@@ -6,7 +6,7 @@ import { UseMutationResult } from "@tanstack/react-query";
 import { useAnimationStore } from "@/shared/lib/animation/model/animationStore";
 import { useFilter } from "@/features/filter-tasks";
 import PlusCircleIcon from "@/shared/assets/icons/plus-circle.svg?react";
-import useIsMobile from "@/hooks/useIsMobile";
+import useIsMobile from "@/shared/lib/device/useIsMobile";
 import styles from "./AddTaskForm.module.scss";
 import Button from "@/shared/ui/Button";
 import XIcon from "@/shared/assets/icons/x-icon.svg?react";

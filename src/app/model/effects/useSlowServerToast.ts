@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useIsMutating } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
-const useSlowServerToast = () => {
+export const useSlowServerToast = () => {
   const mutatingCount = useIsMutating();
 
   useEffect(() => {
@@ -20,5 +20,3 @@ const useSlowServerToast = () => {
     return () => clearTimeout(timer);
   }, [mutatingCount]);
 };
-
-export default useSlowServerToast;

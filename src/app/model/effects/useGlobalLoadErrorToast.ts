@@ -1,10 +1,10 @@
-import useLoadErrorStatus from "./useLoadErrorStatus";
-import useTasks from "./useTasks";
+import useTasks from "@/hooks/useTasks";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
-import { useGlobalErrorStore } from "@/app/model/globalErrorStore";
+import { useLoadErrorStatus } from "@/app/model";
+import { useGlobalErrorStore } from "@/app/model";
 
-function useGlobalLoadErrorToast() {
+export const useGlobalLoadErrorToast = () => {
   const { error, tasksIsFetching } = useTasks();
 
   const loadError = useLoadErrorStatus(tasksIsFetching ? null : error);
@@ -51,5 +51,3 @@ function useGlobalLoadErrorToast() {
     }
   }, [loadError, setLoadErrorShown]);
 }
-
-export default useGlobalLoadErrorToast;

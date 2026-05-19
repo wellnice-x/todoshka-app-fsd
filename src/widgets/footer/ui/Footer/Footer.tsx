@@ -1,6 +1,6 @@
 import styles from "./Footer.module.scss";
 import FilledCircle from "@/shared/assets/icons/filled-circle.svg?react";
-import { useAppearanceStore } from "@/app/model/appearanceStore";
+import { useAppearanceStore } from "@/app/model";
 import { useConnectionStore } from "@/shared/api/network/model/connectionStore";
 
 type FooterProps = {

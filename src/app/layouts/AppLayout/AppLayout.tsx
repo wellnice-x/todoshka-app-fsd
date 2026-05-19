@@ -1,5 +1,5 @@
 import GlobalLayoutEffects from "@/app/effects/GlobalLayoutEffects";
-import useKeyboardFocus from "@/hooks/useKeyboardFocus";
+import useKeyboardFocus from "@/shared/lib/accessibility/useKeyboardFocus";
 import lightBackground from "@/shared/assets/images/bg-decor.webp";
 import ThemeBackground from "@/widgets/theme-background/ui/ThemeBackground";
 import darkBackground from "@/shared/assets/images/bg-decor-alt.webp";

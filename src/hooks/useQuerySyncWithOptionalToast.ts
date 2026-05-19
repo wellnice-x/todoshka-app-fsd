@@ -1,7 +1,7 @@
 import { isNetworkError } from "@/shared/lib/errors/errorUtils";
-import { useAppRuntimeStore } from "@/app/model/appRuntimeStore";
+import { useRuntimeStore } from "@/app/model";
 import { handlePromiseWithToast } from "@/shared/lib/toast/handlePromiseWithToast";
-import type { ScheduleQuerySyncFn } from "./useQuerySyncScheduler";
+import type { ScheduleQuerySyncFn } from "@/shared/lib/react-query/useQuerySyncScheduler";
 
 export const useQuerySyncWithOptionalToast = (
   scheduleQuerySync: ScheduleQuerySyncFn,
@@ -11,7 +11,7 @@ export const useQuerySyncWithOptionalToast = (
     delay?: number,
     showWithAnyError: boolean = false,
   ): Promise<void> | undefined => {
-    const { isNoInternetConnection } = useAppRuntimeStore.getState();
+    const { isNoInternetConnection } = useRuntimeStore.getState();
 
     if (isNoInternetConnection) {
       return;

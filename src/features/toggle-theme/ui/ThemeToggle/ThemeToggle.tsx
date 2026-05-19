@@ -1,4 +1,4 @@
-import { useAppearanceStore } from "@/app/model/appearanceStore";
+import { useAppearanceStore } from "@/app/model";
 import { ReactNode } from "react";
 import styles from "./ThemeToggle.module.scss";
 

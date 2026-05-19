@@ -3,7 +3,6 @@ import styles from "./Header.module.scss";
 import SunIcon from "@/shared/assets/icons/sun.svg?react";
 import MoonIcon from "@/shared/assets/icons/moon.svg?react";
 import Dropdown from "@/shared/ui/Dropdown";
-import useAnonUser from "@/hooks/useAnonUser";
 import ThemeToggle from "@/features/toggle-theme";
 import ToggleButton from "@/shared/ui/ToggleButton";
 import ConfirmModal from "@/shared/ui/ConfirmModal";
@@ -11,18 +10,19 @@ import SettingsIcon from "@/shared/assets/icons/settings-icon.svg?react";
 import ParallaxToggle from "@/features/toggle-parallax";
 import ParallaxOnIcon from "@/shared/assets/icons/parallax-on-icon.svg?react";
 import ParallaxOffIcon from "@/shared/assets/icons/parallax-off-icon.svg?react";
-import useDeleteAccount from "@/hooks/useDeleteAccount";
 import DeleteProfileIcon from "@/shared/assets/icons/delete-profile-icon.svg?react";
 import MultiToggleButton from "@/shared/ui/MultiToggleButton";
-import useServerAccessState from "@/hooks/useServerAccessState";
-import useOptimisticModeToast from "@/hooks/useOptimisticModeToast";
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";
 import { useNavigate } from "react-router";
+import { useSettings } from "@/app/model";
+import { useAnonUser } from "@/app/model";
 import { createPortal } from "react-dom";
-import { useAppSettings } from "@/app/model/settings/appSettingsStore";
-import { settingsUseCases } from "@/app/model/settings/settingsUseCases";
+import { useDeleteAccount } from "@/app/model";
+import { settingsUseCases } from "@/app/model";
 import { useAnimationStore } from "@/shared/lib/animation/model/animationStore";
+import { useServerAccessState } from "@/app/model";
+import { useOptimisticModeToast } from "@/app/model";
 import type { OptimisticMode } from "@/features/change-optimistic-mode";
 
 type ModalAction = "deleteConfirm" | "deleteForce" | null;
@@ -33,7 +33,7 @@ type HeaderProps = {
 
 const Header = ({ className }: HeaderProps) => {
   const { optimisticMode, isChaosMode, isOfflineMode, isBlockMutation } =
-    useAppSettings();
+    useSettings();
 
   const blockTasksAnimation = useAnimationStore(
     (state) => state.blockTasksAnimation,

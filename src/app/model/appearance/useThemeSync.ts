@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { useAppearanceStore } from "@/app/model/appearanceStore";
+import { useAppearanceStore } from "@/app/model";
 
-const useThemeSync = () => {
+export const useThemeSync = () => {
   const theme = useAppearanceStore((state) => state.theme);
 
   useEffect(() => {
@@ -10,5 +10,3 @@ const useThemeSync = () => {
     root.classList.toggle("dark", theme === "dark");
   }, [theme]);
 };
-
-export default useThemeSync;

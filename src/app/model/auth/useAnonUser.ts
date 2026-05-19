@@ -1,6 +1,6 @@
-import useLocalStorage from "./useLocalStorage";
+import useLocalStorage from "@/shared/lib/storage/useLocalStorage";
 
-const useAnonUser = () => {
+export const useAnonUser = () => {
   const [userNickname, setUserNickname] = useLocalStorage<string>(
     "userNickname",
     "",
@@ -14,5 +14,3 @@ const useAnonUser = () => {
     hasUserName,
   };
 };
-
-export default useAnonUser;

@@ -1,4 +1,4 @@
-import useAnonUser from "@/hooks/useAnonUser";
+import { useAnonUser } from "@/app/model";
 import { Navigate, Outlet } from "react-router";
 
 const ProtectedRoute = () => {

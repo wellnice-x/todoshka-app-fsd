@@ -1,9 +1,9 @@
-import { useAppRuntime } from "@/app/model/appRuntimeStore";
+import { useRuntime } from "@/app/model";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 
-const useSettingsAutoDisableToast = () => {
-  const { settingsAutoDisabled, unmarkSettingsDisabled } = useAppRuntime();
+export const useSettingsAutoDisableToast = () => {
+  const { settingsAutoDisabled, unmarkSettingsDisabled } = useRuntime();
 
   useEffect(() => {
     if (!settingsAutoDisabled) return;
@@ -18,5 +18,3 @@ const useSettingsAutoDisableToast = () => {
     unmarkSettingsDisabled();
   }, [settingsAutoDisabled, unmarkSettingsDisabled]);
 };
-
-export default useSettingsAutoDisableToast;

@@ -1,11 +1,11 @@
 import type { OptimisticMode } from "@/features/change-optimistic-mode";
 import type { ActionResult } from "./settings.types";
-import { useAppSettingsStore } from "./appSettingsStore";
-import { useAppRuntimeStore } from "@/app/model/appRuntimeStore";
+import { useSettingsStore } from "./settingsStore";
+import { useRuntimeStore } from "@/app/model";
 
 export const settingsUseCases = {
   toggleOfflineMode(canAccessServer: boolean): ActionResult {
-    const settings = useAppSettingsStore.getState();
+    const settings = useSettingsStore.getState();
 
     const {
       optimisticMode,
@@ -25,7 +25,7 @@ export const settingsUseCases = {
     if (
       !canAccessServer &&
       !isOfflineMode &&
-      !useAppRuntimeStore.getState().isNoInternetConnection
+      !useRuntimeStore.getState().isNoInternetConnection
     ) {
       return {
         ok: false,
@@ -47,7 +47,7 @@ export const settingsUseCases = {
   },
 
   toggleBlockMutation(canAccessServer: boolean): ActionResult {
-    const settings = useAppSettingsStore.getState();
+    const settings = useSettingsStore.getState();
 
     const {
       optimisticMode,
@@ -85,7 +85,7 @@ export const settingsUseCases = {
   },
 
   toggleChaosMode(canAccessServer: boolean): ActionResult {
-    const settings = useAppSettingsStore.getState();
+    const settings = useSettingsStore.getState();
 
     const { isChaosMode, setChaosMode, setOfflineMode, setBlockMutation } =
       settings;
@@ -111,7 +111,7 @@ export const settingsUseCases = {
   },
 
   changeOptimisticMode(mode: OptimisticMode) {
-    const settings = useAppSettingsStore.getState();
+    const settings = useSettingsStore.getState();
 
     const {
       isOfflineMode,
@@ -127,13 +127,13 @@ export const settingsUseCases = {
       setOfflineMode(false);
       setBlockMutation(false);
 
-      useAppRuntimeStore.getState().markSettingsDisabled();
+      useRuntimeStore.getState().markSettingsDisabled();
 
       return;
     }
 
     setOptimisticMode(mode);
 
-    useAppRuntimeStore.getState().unmarkSettingsDisabled();
+    useRuntimeStore.getState().unmarkSettingsDisabled();
   },
 };

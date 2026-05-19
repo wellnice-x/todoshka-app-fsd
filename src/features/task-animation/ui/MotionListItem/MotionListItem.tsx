@@ -2,7 +2,7 @@ import styles from "./MotionListItem.module.scss";
 import { motion } from "motion/react";
 import { ReactNode } from "react";
 import { useAnimation } from "@/shared/lib/animation/model/animationStore";
-import { useAppSettingsStore } from "@/app/model/settings/appSettingsStore";
+import { useSettingsStore } from "@/app/model";
 
 type MotionListItemProps = {
   children: ReactNode;
@@ -23,7 +23,7 @@ const isExitAnimation = (definition: AnimationDefinition) =>
 
 const MotionListItem = ({ children, className }: MotionListItemProps) => {
   const { shouldTasksAnimate, blockTasksAnimation } = useAnimation();
-  const optimisticMode = useAppSettingsStore((state) => state.optimisticMode);
+  const optimisticMode = useSettingsStore((state) => state.optimisticMode);
 
   return (
     <motion.li

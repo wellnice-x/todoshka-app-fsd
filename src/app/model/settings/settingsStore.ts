@@ -1,9 +1,9 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { useShallow } from "zustand/shallow";
-import type { AppSettingsStore } from "./settings.types";
+import type { SettingsStore } from "./settings.types";
 
-export const useAppSettingsStore = create<AppSettingsStore>()(
+export const useSettingsStore = create<SettingsStore>()(
   persist(
     (set) => ({
       isChaosMode: false,
@@ -46,7 +46,7 @@ export const useAppSettingsStore = create<AppSettingsStore>()(
 );
 
 export const appSettingsSelectors = {
-  settings: (state: AppSettingsStore) => ({
+  settings: (state: SettingsStore) => ({
     isChaosMode: state.isChaosMode,
     isOfflineMode: state.isOfflineMode,
     isBlockMutation: state.isBlockMutation,
@@ -59,5 +59,5 @@ export const appSettingsSelectors = {
   }),
 };
 
-export const useAppSettings = () =>
-  useAppSettingsStore(useShallow(appSettingsSelectors.settings));
+export const useSettings = () =>
+  useSettingsStore(useShallow(appSettingsSelectors.settings));

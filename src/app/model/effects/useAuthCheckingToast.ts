@@ -1,8 +1,8 @@
 import { useEffect } from "react";
+import { useAuth } from "@/app/model";
 import toast from "react-hot-toast";
-import useAuth from "@/hooks/useAuth";
 
-const useAuthCheckingToast = () => {
+export const useAuthCheckingToast = () => {
   const { authStatus } = useAuth();
 
   useEffect(() => {
@@ -23,5 +23,3 @@ const useAuthCheckingToast = () => {
     };
   }, [authStatus]);
 };
-
-export default useAuthCheckingToast;

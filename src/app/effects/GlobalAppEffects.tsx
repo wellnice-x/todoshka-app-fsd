@@ -1,4 +1,4 @@
-import useThemeSync from "@/hooks/useThemeSync";
+import { useThemeSync } from "@/app/model";
 
 const GlobalAppEffects = () => {
   useThemeSync();

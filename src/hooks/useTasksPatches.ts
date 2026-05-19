@@ -5,15 +5,15 @@ import { useCallback, useEffect, useMemo, useRef } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useQuerySyncWithOptionalToast } from "./useQuerySyncWithOptionalToast";
 import { handlePromiseWithToast } from "@/shared/lib/toast/handlePromiseWithToast";
-import { useQuerySyncScheduler } from "./useQuerySyncScheduler";
-import { useAppRuntimeStore } from "@/app/model/appRuntimeStore";
+import { useQuerySyncScheduler } from "@/shared/lib/react-query/useQuerySyncScheduler";
+import { useServerAccessState } from "@/app/model";
 import { useConnectionStore } from "@/shared/api/network/model/connectionStore";
 import { isBulkDeleteError } from "@/shared/lib/errors/guards";
+import { useRuntimeStore } from "@/app/model";
 import { throwIfOffline } from "@/shared/lib/errors/network/throwIfOffline";
 import { tasksUseCases } from "@/entities/task";
 import { useUIKeyStore } from "@/entities/task";
 import { fallbackTasks } from "@/entities/task";
-import useServerAccessState from "./useServerAccessState";
 import useTasksWithUIKeys from "./useTasksWithUIKeys";
 
 type PatchOperation = "create" | "update" | "delete";
@@ -503,7 +503,7 @@ const useTasksPatches = (optimisticMode: OptimisticMode) => {
   useEffect(() => {
     if (optimisticMode !== "patches" || isServerAccessUncertain) return;
 
-    const { isNoInternetConnection } = useAppRuntimeStore.getState();
+    const { isNoInternetConnection } = useRuntimeStore.getState();
 
     const wasBlocked = wasServerBlockedRef.current;
     const isNowBlocked = isServerAccessBlocked;

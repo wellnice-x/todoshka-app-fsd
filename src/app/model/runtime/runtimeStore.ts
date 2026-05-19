@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { useShallow } from "zustand/shallow";
 
-type AppRuntimeStore = {
+type RuntimeStore = {
   sessionId: string;
   settingsAutoDisabled: boolean;
   isNoInternetConnection: boolean;
@@ -11,7 +11,7 @@ type AppRuntimeStore = {
   resetSession: () => void;
 };
 
-export const useAppRuntimeStore = create<AppRuntimeStore>((set) => ({
+export const useRuntimeStore = create<RuntimeStore>((set) => ({
   sessionId: crypto.randomUUID(),
   settingsAutoDisabled: false,
   isNoInternetConnection: false,
@@ -28,8 +28,8 @@ export const useAppRuntimeStore = create<AppRuntimeStore>((set) => ({
     }),
 }));
 
-export const appRuntimeSelectors = {
-  runtime: (state: AppRuntimeStore) => ({
+export const runtimeSelectors = {
+  runtime: (state: RuntimeStore) => ({
     sessionId: state.sessionId,
     settingsAutoDisabled: state.settingsAutoDisabled,
     isNoInternetConnection: state.isNoInternetConnection,
@@ -40,5 +40,5 @@ export const appRuntimeSelectors = {
   }),
 };
 
-export const useAppRuntime = () =>
-  useAppRuntimeStore(useShallow(appRuntimeSelectors.runtime));
+export const useRuntime = () =>
+  useRuntimeStore(useShallow(runtimeSelectors.runtime));

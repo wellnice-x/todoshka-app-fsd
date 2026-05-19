@@ -1,10 +1,10 @@
-import useAnonUser from "@/hooks/useAnonUser";
 import ThemeToggle from "@/features/toggle-theme/ui/ThemeToggle";
 import PageIntro from "@/shared/ui/PageIntro";
 import AuthForm from "@/features/auth/ui/AuthForm";
 import MoonIcon from "@/shared/assets/icons/moon.svg?react";
 import SunIcon from "@/shared/assets/icons/sun.svg?react";
 import styles from "./AuthPage.module.scss";
+import { useAnonUser } from "@/app/model";
 import { Navigate } from "react-router";
 
 const AuthPage = () => {

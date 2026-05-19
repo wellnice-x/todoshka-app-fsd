@@ -1,8 +1,8 @@
-import useServerAccessState from "./useServerAccessState";
 import { useQuery } from "@tanstack/react-query";
 import { checkHealth } from "@/shared/api/health/healthService";
+import { useServerAccessState } from "@/app/model";
 
-const useServerHealth = (isAggressiveProbe: boolean) => {
+export const useServerHealth = (isAggressiveProbe: boolean) => {
   const { isServerAccessBlocked } = useServerAccessState();
 
   return useQuery({
@@ -19,5 +19,3 @@ const useServerHealth = (isAggressiveProbe: boolean) => {
     retry: isAggressiveProbe ? 0 : 1,
   });
 };
-
-export default useServerHealth;

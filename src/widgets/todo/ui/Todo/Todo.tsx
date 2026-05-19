@@ -2,7 +2,7 @@ import styles from "./Todo.module.scss";
 import TodoList from "@/widgets/task-list";
 import useTasks from "@/hooks/useTasks";
 import ReactIcon from "@/shared/assets/icons/react-icon.svg?react";
-import useIsMobile from "@/hooks/useIsMobile";
+import useIsMobile from "@/shared/lib/device/useIsMobile";
 import AddTaskForm from "@/features/add-task";
 import SearchTaskForm from "@/features/search-task";
 import TodoActionsPanel from "@/widgets/todo-actions-panel";

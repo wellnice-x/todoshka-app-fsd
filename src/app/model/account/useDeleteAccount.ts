@@ -3,18 +3,18 @@ import { withTimeout } from "@/shared/lib/async/withTimeout";
 import { useUIKeyStore } from "@/entities/task";
 import { useFilterStore } from "@/features/filter-tasks";
 import { useQueryClient } from "@tanstack/react-query";
+import { useRuntimeStore } from "@/app/model";
+import { useSettingsStore } from "@/app/model";
 import { useTasksPageStore } from "@/pages/tasks";
 import { useAnimationStore } from "@/shared/lib/animation/model/animationStore";
 import { useConnectionStore } from "@/shared/api/network/model/connectionStore";
-import { useAppRuntimeStore } from "@/app/model/appRuntimeStore";
-import { useAppearanceStore } from "@/app/model/appearanceStore";
-import { useAppSettingsStore } from "@/app/model/settings/appSettingsStore";
-import { useGlobalErrorStore } from "@/app/model/globalErrorStore";
+import { useAppearanceStore } from "@/app/model";
+import { useGlobalErrorStore } from "@/app/model";
 import { deleteServerUserData } from "@/features/delete-account";
 
 type DeleteResult = { status: "success" } | { status: "failed" };
 
-const useDeleteAccount = () => {
+export const useDeleteAccount = () => {
   const queryClient = useQueryClient();
 
   const [isDataDeleting, setIsDataDeleting] = useState(false);
@@ -22,11 +22,11 @@ const useDeleteAccount = () => {
   const resetAllStores = () => {
     useUIKeyStore.getState().reset();
     useFilterStore.getState().reset();
+    useSettingsStore.getState().reset();
     useTasksPageStore.getState().reset();
     useAnimationStore.getState().reset();
     useAppearanceStore.getState().reset();
     useConnectionStore.getState().reset();
-    useAppSettingsStore.getState().reset();
     useGlobalErrorStore.getState().reset();
   };
 
@@ -34,7 +34,7 @@ const useDeleteAccount = () => {
     queryClient.clear();
     localStorage.clear();
     resetAllStores();
-    useAppRuntimeStore.getState().resetSession();
+    useRuntimeStore.getState().resetSession();
   };
 
   const deleteAllData = async (): Promise<DeleteResult> => {
@@ -59,5 +59,3 @@ const useDeleteAccount = () => {
     isDataDeleting,
   };
 };
-
-export default useDeleteAccount;

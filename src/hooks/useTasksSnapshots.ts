@@ -4,17 +4,17 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useQuerySyncWithOptionalToast } from "./useQuerySyncWithOptionalToast";
 import { isBulkDeleteNetworkError } from "@/shared/lib/errors/errorUtils";
 import { handlePromiseWithToast } from "@/shared/lib/toast/handlePromiseWithToast";
-import { useQuerySyncScheduler } from "./useQuerySyncScheduler";
-import { useAppRuntimeStore } from "@/app/model/appRuntimeStore";
+import { useQuerySyncScheduler } from "@/shared/lib/react-query/useQuerySyncScheduler";
+import { useServerAccessState } from "@/app/model";
 import { useConnectionStore } from "@/shared/api/network/model/connectionStore";
 import { useEffect, useRef } from "react";
 import { isBulkDeleteError } from "@/shared/lib/errors/guards";
+import { useRuntimeStore } from "@/app/model";
 import { isNetworkError } from "@/shared/lib/errors/errorUtils";
 import { throwIfOffline } from "@/shared/lib/errors/network/throwIfOffline";
 import { useUIKeyStore } from "@/entities/task";
 import { tasksUseCases } from "@/entities/task";
 import { fallbackTasks } from "@/entities/task";
-import useServerAccessState from "./useServerAccessState";
 import useTasksWithUIKeys from "./useTasksWithUIKeys";
 
 const useTasksSnapshots = (optimisticMode: OptimisticMode) => {
@@ -468,7 +468,7 @@ const useTasksSnapshots = (optimisticMode: OptimisticMode) => {
   useEffect(() => {
     if (optimisticMode !== "snapshots" || isServerAccessUncertain) return;
 
-    const { isNoInternetConnection } = useAppRuntimeStore.getState();
+    const { isNoInternetConnection } = useRuntimeStore.getState();
 
     const wasBlocked = wasServerBlockedRef.current;
     const isNowBlocked = isServerAccessBlocked;

@@ -1,9 +1,9 @@
-import useSlowServerToast from "@/hooks/useSlowServerToast";
-import useConnectionManager from "@/hooks/useConnectionManager";
-import useAuthCheckingToast from "@/hooks/useAuthCheckingToast";
-import useConnectionEffects from "@/hooks/useConnectionEffects";
-import useGlobalLoadErrorToast from "@/hooks/useGlobalLoadErrorToast";
-import useSettingsAutoDisableToast from "@/hooks/useSettingsAutoDisableToast";
+import { useSlowServerToast } from "@/app/model";
+import { useConnectionManager } from "@/app/model";
+import { useAuthCheckingToast } from "@/app/model";
+import { useConnectionEffects } from "@/app/model";
+import { useGlobalLoadErrorToast } from "@/app/model";
+import { useSettingsAutoDisableToast } from "@/app/model";
 
 const GlobalLayoutEffects = () => {
   useSlowServerToast();

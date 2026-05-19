@@ -4,7 +4,7 @@ export type ActionResult =
   | { ok: true; enabled: boolean }
   | { ok: false; reason: string };
 
-export type AppSettingsStore = {
+export type SettingsStore = {
   isChaosMode: boolean;
   isOfflineMode: boolean;
   isBlockMutation: boolean;

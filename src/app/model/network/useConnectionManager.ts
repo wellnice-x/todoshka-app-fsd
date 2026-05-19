@@ -6,24 +6,24 @@ import {
 } from "@tanstack/react-query";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { isSyncError, isNetworkError } from "@/shared/lib/errors/errorUtils";
-import { useGlobalErrorStore } from "@/app/model/globalErrorStore";
-import { useAppRuntimeStore } from "@/app/model/appRuntimeStore";
+import { useServerAccessState } from "@/app/model";
+import { useGlobalErrorStore } from "@/app/model";
+import { useRuntimeStore } from "@/app/model";
 import { BulkDeleteError } from "@/shared/lib/errors/mutations/BulkDeleteError";
+import { useServerHealth } from "@/app/model";
 import { useConnection } from "@/shared/api/network/model/connectionStore";
-import useServerHealth from "./useServerHealth";
-import useNetworkListeners from "./useNetworkListeners";
-import useServerAccessState from "./useServerAccessState";
-import useQuerySubscriptions from "./useQuerySubscriptions";
+import useNetworkListeners from "@/shared/lib/network/useNetworkListeners";
+import useQuerySubscriptions from "@/shared/lib/react-query/useQuerySubscriptions";
 
 const NETWORK_ERROR_THRESHOLD = 3;
 
-const useConnectionManager = () => {
+export const useConnectionManager = () => {
   const [isConnectionUnstable, setIsConnectionUnstable] = useState(false);
 
-  const isNoInternetConnection = useAppRuntimeStore(
+  const isNoInternetConnection = useRuntimeStore(
     (state) => state.isNoInternetConnection,
   );
-  const setIsNoInternetConnection = useAppRuntimeStore(
+  const setIsNoInternetConnection = useRuntimeStore(
     (state) => state.setIsNoInternetConnection,
   );
   const resetErrorStore = useGlobalErrorStore((state) => state.reset);
@@ -109,7 +109,7 @@ const useConnectionManager = () => {
       const wasOnline = lastCertainStatusRef.current === "online";
       const wasOffline = lastCertainStatusRef.current === "offline";
 
-      const { isNoInternetConnection } = useAppRuntimeStore.getState();
+      const { isNoInternetConnection } = useRuntimeStore.getState();
 
       if (!isHealthQuery) {
         if (!isNoInternetConnection && isSyncError(error)) {
@@ -156,7 +156,7 @@ const useConnectionManager = () => {
       const wasOnline = lastCertainStatusRef.current === "online";
       const wasOffline = lastCertainStatusRef.current === "offline";
 
-      const { isNoInternetConnection } = useAppRuntimeStore.getState();
+      const { isNoInternetConnection } = useRuntimeStore.getState();
 
       if (isSuccess) {
         networkErrorCountRef.current = 0;
@@ -222,5 +222,3 @@ const useConnectionManager = () => {
     }
   }, [hasConnectionJustRecovered, resetFlags, resetErrorStore]);
 };
-
-export default useConnectionManager;

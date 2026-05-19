@@ -1,10 +1,10 @@
 import useTasksPatches from "./useTasksPatches";
 import useTasksSnapshots from "./useTasksSnapshots";
 import useTasksNoOptimistic from "./useTasksNoOptimistic";
-import { useAppSettingsStore } from "@/app/model/settings/appSettingsStore";
+import { useSettingsStore } from "@/app/model";
 
 const useTasks = () => {
-  const optimisticMode = useAppSettingsStore((state) => state.optimisticMode);
+  const optimisticMode = useSettingsStore((state) => state.optimisticMode);
 
   const patchesMode = useTasksPatches(optimisticMode);
   const snapshotsMode = useTasksSnapshots(optimisticMode);
