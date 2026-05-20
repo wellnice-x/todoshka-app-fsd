@@ -1,6 +1,6 @@
-import { getAccessToken } from "@/shared/auth/accessToken";
-import { handleUnauthorizedGlobal } from "@/shared/auth/authBridge";
-import { SessionRefreshFailedError } from "@/shared/lib/errors/auth/SessionRefreshFailedError";
+import { getAccessToken } from "@/shared/auth/api/accessToken";
+import { handleUnauthorizedGlobal } from "@/shared/auth/api/authBridge";
+import { SessionRefreshFailedError } from "@/shared/lib/errors";
 import axios, { AxiosRequestConfig } from "axios";
 
 const URL = import.meta.env.VITE_SUPABASE_URL;

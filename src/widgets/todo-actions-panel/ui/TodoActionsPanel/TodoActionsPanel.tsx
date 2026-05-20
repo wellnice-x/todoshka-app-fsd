@@ -1,11 +1,11 @@
-import type { FilterState } from "@/features/filter-tasks/model/filterStore";
+import type { FilterState } from "@/features/filter-tasks";
 import { useState } from "react";
 import { useFilter } from "@/features/filter-tasks";
 import { createPortal } from "react-dom";
-import { useAnimation } from "@/shared/lib/animation/model/animationStore";
+import { useAnimation } from "@/shared/lib/animation/animationStore";
 import { UseMutationResult } from "@tanstack/react-query";
-import { handleMutationError } from "@/shared/lib/errors/handlers/with-toast/handleMutationError";
-import { handleBulkMutationError } from "@/shared/lib/errors/handlers/with-toast/handleBulkMutationError";
+import { handleMutationError } from "@/shared/lib/errors";
+import { handleBulkMutationError } from "@/shared/lib/errors";
 import ConfirmModal from "@/shared/ui/ConfirmModal";
 import styles from "./TodoActionsPanel.module.scss";
 import toast from "react-hot-toast";

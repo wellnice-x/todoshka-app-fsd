@@ -1,5 +1,5 @@
 import type { SimulationConfig } from "./config/types";
-import { SimulatedNetworkLikeError } from "@/shared/lib/errors/simulation/SimulatedNetworkLikeError";
+import { SimulatedNetworkLikeError } from "@/shared/lib/errors";
 import { simulateDelay } from "./simulateDelay";
 
 export const maybeFailWithUnknownOutcome = async (config: SimulationConfig) => {

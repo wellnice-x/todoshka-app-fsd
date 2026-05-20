@@ -1,0 +1,1 @@
+export { useAnonUser } from "./model/useAnonUser";

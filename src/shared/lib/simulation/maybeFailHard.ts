@@ -1,5 +1,5 @@
 import type { SimulationConfig } from "./config/types";
-import { SimulatedRequestError } from "@/shared/lib/errors/simulation/SimulatedRequestError";
+import { SimulatedRequestError } from "@/shared/lib/errors";
 import { simulateDelay } from "./simulateDelay";
 
 export const maybeFailHard = async (config: SimulationConfig) => {

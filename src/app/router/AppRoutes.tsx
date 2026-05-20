@@ -1,7 +1,7 @@
 import AuthPage from "@/pages/auth";
 import TaskPage from "@/pages/task";
 import TasksPage from "@/pages/tasks";
-import AppLayout from "@/app/layouts/AppLayout/AppLayout";
+import AppLayout from "@/app/layouts/AppLayout";
 import NotFoundPage from "@/pages/not-found";
 import ProtectedRoute from "./ProtectedRoute";
 import { Route, Routes, Navigate } from "react-router";

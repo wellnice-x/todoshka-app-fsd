@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
 import { handleMutationError } from "./handleMutationError";
-import { BulkDeleteError } from "@/shared/lib/errors/mutations/BulkDeleteError";
+import { BulkDeleteError } from "@/shared/lib/errors";
 
 type DeleteSettledResult = PromiseSettledResult<{ taskId: string }>;
 

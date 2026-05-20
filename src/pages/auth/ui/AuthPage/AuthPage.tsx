@@ -4,7 +4,7 @@ import AuthForm from "@/features/auth/ui/AuthForm";
 import MoonIcon from "@/shared/assets/icons/moon.svg?react";
 import SunIcon from "@/shared/assets/icons/sun.svg?react";
 import styles from "./AuthPage.module.scss";
-import { useAnonUser } from "@/app/model";
+import { useAnonUser } from "@/entities/user";
 import { Navigate } from "react-router";
 
 const AuthPage = () => {

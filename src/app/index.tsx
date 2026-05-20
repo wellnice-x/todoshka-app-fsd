@@ -1,6 +1,6 @@
 import "./styles";
 import AppRoutes from "./router";
-import AppProviders from "./providers";
+import AppProviders from "./providers/AppProviders";
 import { createRoot } from "react-dom/client";
 
 const rootElement = document.getElementById("root");

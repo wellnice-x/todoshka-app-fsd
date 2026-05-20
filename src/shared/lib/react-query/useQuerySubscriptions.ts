@@ -3,14 +3,14 @@ import {
   MutationCacheNotifyEvent,
   QueryCacheNotifyEvent,
 } from "@tanstack/react-query";
-import queryClient from "@/shared/lib/react-query/queryClient";
+import { queryClient } from "@/shared/lib/react-query/queryClient";
 
 type UseQuerySubscriptions = (
   onQueryUpdate: (event: QueryCacheNotifyEvent) => void,
   onMutationUpdate: (event: MutationCacheNotifyEvent) => void,
 ) => void;
 
-const useQuerySubscriptions: UseQuerySubscriptions = (
+export const useQuerySubscriptions: UseQuerySubscriptions = (
   onQueryUpdate,
   onMutationUpdate,
 ) => {
@@ -27,5 +27,3 @@ const useQuerySubscriptions: UseQuerySubscriptions = (
     };
   }, [onQueryUpdate, onMutationUpdate]);
 };
-
-export default useQuerySubscriptions;

@@ -15,15 +15,15 @@ import MultiToggleButton from "@/shared/ui/MultiToggleButton";
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";
 import { useNavigate } from "react-router";
-import { useSettings } from "@/app/model";
-import { useAnonUser } from "@/app/model";
+import { useSettings } from "@/shared/model/settings";
+import { useAnonUser } from "@/entities/user";
 import { createPortal } from "react-dom";
-import { useDeleteAccount } from "@/app/model";
-import { settingsUseCases } from "@/app/model";
-import { useAnimationStore } from "@/shared/lib/animation/model/animationStore";
-import { useServerAccessState } from "@/app/model";
-import { useOptimisticModeToast } from "@/app/model";
-import type { OptimisticMode } from "@/features/change-optimistic-mode";
+import { useDeleteAccount } from "@/features/delete-account";
+import { settingsUseCases } from "@/shared/model/settings";
+import { useAnimationStore } from "@/shared/lib/animation/animationStore";
+import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
+import { useOptimisticModeToast } from "@/shared/model/settings";
+import type { OptimisticMode } from "@/shared/types/optimisticMode";
 
 type ModalAction = "deleteConfirm" | "deleteForce" | null;
 

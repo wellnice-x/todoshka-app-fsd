@@ -1,4 +1,4 @@
-import { useThemeSync } from "@/app/model";
+import { useThemeSync } from "@/shared/model/appearance";
 
 const GlobalAppEffects = () => {
   useThemeSync();

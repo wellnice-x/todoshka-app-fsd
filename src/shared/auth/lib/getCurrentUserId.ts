@@ -1,5 +1,5 @@
 import supabase from "@/shared/api/supabase/supabaseClient";
-import { UserNotFoundError } from "@/shared/lib/errors/auth/UserNotFoundError";
+import { UserNotFoundError } from "@/shared/lib/errors";
 
 export const getCurrentUserId = async () => {
   const { data, error } = await supabase.auth.getUser();

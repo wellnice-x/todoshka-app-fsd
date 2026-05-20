@@ -3,9 +3,9 @@ import toast from "react-hot-toast";
 import Button from "@/shared/ui/Button";
 import styles from "./TaskUpdateForm.module.scss";
 import { useState, ChangeEvent, SubmitEvent, useEffect } from "react";
-import { handleMutationError } from "@/shared/lib/errors/handlers/with-toast/handleMutationError";
+import { useTasksNavigationStore } from "@/features/tasks-navigation";
+import { handleMutationError } from "@/shared/lib/errors";
 import { UseMutationResult } from "@tanstack/react-query";
-import { useTasksPageStore } from "@/pages/tasks";
 import { formatDate } from "@/shared/lib/date/formatDate";
 import { ClipLoader } from "react-spinners";
 import type { Task } from "@/entities/task";
@@ -42,7 +42,7 @@ const TaskUpdateForm = (props: TaskUpdateFormProps) => {
   const [newTaskTitle, setNewTaskTitle] = useState<string>("");
   const [newTaskDescription, setNewTaskDescription] = useState<string>("");
 
-  const { setHighlightedTaskId } = useTasksPageStore.getState();
+  const { setHighlightedTaskId } = useTasksNavigationStore.getState();
 
   const isUpdatingTask =
     updateTaskInfoMutation.isPending &&

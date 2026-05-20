@@ -1,18 +1,18 @@
 import styles from "./Todo.module.scss";
 import TodoList from "@/widgets/task-list";
-import useTasks from "@/hooks/useTasks";
 import ReactIcon from "@/shared/assets/icons/react-icon.svg?react";
 import useIsMobile from "@/shared/lib/device/useIsMobile";
 import AddTaskForm from "@/features/add-task";
 import SearchTaskForm from "@/features/search-task";
 import TodoActionsPanel from "@/widgets/todo-actions-panel";
-import useIsMutatingByMode from "@/hooks/useIsMutatingByMode";
+import { useIsTasksMutating } from "@/entities/task";
+import { useTasks } from "@/features/tasks-management";
 import { useFilter } from "@/features/filter-tasks";
 import { BeatLoader } from "react-spinners";
 import { PuffLoader } from "react-spinners";
-import { useAnimationStore } from "@/shared/lib/animation/model/animationStore";
-import { useTasksPageStore } from "@/pages/tasks";
-import { useTaskStableActions } from "@/hooks/useTasksStableActions";
+import { useAnimationStore } from "@/shared/lib/animation/animationStore";
+import { useTaskStableActions } from "@/entities/task";
+import { useTasksNavigationStore } from "@/features/tasks-navigation";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 const Todo = () => {
@@ -34,7 +34,9 @@ const Todo = () => {
 
   const [isOverflowing, setIsOverflowing] = useState<boolean>(false);
 
-  const consumeScrollY = useTasksPageStore((state) => state.consumeScrollY);
+  const consumeScrollY = useTasksNavigationStore(
+    (state) => state.consumeScrollY,
+  );
   const shouldPanelAnimate = useAnimationStore(
     (state) => state.shouldPanelAnimate,
   );
@@ -43,7 +45,7 @@ const Todo = () => {
 
   const todoRef = useRef<HTMLDivElement>(null);
 
-  const isNonOptimisticMutating = useIsMutatingByMode("none");
+  const isNonOptimisticMutating = useIsTasksMutating("none");
 
   const isMobile = useIsMobile();
 

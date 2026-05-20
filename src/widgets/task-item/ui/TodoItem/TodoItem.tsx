@@ -1,9 +1,9 @@
 import type { UITask } from "@/entities/task";
 import type { ToggleTaskFn, DeleteTaskFn } from "@/widgets/task-list";
 import { memo, useEffect, useRef, useState } from "react";
-import { handleMutationError } from "@/shared/lib/errors/handlers/with-toast/handleMutationError";
-import { useTasksPageStore } from "@/pages/tasks";
-import { useAnimationStore } from "@/shared/lib/animation/model/animationStore";
+import { handleMutationError } from "@/shared/lib/errors";
+import { useTasksNavigationStore } from "@/features/tasks-navigation";
+import { useAnimationStore } from "@/shared/lib/animation/animationStore";
 import { useNavigate } from "react-router";
 import DeleteIcon from "@/shared/assets/icons/delete-icon.svg?react";
 import GoToIcon from "@/shared/assets/icons/chevrons-left.svg?react";
@@ -27,7 +27,7 @@ const TodoItem = (props: TodoItemProps) => {
 
   const { allowTasksAnimation, blockTasksAnimation, blockPanelAnimation } =
     useAnimationStore.getState();
-  const { setScrollY } = useTasksPageStore.getState();
+  const { setScrollY } = useTasksNavigationStore.getState();
 
   const isTogglingRef = useRef(false);
   const isDeletingRef = useRef(false);

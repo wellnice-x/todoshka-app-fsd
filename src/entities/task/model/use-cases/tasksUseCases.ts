@@ -1,7 +1,7 @@
 import type { CreateTaskPayload } from "@/entities/task";
-import { ensureMutationNotBlocked } from "./lib/ensureMutationNotBlocked";
 import { mapFromDTO, mapToDTO } from "@/entities/task";
-import { BulkDeleteError } from "@/shared/lib/errors/mutations/BulkDeleteError";
+import { ensureCanMutate } from "./ensureCanMutate";
+import { BulkDeleteError } from "@/shared/lib/errors";
 import { tasksService } from "@/entities/task";
 
 export type TasksUseCases = typeof tasksUseCases;
@@ -14,7 +14,7 @@ export const tasksUseCases = {
   },
 
   addTask: async (task: CreateTaskPayload) => {
-    await ensureMutationNotBlocked();
+    await ensureCanMutate();
 
     if (!task.title || task.title.trim() === "") {
       throw new Error("Task title is required");
@@ -26,7 +26,7 @@ export const tasksUseCases = {
   },
 
   updateTaskInfo: async (id: string, title: string, description: string) => {
-    await ensureMutationNotBlocked();
+    await ensureCanMutate();
 
     if (!id) {
       throw new Error("Task ID is required");
@@ -40,7 +40,7 @@ export const tasksUseCases = {
   },
 
   toggleTask: async (id: string, isDone: boolean) => {
-    await ensureMutationNotBlocked();
+    await ensureCanMutate();
 
     if (!id) {
       throw new Error("Task ID is required");
@@ -52,7 +52,7 @@ export const tasksUseCases = {
   },
 
   deleteTask: async (id: string) => {
-    await ensureMutationNotBlocked();
+    await ensureCanMutate();
 
     if (!id) {
       throw new Error("Task ID is required");
@@ -62,7 +62,7 @@ export const tasksUseCases = {
   },
 
   deleteSome: async (taskIds: string[]) => {
-    await ensureMutationNotBlocked();
+    await ensureCanMutate();
 
     if (!taskIds.length) return [];
 
@@ -83,7 +83,7 @@ export const tasksUseCases = {
   },
 
   markAllCompleted: async () => {
-    await ensureMutationNotBlocked();
+    await ensureCanMutate();
 
     return tasksService.markAllCompleted();
   },

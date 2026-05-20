@@ -1,5 +1,5 @@
-import { useRuntimeStore } from "@/app/model";
-import { OfflineError } from "@/shared/lib/errors/network/OfflineError";
+import { useRuntimeStore } from "@/shared/model/runtime/runtimeStore";
+import { OfflineError } from "@/shared/lib/errors";
 
 export const throwIfOffline = () => {
   const { isNoInternetConnection } = useRuntimeStore.getState();

@@ -1,5 +1,5 @@
-import { ServerUnreachableError } from "@/shared/lib/errors/domain/ServerUnavailableError";
-import { checkHealth } from "@/shared/api/health/healthService";
+import { ServerUnreachableError } from "@/shared/lib/errors";
+import { checkHealth } from "@/shared/api/health";
 
 export const assertServerReachable = async () => {
   const ok = await checkHealth();

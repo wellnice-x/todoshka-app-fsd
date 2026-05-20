@@ -1,4 +1,4 @@
-import { useAnonUser } from "@/app/model";
+import { useAnonUser } from "@/entities/user";
 import { Navigate, Outlet } from "react-router";
 
 const ProtectedRoute = () => {

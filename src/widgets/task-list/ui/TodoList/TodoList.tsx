@@ -1,5 +1,5 @@
 import type { Task, UITask } from "@/entities/task";
-import { useTasksPageStore } from "@/pages/tasks";
+import { useTasksNavigationStore } from "@/features/tasks-navigation";
 import { AnimatePresence } from "motion/react";
 import { useFilter } from "@/features/filter-tasks";
 import { useEffect } from "react";
@@ -37,10 +37,12 @@ const TodoList = (props: TodoListProps) => {
 
   const hasTasks = currentTasks.length > 0;
 
-  const highlightedTaskId = useTasksPageStore(
+  const highlightedTaskId = useTasksNavigationStore(
     (state) => state.highlightedTaskId,
   );
-  const consumeHighlight = useTasksPageStore((state) => state.consumeHighlight);
+  const consumeHighlight = useTasksNavigationStore(
+    (state) => state.consumeHighlight,
+  );
 
   useEffect(() => {
     if (highlightedTaskId) {
