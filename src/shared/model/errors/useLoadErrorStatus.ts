@@ -1,7 +1,7 @@
 import { useAuth } from "@/shared/auth";
 import { TimeoutError } from "@/shared/lib/errors";
 import { useSettingsStore } from "@/shared/model/settings";
-import { useGlobalErrorStore } from "@/shared/model/errors";
+import { useGlobalErrorStore } from "@/shared/model/errors/globalErrorStore";
 
 export const useLoadErrorStatus = (error: unknown) => {
   const { isAuthenticated, isUncertain } = useAuth();

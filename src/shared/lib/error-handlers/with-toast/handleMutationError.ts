@@ -1,5 +1,5 @@
 import { UserNotFoundError } from "@/shared/lib/errors";
-import { isNetworkError } from "@/shared/lib/errors";
+import { isNetworkError } from "@/shared/lib/error-utils";
 import { TimeoutError } from "@/shared/lib/errors";
 import { OfflineError } from "@/shared/lib/errors";
 import toast from "react-hot-toast";

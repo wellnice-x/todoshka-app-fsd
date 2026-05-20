@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const useNetworkListeners = (
+export const useNetworkListeners = (
   onOffline: () => void,
   onOnline: () => void,
 ) => {
@@ -14,5 +14,3 @@ const useNetworkListeners = (
     };
   }, [onOffline, onOnline]);
 };
-
-export default useNetworkListeners;

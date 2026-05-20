@@ -1,4 +1,4 @@
-import { isNetworkError } from "@/shared/lib/errors";
+import { isNetworkError } from "@/shared/lib/error-utils";
 import { useRuntimeStore } from "@/shared/model/runtime/runtimeStore";
 import { handlePromiseWithToast } from "@/shared/lib/toast/handlePromiseWithToast";
 import type { ScheduleQuerySyncFn } from "@/shared/lib/react-query/useQuerySyncScheduler";

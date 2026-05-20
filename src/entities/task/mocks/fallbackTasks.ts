@@ -1,4 +1,4 @@
-import { Task } from "@/entities/task";
+import type { Task } from "@/entities/task/model/task.types";
 
 export const fallbackTasks = (): Task[] => {
   return [

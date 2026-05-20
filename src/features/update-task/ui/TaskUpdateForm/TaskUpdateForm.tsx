@@ -4,7 +4,7 @@ import Button from "@/shared/ui/Button";
 import styles from "./TaskUpdateForm.module.scss";
 import { useState, ChangeEvent, SubmitEvent, useEffect } from "react";
 import { useTasksNavigationStore } from "@/features/tasks-navigation";
-import { handleMutationError } from "@/shared/lib/errors";
+import { handleMutationError } from "@/shared/lib/error-handlers";
 import { UseMutationResult } from "@tanstack/react-query";
 import { formatDate } from "@/shared/lib/date/formatDate";
 import { ClipLoader } from "react-spinners";

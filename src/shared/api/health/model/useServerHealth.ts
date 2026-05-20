@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { checkHealth } from "@/shared/api/health";
+import { checkHealth } from "@/shared/api/health/healthService";
 import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
 
 export const useServerHealth = (isAggressiveProbe: boolean) => {

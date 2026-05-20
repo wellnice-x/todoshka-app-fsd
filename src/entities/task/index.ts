@@ -10,6 +10,6 @@ export { useTaskStableActions } from "./model/hooks/useTasksStableActions";
 export { useTasksWithUIKeys } from "./model/hooks/useTasksWithUIKeys";
 export { useIsTasksMutating } from "./model/query/useIsTasksMutating";
 export { tasksUseCases } from "./model/use-cases/tasksUseCases";
-export type { Task, UITask, CreateTaskPayload } from "./model/task.types";
 
 export { useUIKeyStore } from "./model/uiKeyStore";
+export type { Task, UITask, CreateTaskPayload } from "./model/task.types";

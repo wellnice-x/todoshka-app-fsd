@@ -5,7 +5,7 @@ import { useQuerySyncWithOptionalToast } from "@/shared/lib/react-query";
 import { useQuerySyncScheduler } from "@/shared/lib/react-query";
 import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
 import { useTasksWithUIKeys } from "@/entities/task";
-import { throwIfOffline } from "@/shared/lib/errors";
+import { throwIfOffline } from "@/shared/lib/network";
 import { useUIKeyStore } from "@/entities/task";
 import { tasksUseCases } from "@/entities/task";
 import { useEffect } from "react";

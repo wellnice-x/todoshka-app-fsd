@@ -1,7 +1,7 @@
 import type { Task } from "@/entities/task";
 import type { FieldHandle } from "@/shared/ui/Field";
 import { useState, useRef, useEffect, ChangeEvent, SubmitEvent } from "react";
-import { handleMutationError } from "@/shared/lib/errors";
+import { handleMutationError } from "@/shared/lib/error-handlers";
 import { UseMutationResult } from "@tanstack/react-query";
 import { useAnimationStore } from "@/shared/lib/animation/animationStore";
 import { useFilter } from "@/features/filter-tasks";

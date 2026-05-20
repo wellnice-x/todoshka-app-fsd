@@ -1,7 +1,7 @@
 import type { UITask } from "@/entities/task";
 import type { ToggleTaskFn, DeleteTaskFn } from "@/widgets/task-list";
 import { memo, useEffect, useRef, useState } from "react";
-import { handleMutationError } from "@/shared/lib/errors";
+import { handleMutationError } from "@/shared/lib/error-handlers";
 import { useTasksNavigationStore } from "@/features/tasks-navigation";
 import { useAnimationStore } from "@/shared/lib/animation/animationStore";
 import { useNavigate } from "react-router";

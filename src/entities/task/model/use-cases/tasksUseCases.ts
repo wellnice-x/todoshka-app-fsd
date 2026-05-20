@@ -1,8 +1,8 @@
-import type { CreateTaskPayload } from "@/entities/task";
-import { mapFromDTO, mapToDTO } from "@/entities/task";
+import type { CreateTaskPayload } from "@/entities/task/model/task.types";
+import { mapFromDTO, mapToDTO } from "@/entities/task/lib/taskMapper";
 import { ensureCanMutate } from "./ensureCanMutate";
 import { BulkDeleteError } from "@/shared/lib/errors";
-import { tasksService } from "@/entities/task";
+import { tasksService } from "@/entities/task/api/tasksService";
 
 export type TasksUseCases = typeof tasksUseCases;
 

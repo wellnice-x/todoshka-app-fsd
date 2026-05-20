@@ -1,5 +1,5 @@
-import { getAccessToken } from "@/shared/auth/api/accessToken";
-import { handleUnauthorizedGlobal } from "@/shared/auth/api/authBridge";
+import { getAccessToken } from "@/shared/auth";
+import { handleUnauthorizedGlobal } from "@/shared/auth";
 import { SessionRefreshFailedError } from "@/shared/lib/errors";
 import axios, { AxiosRequestConfig } from "axios";
 

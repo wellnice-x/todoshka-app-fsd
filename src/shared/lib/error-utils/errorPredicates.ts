@@ -1,8 +1,8 @@
-import { TimeoutError } from "./network/TimeoutError";
-import { BulkDeleteError } from "./mutations/BulkDeleteError";
-import { NoResponseError } from "./network/NoResponseError";
-import { SimulatedRequestError } from "./simulation/SimulatedRequestError";
-import { SimulatedNetworkLikeError } from "./simulation/SimulatedNetworkLikeError";
+import { TimeoutError } from "@/shared/lib/errors";
+import { BulkDeleteError } from "@/shared/lib/errors";
+import { NoResponseError } from "@/shared/lib/errors";
+import { SimulatedRequestError } from "@/shared/lib/errors";
+import { SimulatedNetworkLikeError } from "@/shared/lib/errors";
 
 export const isNetworkError = (error: unknown) =>
   error instanceof TimeoutError ||
