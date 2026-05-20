@@ -1,5 +1,5 @@
 import "./styles";
-import AppRoutes from "./router";
+import AppRoutes from "./router/AppRoutes";
 import AppProviders from "./providers/AppProviders";
 import { createRoot } from "react-dom/client";
 
