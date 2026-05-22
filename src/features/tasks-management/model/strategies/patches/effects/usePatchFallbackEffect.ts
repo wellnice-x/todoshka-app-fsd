@@ -1,4 +1,4 @@
-import type { TasksPatchRuntime } from "../types";
+import type { TasksPatchRuntime } from "@/features/tasks-management/model/strategies/patches/types";
 import { useEffect } from "react";
 import { fallbackTasks } from "@/entities/task";
 
@@ -18,16 +18,10 @@ export const usePatchFallbackEffect = (
 
     if (isServerAccessUncertain) return;
 
-    const existing = queryClient.getQueryData([
-      "tasks",
-      optimisticMode,
-    ]);
+    const existing = queryClient.getQueryData(["tasks", optimisticMode]);
 
     if (!existing && isServerAccessBlocked && !isLoading) {
-      queryClient.setQueryData(
-        ["tasks", optimisticMode],
-        fallbackTasks(),
-      );
+      queryClient.setQueryData(["tasks", optimisticMode], fallbackTasks());
     }
   }, [
     optimisticMode,

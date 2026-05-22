@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { tasksUseCases } from "@/entities/task";
 import { throwIfOffline } from "@/shared/lib/network";
 import { isNetworkError } from "@/shared/lib/error-utils";
-import { useTasksSnapshotsRuntime } from "../runtime/useTasksSnapshotsRuntime";
+import { useTasksSnapshotsRuntime } from "@/features/tasks-management/model/strategies/snapshots/runtime/useTasksSnapshotsRuntime";
 
 export const useUpdateTaskMutation = () => {
   const {

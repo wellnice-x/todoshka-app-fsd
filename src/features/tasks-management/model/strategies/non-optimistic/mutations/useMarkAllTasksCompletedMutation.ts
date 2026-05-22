@@ -2,9 +2,9 @@ import type { Task } from "@/entities/task";
 import { useMutation } from "@tanstack/react-query";
 import { tasksUseCases } from "@/entities/task";
 import { throwIfOffline } from "@/shared/lib/network";
-import { useTasksNonOptimisticRuntime } from "../runtime/useTasksNonOptimisticRuntime";
+import { useTasksNonOptimisticRuntime } from "@/features/tasks-management/model/strategies/non-optimistic/runtime/useTasksNonOptimisticRuntime";
 
-export const useMarkAllCompletedMutation = () => {
+export const useMarkAllTasksCompletedMutation = () => {
   const { queryClient, optimisticMode, syncWithOptionalToast } =
     useTasksNonOptimisticRuntime();
 

@@ -1,6 +1,6 @@
+import type { TasksSnapshotsRuntime } from "@/features/tasks-management/model/strategies/snapshots/types";
 import { useEffect } from "react";
 import { fallbackTasks } from "@/entities/task";
-import type { TasksSnapshotsRuntime } from "../types";
 
 export const useSnapshotFallbackEffect = (
   runtime: TasksSnapshotsRuntime,

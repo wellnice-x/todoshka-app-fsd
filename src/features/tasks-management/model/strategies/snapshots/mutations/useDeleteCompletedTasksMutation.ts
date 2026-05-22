@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { tasksUseCases } from "@/entities/task";
 import { throwIfOffline } from "@/shared/lib/network";
 import { isBulkDeleteError } from "@/shared/lib/error-utils";
-import { useTasksSnapshotsRuntime } from "../runtime/useTasksSnapshotsRuntime";
+import { useTasksSnapshotsRuntime } from "@/features/tasks-management/model/strategies/snapshots/runtime/useTasksSnapshotsRuntime";
 import { isBulkDeleteNetworkError } from "@/shared/lib/error-utils";
 
 export const useDeleteCompletedTasksMutation = () => {

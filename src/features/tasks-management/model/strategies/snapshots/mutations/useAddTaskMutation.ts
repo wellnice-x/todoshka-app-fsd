@@ -2,7 +2,7 @@ import type { Task } from "@/entities/task";
 import { useMutation } from "@tanstack/react-query";
 import { isNetworkError } from "@/shared/lib/error-utils";
 import { throwIfOffline } from "@/shared/lib/network";
-import { useTasksSnapshotsRuntime } from "../runtime/useTasksSnapshotsRuntime";
+import { useTasksSnapshotsRuntime } from "@/features/tasks-management/model/strategies/snapshots/runtime/useTasksSnapshotsRuntime";
 import { tasksUseCases, useUIKeyStore } from "@/entities/task";
 
 export const useAddTaskMutation = () => {

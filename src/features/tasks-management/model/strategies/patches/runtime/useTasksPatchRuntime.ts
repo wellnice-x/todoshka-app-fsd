@@ -1,14 +1,14 @@
+import type { TasksPatchRuntime } from "@/features/tasks-management/model/strategies/patches/types";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   useQuerySyncScheduler,
   useQuerySyncWithOptionalToast,
 } from "@/shared/lib/react-query";
 import { useSettingsStore } from "@/shared/model/settings";
-import { createHandleSync } from "../lib/createHandleSync";
+import { createHandleSync } from "@/features/tasks-management/model/strategies/patches/lib/createHandleSync";
 import { useConnectionStore } from "@/shared/api/network";
 import { useCallback, useMemo } from "react";
 import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
-import type { TasksPatchRuntime } from "@/features/tasks-management/model/strategies/patches/types";
 
 export const useTasksPatchRuntime = (): TasksPatchRuntime => {
   const queryClient = useQueryClient();

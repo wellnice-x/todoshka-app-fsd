@@ -1,3 +1,4 @@
+import type { TasksSnapshotsRuntime } from "@/features/tasks-management/model/strategies/snapshots/types";
 import { useMemo } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import {
@@ -5,10 +6,9 @@ import {
   useQuerySyncWithOptionalToast,
 } from "@/shared/lib/react-query";
 import { useSettingsStore } from "@/shared/model/settings";
-import { createHandleSync } from "../lib/createHandleSync";
+import { createHandleSync } from "@/features/tasks-management/model/strategies/snapshots/lib/createHandleSync";
 import { useConnectionStore } from "@/shared/api/network";
 import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
-import type { TasksSnapshotsRuntime } from "../types";
 
 export const useTasksSnapshotsRuntime = (): TasksSnapshotsRuntime => {
   const queryClient = useQueryClient();

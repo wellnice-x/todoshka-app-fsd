@@ -1,6 +1,8 @@
 import type { Task } from "@/entities/task";
-import type { Patch } from "../types";
-import type { TasksPatchRuntime } from "../types";
+import type {
+  Patch,
+  TasksPatchRuntime,
+} from "@/features/tasks-management/model/strategies/patches/types";
 import { useEffect, useRef } from "react";
 import { useRuntimeStore } from "@/shared/model/runtime/runtimeStore";
 import { handlePromiseWithToast } from "@/shared/lib/toast/handlePromiseWithToast";

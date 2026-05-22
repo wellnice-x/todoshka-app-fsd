@@ -1,11 +1,11 @@
 import type { Task } from "@/entities/task";
-import { useMutation } from "@tanstack/react-query";
+import { tasksUseCases, useUIKeyStore } from "@/entities/task";
+import { useTasksPatchRuntime } from "@/features/tasks-management/model/strategies/patches/runtime/useTasksPatchRuntime";
+import { createPatchManager } from "@/features/tasks-management/model/strategies/patches/lib/createPatchManager";
+import { usePatchUITasks } from "@/features/tasks-management/model/strategies/patches/ui-tasks/usePatchUITasks";
 import { isNetworkError } from "@/shared/lib/error-utils";
 import { throwIfOffline } from "@/shared/lib/network";
-import { tasksUseCases, useUIKeyStore } from "@/entities/task";
-import { useTasksPatchRuntime } from "../runtime/useTasksPatchRuntime";
-import { createPatchManager } from "../lib/createPatchManager";
-import { usePatchedTasksView } from "../query-view/usePatchedTasksView";
+import { useMutation } from "@tanstack/react-query";
 
 export const useAddTaskMutation = () => {
   const {
@@ -24,7 +24,7 @@ export const useAddTaskMutation = () => {
     optimisticMode,
   );
 
-  const tasks = usePatchedTasksView();
+  const uiTasks = usePatchUITasks();
 
   return useMutation({
     mutationKey: ["tasks", optimisticMode, "add"],
@@ -48,8 +48,8 @@ export const useAddTaskMutation = () => {
         : `optimistic-${crypto.randomUUID()}`;
 
       const maxOrder =
-        tasks.length > 0
-          ? Math.max(...tasks.map((task) => task.orderIndex ?? 0))
+        uiTasks.length > 0
+          ? Math.max(...uiTasks.map((task) => task.orderIndex ?? 0))
           : 0;
 
       setUIKey(tempId, tempId);

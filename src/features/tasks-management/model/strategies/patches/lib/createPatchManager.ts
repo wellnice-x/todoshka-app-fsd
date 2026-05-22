@@ -1,4 +1,7 @@
-import type { Patch, PatchOperation } from "../types";
+import type {
+  Patch,
+  PatchOperation,
+} from "@/features/tasks-management/model/strategies/patches/types";
 import type { QueryClient } from "@tanstack/react-query";
 import type { Task } from "@/entities/task";
 

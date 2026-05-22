@@ -1,3 +1,4 @@
+import type { TasksNonOptimisticRuntime } from "@/features/tasks-management/model/strategies/non-optimistic/types";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   useQuerySyncScheduler,
@@ -5,7 +6,6 @@ import {
 } from "@/shared/lib/react-query";
 import { useSettingsStore } from "@/shared/model/settings";
 import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
-import type { TasksNonOptimisticRuntime } from "../types";
 
 export const useTasksNonOptimisticRuntime = (): TasksNonOptimisticRuntime => {
   const queryClient = useQueryClient();

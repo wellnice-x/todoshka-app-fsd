@@ -1,5 +1,5 @@
 import type { Task } from "@/entities/task";
-import type { TasksSnapshotsRuntime } from "../types";
+import type { TasksSnapshotsRuntime } from "@/features/tasks-management/model/strategies/snapshots/types";
 import { useEffect, useRef } from "react";
 import { useRuntimeStore } from "@/shared/model/runtime/runtimeStore";
 import { handlePromiseWithToast } from "@/shared/lib/toast/handlePromiseWithToast";

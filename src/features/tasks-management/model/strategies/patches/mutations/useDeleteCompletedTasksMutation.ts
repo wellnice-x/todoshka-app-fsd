@@ -1,11 +1,11 @@
 import type { Task } from "@/entities/task";
 import { useMutation } from "@tanstack/react-query";
-import { throwIfOffline } from "@/shared/lib/network";
 import { tasksUseCases } from "@/entities/task";
-import { useTasksPatchRuntime } from "../runtime/useTasksPatchRuntime";
-import { createPatchManager } from "../lib/createPatchManager";
-import { isBulkDeleteNetworkError } from "@/shared/lib/error-utils";
+import { throwIfOffline } from "@/shared/lib/network";
 import { isBulkDeleteError } from "@/shared/lib/error-utils";
+import { createPatchManager } from "@/features/tasks-management/model/strategies/patches/lib/createPatchManager";
+import { useTasksPatchRuntime } from "@/features/tasks-management/model/strategies/patches/runtime/useTasksPatchRuntime";
+import { isBulkDeleteNetworkError } from "@/shared/lib/error-utils";
 
 export const useDeleteCompletedTasksMutation = () => {
   const {

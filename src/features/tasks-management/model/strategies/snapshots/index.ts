@@ -1,0 +1,1 @@
+export { SnapshotStrategyProvider } from "./provider/SnapshotStrategyProvider";

@@ -2,10 +2,10 @@ import { useMutation } from "@tanstack/react-query";
 import { isNetworkError } from "@/shared/lib/error-utils";
 import { throwIfOffline } from "@/shared/lib/network";
 import { tasksUseCases } from "@/entities/task";
-import { useTasksPatchRuntime } from "../runtime/useTasksPatchRuntime";
-import { createPatchManager } from "../lib/createPatchManager";
+import { useTasksPatchRuntime } from "@/features/tasks-management/model/strategies/patches/runtime/useTasksPatchRuntime";
+import { createPatchManager } from "@/features/tasks-management/model/strategies/patches/lib/createPatchManager";
 
-export const useMarkAllCompletedMutation = () => {
+export const useMarkAllTasksCompletedMutation = () => {
   const {
     queryClient,
     optimisticMode,
