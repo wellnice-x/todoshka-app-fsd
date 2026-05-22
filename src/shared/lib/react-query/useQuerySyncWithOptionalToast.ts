@@ -3,14 +3,16 @@ import { useRuntimeStore } from "@/shared/model/runtime/runtimeStore";
 import { handlePromiseWithToast } from "@/shared/lib/toast/handlePromiseWithToast";
 import type { ScheduleQuerySyncFn } from "@/shared/lib/react-query/useQuerySyncScheduler";
 
+export type QuerySyncWithOptionalToastFn = (
+  error?: unknown,
+  delay?: number,
+  showWithAnyError?: boolean,
+) => Promise<void> | undefined;
+
 export const useQuerySyncWithOptionalToast = (
   scheduleQuerySync: ScheduleQuerySyncFn,
-) => {
-  return (
-    error?: unknown,
-    delay?: number,
-    showWithAnyError: boolean = false,
-  ): Promise<void> | undefined => {
+): QuerySyncWithOptionalToastFn => {
+  return (error, delay, showWithAnyError = false) => {
     const { isNoInternetConnection } = useRuntimeStore.getState();
 
     if (isNoInternetConnection) {
