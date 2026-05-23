@@ -1,28 +1,22 @@
+import type { ReactNode } from "react";
 import styles from "./MotionListItem.module.scss";
-import { motion } from "motion/react";
-import { ReactNode } from "react";
 import { useAnimation } from "@/shared/lib/animation/animationStore";
 import { useSettingsStore } from "@/shared/model/settings";
+import { motion, type Target } from "motion/react";
 
 type MotionListItemProps = {
   children: ReactNode;
   className?: string;
 };
 
-type AnimationDefinition = {
-  x?: number;
-  opacity?: number;
-  height?: number | string;
-};
+const isAddAnimation = (target: Target) =>
+  target?.x === 0 && target?.opacity === 1;
 
-const isAddAnimation = (definition: AnimationDefinition) =>
-  definition?.x === 0 && definition?.opacity === 1;
-
-const isExitAnimation = (definition: AnimationDefinition) =>
-  definition?.x === -300;
+const isExitAnimation = (target: Target) => target?.x === -300;
 
 const MotionListItem = ({ children, className }: MotionListItemProps) => {
   const { shouldTasksAnimate, blockTasksAnimation } = useAnimation();
+  
   const optimisticMode = useSettingsStore((state) => state.optimisticMode);
 
   return (
@@ -37,7 +31,7 @@ const MotionListItem = ({ children, className }: MotionListItemProps) => {
       whileHover={{ scale: 1.01 }}
       transition={{ duration: 0.4 }}
       layout={false}
-      onAnimationStart={(def: AnimationDefinition) => {
+      onAnimationStart={(def: Target) => {
         if (
           (isAddAnimation(def) || isExitAnimation(def)) &&
           optimisticMode !== "none"

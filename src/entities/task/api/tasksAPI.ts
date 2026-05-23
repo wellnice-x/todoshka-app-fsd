@@ -27,11 +27,10 @@ export const tasksAPI = {
 
   deleteTask: (taskId: string) => axiosClient.delete(`/tasks?id=eq.${taskId}`),
 
-  markAllCompleted: (userId: string) =>
-    axiosClient.patch<TaskDTO[]>(
-      `/tasks?user_id=eq.${userId}`,
-      { is_done: true },
-    ),
+  markAllTasksCompleted: (userId: string) =>
+    axiosClient.patch<TaskDTO[]>(`/tasks?user_id=eq.${userId}`, {
+      is_done: true,
+    }),
 
   deleteAllTasks: (userId: string) =>
     axiosClient.delete(`/tasks?user_id=eq.${userId}`),

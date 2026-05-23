@@ -3,10 +3,10 @@ import type { UseMutationResult } from "@tanstack/react-query";
 
 import type {
   AddTaskVariables,
-  DeleteCompletedTasksVariables,
   DeleteTaskVariables,
   ToggleTaskVariables,
   UpdateTaskInfoVariables,
+  DeleteCompletedTasksVariables,
 } from "./variables";
 
 export type AddTaskMutation = UseMutationResult<

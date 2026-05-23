@@ -7,9 +7,9 @@ import {
   TasksStrategyContextValue,
 } from "@/features/tasks-management/model/providers/TasksStrategyContext";
 import { useInitStrategy } from "@/features/tasks-management/model/strategies/patches/lifecycle/useInitStrategy";
-import { useUpdateTaskInfoMutation } from "@/features/tasks-management/model/strategies/patches/mutations/useUpdateTaskInfoMutation";
 import { useDeleteTaskMutation } from "@/features/tasks-management/model/strategies/patches/mutations/useDeleteTaskMutation";
 import { useToggleTaskMutation } from "@/features/tasks-management/model/strategies/patches/mutations/useToggleTaskMutation";
+import { useUpdateTaskInfoMutation } from "@/features/tasks-management/model/strategies/patches/mutations/useUpdateTaskInfoMutation";
 import { useDeleteCompletedTasksMutation } from "@/features/tasks-management/model/strategies/patches/mutations/useDeleteCompletedTasksMutation";
 import { useMarkAllTasksCompletedMutation } from "@/features/tasks-management/model/strategies/patches/mutations/useMarkAllTasksCompletedMutation";
 
@@ -19,9 +19,9 @@ export const PatchStrategyProvider = ({ children }: PropsWithChildren) => {
   useInitStrategy(uiTasks);
 
   const addTaskMutation = useAddTaskMutation();
-  const updateTaskInfoMutation = useUpdateTaskInfoMutation();
   const deleteTaskMutation = useDeleteTaskMutation();
   const toggleTaskMutation = useToggleTaskMutation();
+  const updateTaskInfoMutation = useUpdateTaskInfoMutation();
   const deleteCompletedTasksMutation = useDeleteCompletedTasksMutation();
   const markAllTasksCompletedMutation = useMarkAllTasksCompletedMutation();
 
@@ -29,18 +29,18 @@ export const PatchStrategyProvider = ({ children }: PropsWithChildren) => {
     () => ({
       uiTasks,
       addTaskMutation,
-      updateTaskInfoMutation,
       deleteTaskMutation,
       toggleTaskMutation,
+      updateTaskInfoMutation,
       deleteCompletedTasksMutation,
       markAllTasksCompletedMutation,
     }),
     [
       uiTasks,
       addTaskMutation,
-      updateTaskInfoMutation,
       deleteTaskMutation,
       toggleTaskMutation,
+      updateTaskInfoMutation,
       deleteCompletedTasksMutation,
       markAllTasksCompletedMutation,
     ],

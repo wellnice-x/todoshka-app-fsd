@@ -82,9 +82,9 @@ export const tasksUseCases = {
     return results;
   },
 
-  markAllCompleted: async () => {
+  markAllTasksCompleted: async () => {
     await ensureCanMutate();
 
-    return tasksService.markAllCompleted();
+    return tasksService.markAllTasksCompleted();
   },
 };

@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
+import { tasksUseCases } from "@/entities/task";
 import { isNetworkError } from "@/shared/lib/error-utils";
 import { throwIfOffline } from "@/shared/lib/network";
-import { tasksUseCases } from "@/entities/task";
 import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/patches/runtime/useStrategyRuntime";
 import { createPatchManager } from "@/features/tasks-management/model/strategies/patches/lib/createPatchManager";
 import {
@@ -23,13 +23,13 @@ export const useMarkAllTasksCompletedMutation = () => {
   );
 
   return useMutation({
-    mutationKey: createMutationKey("markAllCompleted"),
+    mutationKey: createMutationKey("markAllTasksCompleted"),
 
     mutationFn: async () => {
       if (isServerAccessBlocked) return;
       throwIfOffline();
 
-      return tasksUseCases.markAllCompleted();
+      return tasksUseCases.markAllTasksCompleted();
     },
 
     onMutate: async () => {

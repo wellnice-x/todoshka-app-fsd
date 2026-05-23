@@ -1,10 +1,10 @@
 import type { UITask } from "@/entities/task";
 import { useEffect } from "react";
 import { useUIKeyStore } from "@/entities/task";
-import { useTasksQueryState } from "@/features/tasks-management/model/query/useTasksQueryState";
+import { useTasksQueryState } from "@/features/tasks-management/model/react-query/useTasksQueryState";
 import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/patches/runtime/useStrategyRuntime";
-import { useFallbackTasksEffect } from "@/features/tasks-management/model/strategies/patches/effects/useFallbackTasksEffect";
 import { useRecoverySyncEffect } from "@/features/tasks-management/model/strategies/patches/effects/useRecoverySyncEffect";
+import { useFallbackTasksEffect } from "@/features/tasks-management/model/strategies/patches/effects/useFallbackTasksEffect";
 
 export const useInitStrategy = (uiTasks: UITask[]) => {
   const runtime = useStrategyRuntime();

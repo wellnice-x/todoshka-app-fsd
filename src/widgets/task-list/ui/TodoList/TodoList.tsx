@@ -3,12 +3,12 @@ import type {
   ToggleTaskAction,
   DeleteTaskAction,
 } from "@/features/tasks-management";
-import { useTasksNavigationStore } from "@/features/tasks-navigation";
+import { useTasksNavigationStore } from "@/shared/model/navigation/tasksNavigationStore";
 import { AnimatePresence } from "motion/react";
 import { useFilter } from "@/features/filter-tasks";
 import { useEffect } from "react";
-import MotionListItem from "@/features/task-animation";
-import TodoItem from "@/widgets/task-item";
+import MotionListItem from "@/shared/ui/MotionListItem";
+import TodoItem from "@/entities/task";
 import styles from "./TodoList.module.scss";
 
 type TodoListProps = {

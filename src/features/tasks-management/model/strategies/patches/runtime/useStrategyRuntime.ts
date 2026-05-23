@@ -1,4 +1,5 @@
 import type { StrategyRuntimeContext } from "@/features/tasks-management/model/strategies/patches/types";
+import { QUERY_KEY } from "@/features/tasks-management/model/strategies/patches/config";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   useQuerySyncScheduler,
@@ -8,7 +9,6 @@ import { createSyncHandler } from "@/features/tasks-management/model/strategies/
 import { useConnectionStore } from "@/shared/api/network";
 import { useCallback, useMemo } from "react";
 import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
-import { QUERY_KEY } from "@/features/tasks-management/model/strategies/patches/config";
 
 export const useStrategyRuntime = (): StrategyRuntimeContext => {
   const queryClient = useQueryClient();

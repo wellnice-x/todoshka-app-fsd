@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { useAppearanceStore } from "@/shared/model/appearance";
 import toast from "react-hot-toast";
 import styles from "./ParallaxToggle.module.scss";

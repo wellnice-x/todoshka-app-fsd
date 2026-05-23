@@ -1,7 +1,10 @@
 import type { UITask } from "@/entities/task";
-import type { ToggleTaskAction, DeleteTaskAction } from "@/features/tasks-management";
+import type {
+  ToggleTaskAction,
+  DeleteTaskAction,
+} from "@/features/tasks-management";
 import { memo, useEffect, useRef, useState } from "react";
-import { useTasksNavigationStore } from "@/features/tasks-navigation";
+import { useTasksNavigationStore } from "@/shared/model/navigation/tasksNavigationStore";
 import { handleMutationError } from "@/shared/lib/error-handlers";
 import { useAnimationStore } from "@/shared/lib/animation/animationStore";
 import { useNavigate } from "react-router";

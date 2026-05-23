@@ -1,4 +1,4 @@
-import ThemeToggle from "@/features/toggle-theme/ui/ThemeToggle";
+import ThemeToggle from "@/shared/ui/ThemeToggle";
 import PageIntro from "@/shared/ui/PageIntro";
 import AuthForm from "@/features/auth/ui/AuthForm";
 import MoonIcon from "@/shared/assets/icons/moon.svg?react";

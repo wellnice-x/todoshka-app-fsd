@@ -1,5 +1,5 @@
+import type { ReactNode } from "react";
 import { useAppearanceStore } from "@/shared/model/appearance";
-import { ReactNode } from "react";
 import styles from "./ThemeToggle.module.scss";
 
 type ThemeToggleProps = {

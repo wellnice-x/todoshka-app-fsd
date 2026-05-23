@@ -12,12 +12,12 @@ export const useMarkAllTasksCompletedMutation = () => {
   const { queryClient, syncWithOptionalToast } = useStrategyRuntime();
 
   return useMutation({
-    mutationKey: createMutationKey("markAllCompleted"),
+    mutationKey: createMutationKey("markAllTasksCompleted"),
 
     mutationFn: () => {
       throwIfOffline();
 
-      return tasksUseCases.markAllCompleted();
+      return tasksUseCases.markAllTasksCompleted();
     },
 
     onSuccess: () => {

@@ -1,5 +1,6 @@
 import type { StrategyRuntimeContext } from "@/features/tasks-management/model/strategies/snapshots/types";
 import { useMemo } from "react";
+import { QUERY_KEY } from "@/features/tasks-management/model/strategies/snapshots/config";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   useQuerySyncScheduler,
@@ -8,7 +9,7 @@ import {
 import { createSyncHandler } from "@/features/tasks-management/model/strategies/snapshots/lib/createSyncHandler";
 import { useConnectionStore } from "@/shared/api/network";
 import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
-import { QUERY_KEY } from "@/features/tasks-management/model/strategies/snapshots/config";
+
 
 export const useStrategyRuntime = (): StrategyRuntimeContext => {
   const queryClient = useQueryClient();

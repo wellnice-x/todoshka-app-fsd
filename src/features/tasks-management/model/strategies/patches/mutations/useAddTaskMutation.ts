@@ -2,10 +2,10 @@ import type { Task } from "@/entities/task";
 import { tasksUseCases, useUIKeyStore } from "@/entities/task";
 import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/patches/runtime/useStrategyRuntime";
 import { createPatchManager } from "@/features/tasks-management/model/strategies/patches/lib/createPatchManager";
-import { useUITasks } from "@/features/tasks-management/model/strategies/patches/ui-tasks/useUITasks";
 import { isNetworkError } from "@/shared/lib/error-utils";
 import { throwIfOffline } from "@/shared/lib/network";
 import { useMutation } from "@tanstack/react-query";
+import { useUITasks } from "@/features/tasks-management/model/strategies/patches/ui-tasks/useUITasks";
 import {
   QUERY_KEY,
   createMutationKey,

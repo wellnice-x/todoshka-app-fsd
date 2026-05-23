@@ -2,6 +2,8 @@ import { useCallback, useEffect, useRef } from "react";
 import type {
   ToggleTaskMutation,
   DeleteTaskMutation,
+  ToggleTaskAction,
+  DeleteTaskAction,
 } from "@/features/tasks-management";
 
 type Mutations = {
@@ -21,11 +23,14 @@ export const useTaskStableActions = ({
     deleteRef.current = deleteTaskMutation.mutateAsync;
   }, [toggleTaskMutation.mutateAsync, deleteTaskMutation.mutateAsync]);
 
-  const toggleTask = useCallback((taskId: string, newIsDone: boolean) => {
-    return toggleRef.current({ taskId, newIsDone });
-  }, []);
+  const toggleTask: ToggleTaskAction = useCallback(
+    (taskId: string, newIsDone: boolean) => {
+      return toggleRef.current({ taskId, newIsDone });
+    },
+    [],
+  );
 
-  const deleteTask = useCallback((taskId: string) => {
+  const deleteTask: DeleteTaskAction = useCallback((taskId: string) => {
     return deleteRef.current({ taskId });
   }, []);
 

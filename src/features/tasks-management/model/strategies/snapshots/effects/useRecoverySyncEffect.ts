@@ -1,9 +1,9 @@
 import type { Task } from "@/entities/task";
 import type { StrategyRuntimeContext } from "@/features/tasks-management/model/strategies/snapshots/types";
-import { useEffect, useRef } from "react";
-import { useRuntimeStore } from "@/shared/model/runtime/runtimeStore";
-import { handlePromiseWithToast } from "@/shared/lib/toast/handlePromiseWithToast";
 import { QUERY_KEY } from "@/features/tasks-management/model/strategies/snapshots/config";
+import { useRuntimeStore } from "@/shared/model/runtime/runtimeStore";
+import { useEffect, useRef } from "react";
+import { handlePromiseWithToast } from "@/shared/lib/toast/handlePromiseWithToast";
 
 export const useRecoverySyncEffect = (runtime: StrategyRuntimeContext) => {
   const {

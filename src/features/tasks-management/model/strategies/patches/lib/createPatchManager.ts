@@ -6,7 +6,6 @@ import type { QueryClient, QueryKey } from "@tanstack/react-query";
 import type { Task } from "@/entities/task";
 import { PATCHES_QUERY_KEY } from "@/features/tasks-management/model/strategies/patches/config";
 
-
 export const createPatchManager = (
   queryClient: QueryClient,
   queryKey: QueryKey,

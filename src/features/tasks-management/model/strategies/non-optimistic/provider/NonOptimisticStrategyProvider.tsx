@@ -1,15 +1,15 @@
 import type { PropsWithChildren } from "react";
 import { useMemo } from "react";
+import { useUITasks } from "@/features/tasks-management/model/strategies/non-optimistic/ui-tasks/useUITasks";
 import { useAddTaskMutation } from "@/features/tasks-management/model/strategies/non-optimistic/mutations/useAddTaskMutation";
 import {
   TasksStrategyContext,
   TasksStrategyContextValue,
 } from "@/features/tasks-management/model/providers/TasksStrategyContext";
-import { useUpdateTaskInfoMutation } from "@/features/tasks-management/model/strategies/non-optimistic/mutations/useUpdateTaskInfoMutation";
+import { useInitStrategy } from "@/features/tasks-management/model/strategies/non-optimistic/lifecycle/useInitStrategy";
 import { useDeleteTaskMutation } from "@/features/tasks-management/model/strategies/non-optimistic/mutations/useDeleteTaskMutation";
 import { useToggleTaskMutation } from "@/features/tasks-management/model/strategies/non-optimistic/mutations/useToggleTaskMutation";
-import { useUITasks } from "@/features/tasks-management/model/strategies/non-optimistic/ui-tasks/useUITasks";
-import { useInitStrategy } from "@/features/tasks-management/model/strategies/non-optimistic/lifecycle/useInitStrategy";
+import { useUpdateTaskInfoMutation } from "@/features/tasks-management/model/strategies/non-optimistic/mutations/useUpdateTaskInfoMutation";
 import { useDeleteCompletedTasksMutation } from "@/features/tasks-management/model/strategies/non-optimistic/mutations/useDeleteCompletedTasksMutation";
 import { useMarkAllTasksCompletedMutation } from "@/features/tasks-management/model/strategies/non-optimistic/mutations/useMarkAllTasksCompletedMutation";
 
@@ -21,9 +21,9 @@ export const NonOptimisticStrategyProvider = ({
   useInitStrategy(uiTasks);
 
   const addTaskMutation = useAddTaskMutation();
-  const updateTaskInfoMutation = useUpdateTaskInfoMutation();
   const deleteTaskMutation = useDeleteTaskMutation();
   const toggleTaskMutation = useToggleTaskMutation();
+  const updateTaskInfoMutation = useUpdateTaskInfoMutation();
   const deleteCompletedTasksMutation = useDeleteCompletedTasksMutation();
   const markAllTasksCompletedMutation = useMarkAllTasksCompletedMutation();
 
@@ -31,18 +31,18 @@ export const NonOptimisticStrategyProvider = ({
     () => ({
       uiTasks,
       addTaskMutation,
-      updateTaskInfoMutation,
       deleteTaskMutation,
       toggleTaskMutation,
+      updateTaskInfoMutation,
       deleteCompletedTasksMutation,
       markAllTasksCompletedMutation,
     }),
     [
       uiTasks,
       addTaskMutation,
-      updateTaskInfoMutation,
       deleteTaskMutation,
       toggleTaskMutation,
+      updateTaskInfoMutation,
       deleteCompletedTasksMutation,
       markAllTasksCompletedMutation,
     ],

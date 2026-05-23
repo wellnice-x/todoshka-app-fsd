@@ -1,17 +1,14 @@
 import type { StrategyRuntimeContext } from "@/features/tasks-management/model/strategies/snapshots/types";
 import { useEffect } from "react";
-import { fallbackTasks } from "@/entities/task";
 import { QUERY_KEY } from "@/features/tasks-management/model/strategies/snapshots/config";
+import { fallbackTasks } from "@/entities/task";
 
 export const useFallbackTasksEffect = (
   runtime: StrategyRuntimeContext,
   isLoading: boolean,
 ) => {
-  const {
-    queryClient,
-    isServerAccessBlocked,
-    isServerAccessUncertain,
-  } = runtime;
+  const { queryClient, isServerAccessBlocked, isServerAccessUncertain } =
+    runtime;
 
   useEffect(() => {
     if (isServerAccessUncertain) return;
@@ -21,10 +18,5 @@ export const useFallbackTasksEffect = (
     if (!existing && isServerAccessBlocked && !isLoading) {
       queryClient.setQueryData(QUERY_KEY, fallbackTasks());
     }
-  }, [
-    queryClient,
-    isServerAccessBlocked,
-    isServerAccessUncertain,
-    isLoading,
-  ]);
+  }, [queryClient, isServerAccessBlocked, isServerAccessUncertain, isLoading]);
 };

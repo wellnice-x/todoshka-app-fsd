@@ -1,9 +1,9 @@
 import type { Task } from "@/entities/task";
 import { useQuery } from "@tanstack/react-query";
+import { QUERY_KEY } from "@/features/tasks-management/model/strategies/non-optimistic/config";
 import { tasksUseCases } from "@/entities/task";
 import { useTasksWithUIKeys } from "@/features/tasks-management";
 import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
-import { QUERY_KEY } from "@/features/tasks-management/model/strategies/non-optimistic/config";
 
 export const useUITasks = () => {
   const { isServerAccessBlocked } = useServerAccessState();

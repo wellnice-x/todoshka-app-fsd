@@ -14,13 +14,13 @@ export const useMarkAllTasksCompletedMutation = () => {
     useStrategyRuntime();
 
   return useMutation({
-    mutationKey: createMutationKey("markAllCompleted"),
+    mutationKey: createMutationKey("markAllTasksCompleted"),
 
     mutationFn: async () => {
       if (isServerAccessBlocked) return;
       throwIfOffline();
 
-      return tasksUseCases.markAllCompleted();
+      return tasksUseCases.markAllTasksCompleted();
     },
 
     onMutate: async () => {

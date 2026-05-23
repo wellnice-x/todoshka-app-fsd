@@ -13,9 +13,9 @@ export type TasksStrategyContextValue = {
   uiTasks: UITask[];
 
   addTaskMutation: AddTaskMutation;
-  updateTaskInfoMutation: UpdateTaskInfoMutation;
   deleteTaskMutation: DeleteTaskMutation;
   toggleTaskMutation: ToggleTaskMutation;
+  updateTaskInfoMutation: UpdateTaskInfoMutation;
   deleteCompletedTasksMutation: DeleteCompletedTasksMutation;
   markAllTasksCompletedMutation: MarkAllTasksCompletedMutation;
 };

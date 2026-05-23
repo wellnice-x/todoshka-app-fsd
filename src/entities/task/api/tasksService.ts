@@ -68,13 +68,13 @@ export const tasksService = {
       await maybeFailWithUnknownOutcome(getSimulationConfig());
     }),
 
-  markAllCompleted: async (): Promise<void> =>
+  markAllTasksCompleted: async (): Promise<void> =>
     withErrorHandler(async () => {
       await maybeFailHard(getSimulationConfig());
 
       const userId = await getCurrentUserId();
 
-      await tasksAPI.markAllCompleted(userId);
+      await tasksAPI.markAllTasksCompleted(userId);
 
       await maybeFailWithUnknownOutcome(getSimulationConfig());
     }),

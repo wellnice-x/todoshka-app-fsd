@@ -11,7 +11,7 @@ import { PuffLoader } from "react-spinners";
 import { useAnimationStore } from "@/shared/lib/animation/animationStore";
 import { useIsTasksMutating } from "@/features/tasks-management";
 import { useTaskStableActions } from "@/features/tasks-management";
-import { useTasksNavigationStore } from "@/features/tasks-navigation";
+import { useTasksNavigationStore } from "@/shared/model/navigation/tasksNavigationStore";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   useTasksQueryState,

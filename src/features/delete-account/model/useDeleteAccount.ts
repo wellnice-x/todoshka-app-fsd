@@ -10,7 +10,7 @@ import { useConnectionStore } from "@/shared/api/network";
 import { useAppearanceStore } from "@/shared/model/appearance";
 import { useGlobalErrorStore } from "@/shared/model/errors";
 import { deleteServerUserData } from "./deleteUserAccount";
-import { useTasksNavigationStore } from "@/features/tasks-navigation";
+import { useTasksNavigationStore } from "@/shared/model/navigation/tasksNavigationStore";
 
 type DeleteResult = { status: "success" } | { status: "failed" };
 

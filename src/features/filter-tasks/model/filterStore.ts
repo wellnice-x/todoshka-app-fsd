@@ -3,7 +3,7 @@ import { useShallow } from "zustand/shallow";
 
 export type FilterState = "all" | "active" | "completed";
 
-export type FilterStore = {
+type FilterStore = {
   searchQuery: string;
   activeFilter: FilterState;
   setSearchQuery: (value: string) => void;

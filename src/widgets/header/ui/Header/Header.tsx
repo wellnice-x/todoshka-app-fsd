@@ -3,11 +3,11 @@ import styles from "./Header.module.scss";
 import SunIcon from "@/shared/assets/icons/sun.svg?react";
 import MoonIcon from "@/shared/assets/icons/moon.svg?react";
 import Dropdown from "@/shared/ui/Dropdown";
-import ThemeToggle from "@/features/toggle-theme";
+import ThemeToggle from "@/shared/ui/ThemeToggle";
 import ToggleButton from "@/shared/ui/ToggleButton";
 import ConfirmModal from "@/shared/ui/ConfirmModal";
 import SettingsIcon from "@/shared/assets/icons/settings-icon.svg?react";
-import ParallaxToggle from "@/features/toggle-parallax";
+import ParallaxToggle from "@/shared/ui/ParallaxToggle";
 import ParallaxOnIcon from "@/shared/assets/icons/parallax-on-icon.svg?react";
 import ParallaxOffIcon from "@/shared/assets/icons/parallax-off-icon.svg?react";
 import DeleteProfileIcon from "@/shared/assets/icons/delete-profile-icon.svg?react";
@@ -90,7 +90,9 @@ const Header = ({ className }: HeaderProps) => {
     }
 
     toast.success(
-      result.enabled ? "Server mutations blocked" : "Server mutations unblocked",
+      result.enabled
+        ? "Server mutations blocked"
+        : "Server mutations unblocked",
     );
   };
 
