@@ -1,25 +1,25 @@
 import type { PropsWithChildren } from "react";
 import { useMemo } from "react";
-import { useSnapshotUITasks } from "@/features/tasks-management/model/strategies/snapshots/ui-tasks/useSnapshotUITasks";
+import { useUITasks } from "@/features/tasks-management/model/strategies/snapshots/ui-tasks/useUITasks";
 import { useAddTaskMutation } from "@/features/tasks-management/model/strategies/snapshots/mutations/useAddTaskMutation";
 import {
   TasksStrategyContext,
   TasksStrategyContextValue,
 } from "@/features/tasks-management/model/providers/TasksStrategyContext";
-import { useUpdateTaskMutation } from "@/features/tasks-management/model/strategies/snapshots/mutations/useUpdateTaskMutation";
+import { useUpdateTaskInfoMutation } from "@/features/tasks-management/model/strategies/snapshots/mutations/useUpdateTaskInfoMutation";
 import { useDeleteTaskMutation } from "@/features/tasks-management/model/strategies/snapshots/mutations/useDeleteTaskMutation";
 import { useToggleTaskMutation } from "@/features/tasks-management/model/strategies/snapshots/mutations/useToggleTaskMutation";
-import { useInitSnapshotStrategy } from "@/features/tasks-management/model/strategies/snapshots/lifecycle/useInitSnapshotStrategy";
+import { useInitStrategy } from "@/features/tasks-management/model/strategies/snapshots/lifecycle/useInitStrategy";
 import { useDeleteCompletedTasksMutation } from "@/features/tasks-management/model/strategies/snapshots/mutations/useDeleteCompletedTasksMutation";
 import { useMarkAllTasksCompletedMutation } from "@/features/tasks-management/model/strategies/snapshots/mutations/useMarkAllTasksCompletedMutation";
 
 export const SnapshotStrategyProvider = ({ children }: PropsWithChildren) => {
-  const uiTasks = useSnapshotUITasks();
+  const uiTasks = useUITasks();
 
-  useInitSnapshotStrategy(uiTasks);
+  useInitStrategy(uiTasks);
 
   const addTaskMutation = useAddTaskMutation();
-  const updateTaskMutation = useUpdateTaskMutation();
+  const updateTaskInfoMutation = useUpdateTaskInfoMutation();
   const deleteTaskMutation = useDeleteTaskMutation();
   const toggleTaskMutation = useToggleTaskMutation();
   const markAllTasksCompletedMutation = useMarkAllTasksCompletedMutation();
@@ -29,7 +29,7 @@ export const SnapshotStrategyProvider = ({ children }: PropsWithChildren) => {
     () => ({
       uiTasks,
       addTaskMutation,
-      updateTaskMutation,
+      updateTaskInfoMutation,
       deleteTaskMutation,
       toggleTaskMutation,
       deleteCompletedTasksMutation,
@@ -38,7 +38,7 @@ export const SnapshotStrategyProvider = ({ children }: PropsWithChildren) => {
     [
       uiTasks,
       addTaskMutation,
-      updateTaskMutation,
+      updateTaskInfoMutation,
       deleteTaskMutation,
       toggleTaskMutation,
       deleteCompletedTasksMutation,

@@ -1,3 +1,5 @@
+import type { UpdateTaskInfoMutation } from "@/features/tasks-management";
+import type { Task } from "@/entities/task";
 import Field from "@/shared/ui/Field";
 import toast from "react-hot-toast";
 import Button from "@/shared/ui/Button";
@@ -5,23 +7,13 @@ import styles from "./TaskUpdateForm.module.scss";
 import { useState, ChangeEvent, SubmitEvent, useEffect } from "react";
 import { useTasksNavigationStore } from "@/features/tasks-navigation";
 import { handleMutationError } from "@/shared/lib/error-handlers";
-import { UseMutationResult } from "@tanstack/react-query";
 import { formatDate } from "@/shared/lib/date/formatDate";
 import { ClipLoader } from "react-spinners";
-import type { Task } from "@/entities/task";
 
 type TaskUpdateFormProps = {
   className?: string;
   task: Task;
-  updateTaskInfoMutation: UseMutationResult<
-    void,
-    Error,
-    {
-      taskId: string;
-      title: string;
-      description: string;
-    }
-  >;
+  updateTaskInfoMutation: UpdateTaskInfoMutation;
   onSuccess?: () => void;
 };
 

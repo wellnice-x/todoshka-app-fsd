@@ -1,8 +1,7 @@
 import type { Task } from "@/entities/task";
 import type { QueryClient } from "@tanstack/react-query";
-import type { OptimisticMode } from "@/shared/types/optimisticMode";
 import type { ScheduleQuerySyncFn } from "@/shared/lib/react-query/useQuerySyncScheduler";
-import type { HandleSyncPatchesFn } from "./lib/createHandleSync";
+import type { HandleSyncPatchesFn } from "./lib/createSyncHandler";
 import type { QuerySyncWithOptionalToastFn } from "@/shared/lib/react-query/useQuerySyncWithOptionalToast";
 
 export type PatchOperation = "create" | "update" | "delete";
@@ -14,8 +13,7 @@ export type Patch = {
   entityId?: string;
 };
 
-export type TasksPatchRuntime = {
-  optimisticMode: OptimisticMode;
+export type StrategyRuntimeContext = {
   queryClient: QueryClient;
   isServerAccessBlocked: boolean;
   isServerAccessUncertain: boolean;

@@ -1,4 +1,8 @@
-import type { Task, UITask } from "@/entities/task";
+import type { UITask } from "@/entities/task";
+import type {
+  ToggleTaskAction,
+  DeleteTaskAction,
+} from "@/features/tasks-management";
 import { useTasksNavigationStore } from "@/features/tasks-navigation";
 import { AnimatePresence } from "motion/react";
 import { useFilter } from "@/features/filter-tasks";
@@ -7,19 +11,12 @@ import MotionListItem from "@/features/task-animation";
 import TodoItem from "@/widgets/task-item";
 import styles from "./TodoList.module.scss";
 
-export type ToggleTaskFn = (
-  taskId: string,
-  newIsDone: boolean,
-) => Promise<Task | undefined>;
-
-export type DeleteTaskFn = (taskId: string) => Promise<void>;
-
 type TodoListProps = {
   className?: string;
   currentTasks: UITask[];
   isNoTasksAtAll: boolean;
-  toggleTask: ToggleTaskFn;
-  deleteTask: DeleteTaskFn;
+  toggleTask: ToggleTaskAction;
+  deleteTask: DeleteTaskAction;
   roundingPosition: "top" | "bottom" | "none";
 };
 

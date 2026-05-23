@@ -3,23 +3,25 @@ import type { Task } from "@/entities/task";
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { applyPatches } from "@/features/tasks-management/model/strategies/patches/lib/applyPatches";
-import { useSettingsStore } from "@/shared/model/settings";
 import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
-import { tasksUseCases, useTasksWithUIKeys } from "@/entities/task";
+import { tasksUseCases } from "@/entities/task";
+import { useTasksWithUIKeys } from "@/features/tasks-management";
+import {
+  QUERY_KEY,
+  PATCHES_QUERY_KEY,
+} from "@/features/tasks-management/model/strategies/patches/config";
 
-export const usePatchUITasks = () => {
-  const optimisticMode = useSettingsStore((state) => state.optimisticMode);
-
+export const useUITasks = () => {
   const { isServerAccessBlocked } = useServerAccessState();
 
   const { data = [] } = useQuery<Task[]>({
-    queryKey: ["tasks", optimisticMode],
+    queryKey: QUERY_KEY,
     queryFn: tasksUseCases.getAll,
-    enabled: optimisticMode === "patches" && !isServerAccessBlocked,
+    enabled: !isServerAccessBlocked,
   });
 
   const { data: patches = [] } = useQuery<Patch[]>({
-    queryKey: ["tasksPatches"],
+    queryKey: PATCHES_QUERY_KEY,
     queryFn: () => [],
     enabled: false,
     initialData: [],

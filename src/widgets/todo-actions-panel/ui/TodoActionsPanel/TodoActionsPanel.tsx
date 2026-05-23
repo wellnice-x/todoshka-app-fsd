@@ -1,9 +1,12 @@
 import type { FilterState } from "@/features/filter-tasks";
+import type {
+  DeleteCompletedTasksMutation,
+  MarkAllTasksCompletedMutation,
+} from "@/features/tasks-management";
 import { useState } from "react";
 import { useFilter } from "@/features/filter-tasks";
 import { createPortal } from "react-dom";
 import { useAnimation } from "@/shared/lib/animation/animationStore";
-import { UseMutationResult } from "@tanstack/react-query";
 import { handleMutationError } from "@/shared/lib/error-handlers";
 import { handleBulkMutationError } from "@/shared/lib/error-handlers";
 import ConfirmModal from "@/shared/ui/ConfirmModal";
@@ -15,12 +18,8 @@ type ModalAction = "deleteAll" | "markAll" | null;
 type TodoActionsPanelProps = {
   className?: string;
   completedTaskIds: string[];
-  deleteCompletedTasksMutation: UseMutationResult<
-    PromiseSettledResult<{ taskId: string }>[] | undefined,
-    Error,
-    { taskIds: string[] }
-  >;
-  markAllCompletedMutation: UseMutationResult<void, Error, void>;
+  deleteCompletedTasksMutation: DeleteCompletedTasksMutation;
+  markAllTasksCompletedMutation: MarkAllTasksCompletedMutation;
   uncompletedTasksCount: number;
 };
 
@@ -29,7 +28,7 @@ const TodoActionsPanel = (props: TodoActionsPanelProps) => {
     className,
     completedTaskIds,
     deleteCompletedTasksMutation,
-    markAllCompletedMutation,
+    markAllTasksCompletedMutation,
     uncompletedTasksCount,
   } = props;
 
@@ -86,9 +85,9 @@ const TodoActionsPanel = (props: TodoActionsPanelProps) => {
   };
 
   const handleMarkAllCompleted = () => {
-    if (markAllCompletedMutation.isPending) return;
+    if (markAllTasksCompletedMutation.isPending) return;
 
-    markAllCompletedMutation.mutate(undefined, {
+    markAllTasksCompletedMutation.mutate(undefined, {
       onError: (error) => {
         if (handleMutationError(error)) return;
 

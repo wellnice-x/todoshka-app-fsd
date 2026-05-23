@@ -5,27 +5,31 @@ import useIsMobile from "@/shared/lib/device/useIsMobile";
 import AddTaskForm from "@/features/add-task";
 import SearchTaskForm from "@/features/search-task";
 import TodoActionsPanel from "@/widgets/todo-actions-panel";
-import { useIsTasksMutating } from "@/entities/task";
-import { useTasks } from "@/features/tasks-management";
 import { useFilter } from "@/features/filter-tasks";
 import { BeatLoader } from "react-spinners";
 import { PuffLoader } from "react-spinners";
 import { useAnimationStore } from "@/shared/lib/animation/animationStore";
-import { useTaskStableActions } from "@/entities/task";
+import { useIsTasksMutating } from "@/features/tasks-management";
+import { useTaskStableActions } from "@/features/tasks-management";
 import { useTasksNavigationStore } from "@/features/tasks-navigation";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import {
+  useTasksQueryState,
+  useTasksStrategy,
+} from "@/features/tasks-management";
 
 const Todo = () => {
+  const { isLoading: tasksIsInitLoading, isRefetching: tasksIsRefetching } =
+    useTasksQueryState();
+
   const {
-    tasks,
+    uiTasks: tasks,
     addTaskMutation,
     deleteTaskMutation,
     toggleTaskMutation,
     deleteCompletedTasksMutation,
-    markAllCompletedMutation,
-    tasksIsInitLoading,
-    tasksIsRefetching,
-  } = useTasks();
+    markAllTasksCompletedMutation,
+  } = useTasksStrategy();
 
   const { toggleTask, deleteTask } = useTaskStableActions({
     toggleTaskMutation,
@@ -137,7 +141,7 @@ const Todo = () => {
         `}
         completedTaskIds={completedTaskIds}
         deleteCompletedTasksMutation={deleteCompletedTasksMutation}
-        markAllCompletedMutation={markAllCompletedMutation}
+        markAllTasksCompletedMutation={markAllTasksCompletedMutation}
         uncompletedTasksCount={uncompletedTasksCount}
       />
       {tasksIsInitLoading && (

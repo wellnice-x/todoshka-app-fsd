@@ -3,18 +3,18 @@ import { useMutation } from "@tanstack/react-query";
 import { tasksUseCases } from "@/entities/task";
 import { throwIfOffline } from "@/shared/lib/network";
 import { isNetworkError } from "@/shared/lib/error-utils";
-import { useTasksSnapshotsRuntime } from "@/features/tasks-management/model/strategies/snapshots/runtime/useTasksSnapshotsRuntime";
+import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/snapshots/runtime/useStrategyRuntime";
+import {
+  QUERY_KEY,
+  createMutationKey,
+} from "@/features/tasks-management/model/strategies/snapshots/config";
 
 export const useMarkAllTasksCompletedMutation = () => {
-  const {
-    queryClient,
-    optimisticMode,
-    isServerAccessBlocked,
-    syncWithOptionalToast,
-  } = useTasksSnapshotsRuntime();
+  const { queryClient, isServerAccessBlocked, syncWithOptionalToast } =
+    useStrategyRuntime();
 
   return useMutation({
-    mutationKey: ["tasks", optimisticMode, "markAllCompleted"],
+    mutationKey: createMutationKey("markAllCompleted"),
 
     mutationFn: async () => {
       if (isServerAccessBlocked) return;
@@ -24,14 +24,11 @@ export const useMarkAllTasksCompletedMutation = () => {
     },
 
     onMutate: async () => {
-      await queryClient.cancelQueries({ queryKey: ["tasks", optimisticMode] });
+      await queryClient.cancelQueries({ queryKey: QUERY_KEY });
 
-      const previousTasks = queryClient.getQueryData<Task[]>([
-        "tasks",
-        optimisticMode,
-      ]);
+      const previousTasks = queryClient.getQueryData<Task[]>(QUERY_KEY);
 
-      queryClient.setQueryData<Task[]>(["tasks", optimisticMode], (old = []) =>
+      queryClient.setQueryData<Task[]>(QUERY_KEY, (old = []) =>
         old.map((task) => ({ ...task, isDone: true })),
       );
 
@@ -47,10 +44,7 @@ export const useMarkAllTasksCompletedMutation = () => {
 
       if (!previousTasks) return;
 
-      queryClient.setQueryData<Task[]>(
-        ["tasks", optimisticMode],
-        previousTasks,
-      );
+      queryClient.setQueryData<Task[]>(QUERY_KEY, previousTasks);
     },
 
     onSettled: (_data, error) => {

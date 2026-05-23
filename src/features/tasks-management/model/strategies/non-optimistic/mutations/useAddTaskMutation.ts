@@ -2,14 +2,17 @@ import type { Task } from "@/entities/task";
 import { useMutation } from "@tanstack/react-query";
 import { tasksUseCases } from "@/entities/task";
 import { throwIfOffline } from "@/shared/lib/network";
-import { useTasksNonOptimisticRuntime } from "@/features/tasks-management/model/strategies/non-optimistic/runtime/useTasksNonOptimisticRuntime";
+import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/non-optimistic/runtime/useStrategyRuntime";
+import {
+  QUERY_KEY,
+  createMutationKey,
+} from "@/features/tasks-management/model/strategies/non-optimistic/config";
 
 export const useAddTaskMutation = () => {
-  const { queryClient, optimisticMode, syncWithOptionalToast } =
-    useTasksNonOptimisticRuntime();
+  const { queryClient, syncWithOptionalToast } = useStrategyRuntime();
 
   return useMutation({
-    mutationKey: ["tasks", optimisticMode, "add"],
+    mutationKey: createMutationKey("add"),
 
     mutationFn: ({ title }: { title: string }) => {
       throwIfOffline();
@@ -22,10 +25,10 @@ export const useAddTaskMutation = () => {
     },
 
     onSuccess: (newTask) => {
-      queryClient.setQueryData<Task[]>(
-        ["tasks", optimisticMode],
-        (old = []) => [...old, newTask],
-      );
+      queryClient.setQueryData<Task[]>(QUERY_KEY, (old = []) => [
+        ...old,
+        newTask,
+      ]);
     },
 
     onSettled: (_data, error) => {

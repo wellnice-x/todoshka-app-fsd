@@ -1,4 +1,4 @@
-import type { Task } from "@/entities/task";
+import { tasksUseCases, type Task } from "@/entities/task";
 import { useQuery } from "@tanstack/react-query";
 import { useSettingsStore } from "@/shared/model/settings";
 
@@ -8,7 +8,7 @@ export const useTasksQueryState = () => {
   const { data, error, isLoading, isRefetching, isFetching } = useQuery<Task[]>(
     {
       queryKey: ["tasks", optimisticMode],
-      queryFn: () => [],
+      queryFn: tasksUseCases.getAll,
       enabled: false,
     },
   );

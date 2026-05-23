@@ -1,29 +1,23 @@
 import type { Task } from "@/entities/task";
-import type {
-  Patch,
-  TasksPatchRuntime,
-} from "@/features/tasks-management/model/strategies/patches/types";
+import type { StrategyRuntimeContext } from "@/features/tasks-management/model/strategies/snapshots/types";
 import { useEffect, useRef } from "react";
 import { useRuntimeStore } from "@/shared/model/runtime/runtimeStore";
 import { handlePromiseWithToast } from "@/shared/lib/toast/handlePromiseWithToast";
+import { QUERY_KEY } from "@/features/tasks-management/model/strategies/snapshots/config";
 
-export const usePatchRecoveryEffect = (runtime: TasksPatchRuntime) => {
+export const useRecoverySyncEffect = (runtime: StrategyRuntimeContext) => {
   const {
-    optimisticMode,
     queryClient,
     isServerAccessBlocked,
     isServerAccessUncertain,
     hasConnectionJustRecovered,
     scheduleQuerySync,
-    handleSync,
   } = runtime;
 
   const wasServerBlockedRef = useRef(false);
   const shouldSyncAfterUnblockRef = useRef(false);
 
   useEffect(() => {
-    if (optimisticMode !== "patches") return;
-
     if (isServerAccessUncertain) return;
 
     const { isNoInternetConnection } = useRuntimeStore.getState();
@@ -35,6 +29,13 @@ export const usePatchRecoveryEffect = (runtime: TasksPatchRuntime) => {
 
     if (hasServerUnblocked) {
       shouldSyncAfterUnblockRef.current = true;
+    }
+
+    if (
+      shouldSyncAfterUnblockRef.current &&
+      (hasConnectionJustRecovered || !isNoInternetConnection)
+    ) {
+      shouldSyncAfterUnblockRef.current = false;
 
       const removeOfflineAndFallbackTasks = (tasks: Task[]) => {
         return tasks.filter(
@@ -43,18 +44,9 @@ export const usePatchRecoveryEffect = (runtime: TasksPatchRuntime) => {
         );
       };
 
-      queryClient.setQueryData<Task[]>(["tasks", optimisticMode], (old = []) =>
+      queryClient.setQueryData<Task[]>(QUERY_KEY, (old = []) =>
         removeOfflineAndFallbackTasks(old),
       );
-
-      queryClient.setQueryData<Patch[]>(["tasksPatches"], []);
-    }
-
-    if (
-      shouldSyncAfterUnblockRef.current &&
-      (hasConnectionJustRecovered || !isNoInternetConnection)
-    ) {
-      shouldSyncAfterUnblockRef.current = false;
 
       handlePromiseWithToast(
         scheduleQuerySync(0, true, true),
@@ -65,17 +57,15 @@ export const usePatchRecoveryEffect = (runtime: TasksPatchRuntime) => {
         "✅",
       );
     } else if (hasConnectionJustRecovered) {
-      handleSync(scheduleQuerySync(0, false, true));
+      scheduleQuerySync(0);
     }
 
     wasServerBlockedRef.current = isNowBlocked;
   }, [
-    optimisticMode,
     queryClient,
     isServerAccessBlocked,
     isServerAccessUncertain,
     hasConnectionJustRecovered,
     scheduleQuerySync,
-    handleSync,
   ]);
 };

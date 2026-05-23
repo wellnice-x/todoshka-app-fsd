@@ -1,19 +1,17 @@
-import type { QueryClient } from "@tanstack/react-query";
+import type { QueryClient, QueryKey } from "@tanstack/react-query";
 import type { Task } from "@/entities/task";
 
 export type HandleSyncFn = (
   syncPromise: Promise<void> | undefined,
 ) => Promise<void>;
 
-export const createHandleSync = (
+export const createSyncHandler = (
   queryClient: QueryClient,
-  optimisticMode: string,
+  queryKey: QueryKey,
 ): HandleSyncFn => {
   const removeOptimisticTasks = () => {
-    queryClient.setQueryData<Task[]>(
-      ["tasks", optimisticMode],
-      (old = []) =>
-        old.filter((task) => !task.id.startsWith("optimistic-")),
+    queryClient.setQueryData<Task[]>(queryKey, (old = []) =>
+      old.filter((task) => !task.id.startsWith("optimistic-")),
     );
   };
 

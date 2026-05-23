@@ -9,10 +9,18 @@ export const TasksStrategyProvider = ({ children }: PropsWithChildren) => {
 
   switch (optimisticMode) {
     case "patches":
-      return <PatchStrategyProvider>{children}</PatchStrategyProvider>;
+      return (
+        <PatchStrategyProvider>
+          {children}
+        </PatchStrategyProvider>
+      );
 
     case "snapshots":
-      return <SnapshotStrategyProvider>{children}</SnapshotStrategyProvider>;
+      return (
+        <SnapshotStrategyProvider>
+          {children}
+        </SnapshotStrategyProvider>
+      );
 
     case "none":
       return (

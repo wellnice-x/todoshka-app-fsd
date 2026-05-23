@@ -1,33 +1,33 @@
 import type { Task } from "@/entities/task";
 import { tasksUseCases, useUIKeyStore } from "@/entities/task";
-import { useTasksPatchRuntime } from "@/features/tasks-management/model/strategies/patches/runtime/useTasksPatchRuntime";
+import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/patches/runtime/useStrategyRuntime";
 import { createPatchManager } from "@/features/tasks-management/model/strategies/patches/lib/createPatchManager";
-import { usePatchUITasks } from "@/features/tasks-management/model/strategies/patches/ui-tasks/usePatchUITasks";
+import { useUITasks } from "@/features/tasks-management/model/strategies/patches/ui-tasks/useUITasks";
 import { isNetworkError } from "@/shared/lib/error-utils";
 import { throwIfOffline } from "@/shared/lib/network";
 import { useMutation } from "@tanstack/react-query";
+import {
+  QUERY_KEY,
+  createMutationKey,
+} from "@/features/tasks-management/model/strategies/patches/config";
 
 export const useAddTaskMutation = () => {
   const {
     queryClient,
-    optimisticMode,
     isServerAccessBlocked,
     resolveEntityId,
     syncWithOptionalToast,
     handleSync,
-  } = useTasksPatchRuntime();
+  } = useStrategyRuntime();
 
   const { setUIKey, transferUIKey } = useUIKeyStore.getState();
 
-  const { addPatch, removePatch } = createPatchManager(
-    queryClient,
-    optimisticMode,
-  );
+  const { addPatch, removePatch } = createPatchManager(queryClient, QUERY_KEY);
 
-  const uiTasks = usePatchUITasks();
+  const uiTasks = useUITasks();
 
   return useMutation({
-    mutationKey: ["tasks", optimisticMode, "add"],
+    mutationKey: createMutationKey("add"),
 
     mutationFn: async ({ title }: { title: string }) => {
       if (isServerAccessBlocked) return;
@@ -41,7 +41,7 @@ export const useAddTaskMutation = () => {
     },
 
     onMutate: async ({ title }) => {
-      await queryClient.cancelQueries({ queryKey: ["tasks", optimisticMode] });
+      await queryClient.cancelQueries({ queryKey: QUERY_KEY });
 
       const tempId: string = isServerAccessBlocked
         ? `offline-${crypto.randomUUID()}`
@@ -87,18 +87,15 @@ export const useAddTaskMutation = () => {
 
       removePatch(context.patch.id);
 
-      queryClient.setQueryData<Task[]>(
-        ["tasks", optimisticMode],
-        (old = []) => {
-          if (old.some((task) => task.id === serverTask.id)) return old;
+      queryClient.setQueryData<Task[]>(QUERY_KEY, (old = []) => {
+        if (old.some((task) => task.id === serverTask.id)) return old;
 
-          transferUIKey(context.tempId, serverTask.id);
+        transferUIKey(context.tempId, serverTask.id);
 
-          return [...old, serverTask].sort(
-            (a, b) => (a.orderIndex ?? 0) - (b.orderIndex ?? 0),
-          );
-        },
-      );
+        return [...old, serverTask].sort(
+          (a, b) => (a.orderIndex ?? 0) - (b.orderIndex ?? 0),
+        );
+      });
     },
 
     onSettled: (_data, error) => {

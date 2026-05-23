@@ -3,19 +3,19 @@ import { useMutation } from "@tanstack/react-query";
 import { tasksUseCases } from "@/entities/task";
 import { throwIfOffline } from "@/shared/lib/network";
 import { isBulkDeleteError } from "@/shared/lib/error-utils";
-import { useTasksSnapshotsRuntime } from "@/features/tasks-management/model/strategies/snapshots/runtime/useTasksSnapshotsRuntime";
+import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/snapshots/runtime/useStrategyRuntime";
 import { isBulkDeleteNetworkError } from "@/shared/lib/error-utils";
+import {
+  QUERY_KEY,
+  createMutationKey,
+} from "@/features/tasks-management/model/strategies/snapshots/config";
 
 export const useDeleteCompletedTasksMutation = () => {
-  const {
-    queryClient,
-    optimisticMode,
-    isServerAccessBlocked,
-    syncWithOptionalToast,
-  } = useTasksSnapshotsRuntime();
+  const { queryClient, isServerAccessBlocked, syncWithOptionalToast } =
+    useStrategyRuntime();
 
   return useMutation({
-    mutationKey: ["tasks", optimisticMode, "bulkDelete"],
+    mutationKey: createMutationKey("bulkDelete"),
 
     mutationFn: async ({ taskIds }: { taskIds: string[] }) => {
       if (isServerAccessBlocked) return;
@@ -25,12 +25,11 @@ export const useDeleteCompletedTasksMutation = () => {
     },
 
     onMutate: async () => {
-      await queryClient.cancelQueries({ queryKey: ["tasks", optimisticMode] });
+      await queryClient.cancelQueries({ queryKey: QUERY_KEY });
 
-      const previousTasks =
-        queryClient.getQueryData<Task[]>(["tasks", optimisticMode]) ?? [];
+      const previousTasks = queryClient.getQueryData<Task[]>(QUERY_KEY) ?? [];
 
-      queryClient.setQueryData<Task[]>(["tasks", optimisticMode], (old = []) =>
+      queryClient.setQueryData<Task[]>(QUERY_KEY, (old = []) =>
         old.filter((task) => !task.isDone),
       );
 
@@ -47,10 +46,7 @@ export const useDeleteCompletedTasksMutation = () => {
       if (!previousTasks) return;
 
       if (!isBulkDeleteError(error)) {
-        queryClient.setQueryData<Task[]>(
-          ["tasks", optimisticMode],
-          previousTasks,
-        );
+        queryClient.setQueryData<Task[]>(QUERY_KEY, previousTasks);
         return;
       }
 
@@ -68,28 +64,25 @@ export const useDeleteCompletedTasksMutation = () => {
         failedIds.includes(task.id),
       );
 
-      queryClient.setQueryData<Task[]>(
-        ["tasks", optimisticMode],
-        (old = []) => {
-          const nextTasks = [...old];
+      queryClient.setQueryData<Task[]>(QUERY_KEY, (old = []) => {
+        const nextTasks = [...old];
 
-          failedTasks.forEach((task) => {
-            if (nextTasks.some((t) => t.id === task.id)) return;
+        failedTasks.forEach((task) => {
+          if (nextTasks.some((t) => t.id === task.id)) return;
 
-            const insertIndex = nextTasks.findIndex(
-              (t) => t.orderIndex > task.orderIndex,
-            );
+          const insertIndex = nextTasks.findIndex(
+            (t) => t.orderIndex > task.orderIndex,
+          );
 
-            if (insertIndex === -1) {
-              nextTasks.push(task);
-            } else {
-              nextTasks.splice(insertIndex, 0, task);
-            }
-          });
+          if (insertIndex === -1) {
+            nextTasks.push(task);
+          } else {
+            nextTasks.splice(insertIndex, 0, task);
+          }
+        });
 
-          return nextTasks;
-        },
-      );
+        return nextTasks;
+      });
     },
 
     onSettled: (_data, error) => {

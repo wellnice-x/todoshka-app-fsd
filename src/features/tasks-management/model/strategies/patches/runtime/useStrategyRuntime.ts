@@ -1,19 +1,17 @@
-import type { TasksPatchRuntime } from "@/features/tasks-management/model/strategies/patches/types";
+import type { StrategyRuntimeContext } from "@/features/tasks-management/model/strategies/patches/types";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   useQuerySyncScheduler,
   useQuerySyncWithOptionalToast,
 } from "@/shared/lib/react-query";
-import { useSettingsStore } from "@/shared/model/settings";
-import { createHandleSync } from "@/features/tasks-management/model/strategies/patches/lib/createHandleSync";
+import { createSyncHandler } from "@/features/tasks-management/model/strategies/patches/lib/createSyncHandler";
 import { useConnectionStore } from "@/shared/api/network";
 import { useCallback, useMemo } from "react";
 import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
+import { QUERY_KEY } from "@/features/tasks-management/model/strategies/patches/config";
 
-export const useTasksPatchRuntime = (): TasksPatchRuntime => {
+export const useStrategyRuntime = (): StrategyRuntimeContext => {
   const queryClient = useQueryClient();
-
-  const optimisticMode = useSettingsStore((s) => s.optimisticMode);
 
   const { isServerAccessBlocked, isServerAccessUncertain } =
     useServerAccessState();
@@ -22,10 +20,7 @@ export const useTasksPatchRuntime = (): TasksPatchRuntime => {
     (state) => state.hasConnectionJustRecovered,
   );
 
-  const { scheduleQuerySync } = useQuerySyncScheduler([
-    "tasks",
-    optimisticMode,
-  ]);
+  const { scheduleQuerySync } = useQuerySyncScheduler(QUERY_KEY);
 
   const syncWithOptionalToast =
     useQuerySyncWithOptionalToast(scheduleQuerySync);
@@ -38,28 +33,22 @@ export const useTasksPatchRuntime = (): TasksPatchRuntime => {
   );
 
   const getUpdatedAt = useCallback(() => {
-    return queryClient.getQueryState(["tasks", optimisticMode])?.dataUpdatedAt;
-  }, [queryClient, optimisticMode]);
+    return queryClient.getQueryState(QUERY_KEY)?.dataUpdatedAt;
+  }, [queryClient]);
 
   const handleSync = useMemo(
-    () => createHandleSync(queryClient, getUpdatedAt),
+    () => createSyncHandler(queryClient, getUpdatedAt),
     [queryClient, getUpdatedAt],
   );
 
   return {
-    optimisticMode,
-
     queryClient,
-
     isServerAccessBlocked,
     isServerAccessUncertain,
-
     hasConnectionJustRecovered,
-
     scheduleQuerySync,
     syncWithOptionalToast,
     handleSync,
-
     resolveEntityId,
   };
 };

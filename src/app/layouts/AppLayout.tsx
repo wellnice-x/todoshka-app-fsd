@@ -5,6 +5,7 @@ import ThemeBackground from "@/widgets/theme-background/ui/ThemeBackground";
 import darkBackground from "@/shared/assets/images/bg-decor-alt.webp";
 import Header from "@/widgets/header";
 import Footer from "@/widgets/footer";
+import { TasksStrategyProvider } from "@/features/tasks-management";
 import { Toaster } from "react-hot-toast";
 import { Outlet } from "react-router";
 
@@ -13,8 +14,6 @@ function AppLayout() {
 
   return (
     <>
-      <GlobalLayoutEffects />
-
       <Toaster
         position="bottom-left"
         toastOptions={{ style: { maxWidth: "370px" } }}
@@ -26,7 +25,11 @@ function AppLayout() {
       />
 
       <Header />
-      <Outlet />
+      <TasksStrategyProvider>
+        <GlobalLayoutEffects />
+
+        <Outlet />
+      </TasksStrategyProvider>
       <Footer />
     </>
   );

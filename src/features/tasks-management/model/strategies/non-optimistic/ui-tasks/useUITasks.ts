@@ -1,18 +1,17 @@
 import type { Task } from "@/entities/task";
 import { useQuery } from "@tanstack/react-query";
-import { useSettingsStore } from "@/shared/model/settings";
+import { tasksUseCases } from "@/entities/task";
+import { useTasksWithUIKeys } from "@/features/tasks-management";
 import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
-import { tasksUseCases, useTasksWithUIKeys } from "@/entities/task";
+import { QUERY_KEY } from "@/features/tasks-management/model/strategies/non-optimistic/config";
 
-export const useNonOptimisticUITasks = () => {
-  const optimisticMode = useSettingsStore((state) => state.optimisticMode);
-
+export const useUITasks = () => {
   const { isServerAccessBlocked } = useServerAccessState();
 
   const { data = [] } = useQuery<Task[]>({
-    queryKey: ["tasks", optimisticMode],
+    queryKey: QUERY_KEY,
     queryFn: tasksUseCases.getAll,
-    enabled: optimisticMode === "none" && !isServerAccessBlocked,
+    enabled: !isServerAccessBlocked,
   });
 
   const uiTasks = useTasksWithUIKeys(data);

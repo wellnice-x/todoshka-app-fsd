@@ -3,18 +3,18 @@ import { useMutation } from "@tanstack/react-query";
 import { tasksUseCases } from "@/entities/task";
 import { throwIfOffline } from "@/shared/lib/network";
 import { isNetworkError } from "@/shared/lib/error-utils";
-import { useTasksSnapshotsRuntime } from "@/features/tasks-management/model/strategies/snapshots/runtime/useTasksSnapshotsRuntime";
+import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/snapshots/runtime/useStrategyRuntime";
+import {
+  QUERY_KEY,
+  createMutationKey,
+} from "@/features/tasks-management/model/strategies/snapshots/config";
 
 export const useToggleTaskMutation = () => {
-  const {
-    queryClient,
-    optimisticMode,
-    isServerAccessBlocked,
-    syncWithOptionalToast,
-  } = useTasksSnapshotsRuntime();
+  const { queryClient, isServerAccessBlocked, syncWithOptionalToast } =
+    useStrategyRuntime();
 
   return useMutation({
-    mutationKey: ["tasks", optimisticMode, "toggle"],
+    mutationKey: createMutationKey("toggle"),
 
     mutationFn: async ({
       taskId,
@@ -30,13 +30,13 @@ export const useToggleTaskMutation = () => {
     },
 
     onMutate: async ({ taskId, newIsDone }) => {
-      await queryClient.cancelQueries({ queryKey: ["tasks", optimisticMode] });
+      await queryClient.cancelQueries({ queryKey: QUERY_KEY });
 
       const previousTask = queryClient
-        .getQueryData<Task[]>(["tasks", optimisticMode])
+        .getQueryData<Task[]>(QUERY_KEY)
         ?.find((t) => t.id === taskId);
 
-      queryClient.setQueryData<Task[]>(["tasks", optimisticMode], (old = []) =>
+      queryClient.setQueryData<Task[]>(QUERY_KEY, (old = []) =>
         old.map((task) => {
           if (task.id === taskId) {
             return { ...task, isDone: newIsDone };
@@ -56,7 +56,7 @@ export const useToggleTaskMutation = () => {
       const previousTask = context?.previousTask;
       if (!previousTask) return;
 
-      queryClient.setQueryData<Task[]>(["tasks", optimisticMode], (old = []) =>
+      queryClient.setQueryData<Task[]>(QUERY_KEY, (old = []) =>
         old.map((task) => (task.id === vars.taskId ? previousTask : task)),
       );
     },
@@ -64,7 +64,7 @@ export const useToggleTaskMutation = () => {
     onSuccess: (serverTask) => {
       if (isServerAccessBlocked || !serverTask) return;
 
-      queryClient.setQueryData<Task[]>(["tasks", optimisticMode], (old = []) =>
+      queryClient.setQueryData<Task[]>(QUERY_KEY, (old = []) =>
         old.map((task) => (task.id === serverTask.id ? serverTask : task)),
       );
     },

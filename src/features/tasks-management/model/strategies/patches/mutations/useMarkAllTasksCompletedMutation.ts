@@ -2,25 +2,28 @@ import { useMutation } from "@tanstack/react-query";
 import { isNetworkError } from "@/shared/lib/error-utils";
 import { throwIfOffline } from "@/shared/lib/network";
 import { tasksUseCases } from "@/entities/task";
-import { useTasksPatchRuntime } from "@/features/tasks-management/model/strategies/patches/runtime/useTasksPatchRuntime";
+import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/patches/runtime/useStrategyRuntime";
 import { createPatchManager } from "@/features/tasks-management/model/strategies/patches/lib/createPatchManager";
+import {
+  QUERY_KEY,
+  createMutationKey,
+} from "@/features/tasks-management/model/strategies/patches/config";
 
 export const useMarkAllTasksCompletedMutation = () => {
   const {
     queryClient,
-    optimisticMode,
     isServerAccessBlocked,
     syncWithOptionalToast,
     handleSync,
-  } = useTasksPatchRuntime();
+  } = useStrategyRuntime();
 
   const { addPatch, removePatch, commitPatch } = createPatchManager(
     queryClient,
-    optimisticMode,
+    QUERY_KEY,
   );
 
   return useMutation({
-    mutationKey: ["tasks", optimisticMode, "markAllCompleted"],
+    mutationKey: createMutationKey("markAllCompleted"),
 
     mutationFn: async () => {
       if (isServerAccessBlocked) return;
@@ -30,7 +33,7 @@ export const useMarkAllTasksCompletedMutation = () => {
     },
 
     onMutate: async () => {
-      await queryClient.cancelQueries({ queryKey: ["tasks", optimisticMode] });
+      await queryClient.cancelQueries({ queryKey: QUERY_KEY });
 
       const patch = addPatch(
         (tasks) => tasks.map((task) => ({ ...task, isDone: true })),

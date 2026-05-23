@@ -1,30 +1,27 @@
-import type { TasksSnapshotsRuntime } from "@/features/tasks-management/model/strategies/snapshots/types";
+import type { StrategyRuntimeContext } from "@/features/tasks-management/model/strategies/patches/types";
 import { useEffect } from "react";
 import { fallbackTasks } from "@/entities/task";
+import { QUERY_KEY } from "@/features/tasks-management/model/strategies/patches/config";
 
-export const useSnapshotFallbackEffect = (
-  runtime: TasksSnapshotsRuntime,
+export const useFallbackTasksEffect = (
+  runtime: StrategyRuntimeContext,
   isLoading: boolean,
 ) => {
   const {
-    optimisticMode,
     queryClient,
     isServerAccessBlocked,
     isServerAccessUncertain,
   } = runtime;
 
   useEffect(() => {
-    if (optimisticMode !== "snapshots") return;
-
     if (isServerAccessUncertain) return;
 
-    const existing = queryClient.getQueryData(["tasks", optimisticMode]);
+    const existing = queryClient.getQueryData(QUERY_KEY);
 
     if (!existing && isServerAccessBlocked && !isLoading) {
-      queryClient.setQueryData(["tasks", optimisticMode], fallbackTasks());
+      queryClient.setQueryData(QUERY_KEY, fallbackTasks());
     }
   }, [
-    optimisticMode,
     queryClient,
     isServerAccessBlocked,
     isServerAccessUncertain,

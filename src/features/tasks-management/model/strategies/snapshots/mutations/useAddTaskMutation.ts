@@ -2,22 +2,25 @@ import type { Task } from "@/entities/task";
 import { useMutation } from "@tanstack/react-query";
 import { isNetworkError } from "@/shared/lib/error-utils";
 import { throwIfOffline } from "@/shared/lib/network";
-import { useTasksSnapshotsRuntime } from "@/features/tasks-management/model/strategies/snapshots/runtime/useTasksSnapshotsRuntime";
+import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/snapshots/runtime/useStrategyRuntime";
 import { tasksUseCases, useUIKeyStore } from "@/entities/task";
+import {
+  QUERY_KEY,
+  createMutationKey,
+} from "@/features/tasks-management/model/strategies/snapshots/config";
 
 export const useAddTaskMutation = () => {
   const {
     queryClient,
-    optimisticMode,
     isServerAccessBlocked,
     syncWithOptionalToast,
     handleSync,
-  } = useTasksSnapshotsRuntime();
+  } = useStrategyRuntime();
 
   const { setUIKey, transferUIKey } = useUIKeyStore.getState();
 
   return useMutation({
-    mutationKey: ["tasks", optimisticMode, "add"],
+    mutationKey: createMutationKey("add"),
 
     mutationFn: async ({ title }: { title: string }) => {
       if (isServerAccessBlocked) return;
@@ -31,10 +34,9 @@ export const useAddTaskMutation = () => {
     },
 
     onMutate: async ({ title }) => {
-      await queryClient.cancelQueries({ queryKey: ["tasks", optimisticMode] });
+      await queryClient.cancelQueries({ queryKey: QUERY_KEY });
 
-      const previousTasks =
-        queryClient.getQueryData<Task[]>(["tasks", optimisticMode]) ?? [];
+      const previousTasks = queryClient.getQueryData<Task[]>(QUERY_KEY) ?? [];
 
       const tempId: string = isServerAccessBlocked
         ? `offline-${crypto.randomUUID()}`
@@ -56,10 +58,10 @@ export const useAddTaskMutation = () => {
         createdAt: new Date(),
       };
 
-      queryClient.setQueryData<Task[]>(
-        ["tasks", optimisticMode],
-        (old = []) => [...old, tempTask],
-      );
+      queryClient.setQueryData<Task[]>(QUERY_KEY, (old = []) => [
+        ...old,
+        tempTask,
+      ]);
 
       return { tempId };
     },
@@ -71,7 +73,7 @@ export const useAddTaskMutation = () => {
 
       if (!context) return;
 
-      queryClient.setQueryData<Task[]>(["tasks", optimisticMode], (old = []) =>
+      queryClient.setQueryData<Task[]>(QUERY_KEY, (old = []) =>
         old.filter((task) => task.id !== context.tempId),
       );
     },
@@ -81,20 +83,17 @@ export const useAddTaskMutation = () => {
 
       if (!serverTask) return;
 
-      queryClient.setQueryData<Task[]>(
-        ["tasks", optimisticMode],
-        (old = []) => {
-          if (!old.some((task) => task.id === context.tempId)) {
-            return old;
-          }
+      queryClient.setQueryData<Task[]>(QUERY_KEY, (old = []) => {
+        if (!old.some((task) => task.id === context.tempId)) {
+          return old;
+        }
 
-          transferUIKey(context.tempId, serverTask.id);
+        transferUIKey(context.tempId, serverTask.id);
 
-          return old.map((task) =>
-            task.id === context.tempId ? serverTask : task,
-          );
-        },
-      );
+        return old.map((task) =>
+          task.id === context.tempId ? serverTask : task,
+        );
+      });
     },
 
     onSettled: (_data, error) => {

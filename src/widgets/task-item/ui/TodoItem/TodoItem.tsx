@@ -1,8 +1,8 @@
 import type { UITask } from "@/entities/task";
-import type { ToggleTaskFn, DeleteTaskFn } from "@/widgets/task-list";
+import type { ToggleTaskAction, DeleteTaskAction } from "@/features/tasks-management";
 import { memo, useEffect, useRef, useState } from "react";
-import { handleMutationError } from "@/shared/lib/error-handlers";
 import { useTasksNavigationStore } from "@/features/tasks-navigation";
+import { handleMutationError } from "@/shared/lib/error-handlers";
 import { useAnimationStore } from "@/shared/lib/animation/animationStore";
 import { useNavigate } from "react-router";
 import DeleteIcon from "@/shared/assets/icons/delete-icon.svg?react";
@@ -13,8 +13,8 @@ import toast from "react-hot-toast";
 type TodoItemProps = {
   className?: string;
   task: UITask;
-  toggleTask: ToggleTaskFn;
-  deleteTask: DeleteTaskFn;
+  toggleTask: ToggleTaskAction;
+  deleteTask: DeleteTaskAction;
   isHighlighted: boolean;
 };
 

@@ -2,26 +2,29 @@ import { useMutation } from "@tanstack/react-query";
 import { isNetworkError } from "@/shared/lib/error-utils";
 import { throwIfOffline } from "@/shared/lib/network";
 import { tasksUseCases } from "@/entities/task";
-import { useTasksPatchRuntime } from "@/features/tasks-management/model/strategies/patches/runtime/useTasksPatchRuntime";
+import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/patches/runtime/useStrategyRuntime";
 import { createPatchManager } from "@/features/tasks-management/model/strategies/patches/lib/createPatchManager";
+import {
+  QUERY_KEY,
+  createMutationKey,
+} from "@/features/tasks-management/model/strategies/patches/config";
 
 export const useToggleTaskMutation = () => {
   const {
     queryClient,
-    optimisticMode,
     isServerAccessBlocked,
     resolveEntityId,
     syncWithOptionalToast,
     handleSync,
-  } = useTasksPatchRuntime();
+  } = useStrategyRuntime();
 
   const { addPatch, removePatch, commitPatch } = createPatchManager(
     queryClient,
-    optimisticMode,
+    QUERY_KEY,
   );
 
   return useMutation({
-    mutationKey: ["tasks", optimisticMode, "toggle"],
+    mutationKey: createMutationKey("toggle"),
 
     mutationFn: async ({
       taskId,
@@ -37,7 +40,7 @@ export const useToggleTaskMutation = () => {
     },
 
     onMutate: async ({ taskId, newIsDone }) => {
-      await queryClient.cancelQueries({ queryKey: ["tasks", optimisticMode] });
+      await queryClient.cancelQueries({ queryKey: QUERY_KEY });
 
       const patch = addPatch(
         (tasks) =>

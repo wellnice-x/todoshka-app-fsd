@@ -1,23 +1,12 @@
 import { useCallback, useEffect, useRef } from "react";
-import { UseMutationResult } from "@tanstack/react-query";
-import type { Task } from "@/entities/task/model/task.types";
-
-type ToggleTaskVariables = {
-  taskId: string;
-  newIsDone: boolean;
-};
-
-type DeleteTaskVariables = {
-  taskId: string;
-};
+import type {
+  ToggleTaskMutation,
+  DeleteTaskMutation,
+} from "@/features/tasks-management";
 
 type Mutations = {
-  toggleTaskMutation: UseMutationResult<
-    Task | undefined,
-    Error,
-    ToggleTaskVariables
-  >;
-  deleteTaskMutation: UseMutationResult<void, Error, DeleteTaskVariables>;
+  toggleTaskMutation: ToggleTaskMutation;
+  deleteTaskMutation: DeleteTaskMutation;
 };
 
 export const useTaskStableActions = ({

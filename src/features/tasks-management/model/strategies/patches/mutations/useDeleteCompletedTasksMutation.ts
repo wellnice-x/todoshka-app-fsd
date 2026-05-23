@@ -4,25 +4,28 @@ import { tasksUseCases } from "@/entities/task";
 import { throwIfOffline } from "@/shared/lib/network";
 import { isBulkDeleteError } from "@/shared/lib/error-utils";
 import { createPatchManager } from "@/features/tasks-management/model/strategies/patches/lib/createPatchManager";
-import { useTasksPatchRuntime } from "@/features/tasks-management/model/strategies/patches/runtime/useTasksPatchRuntime";
+import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/patches/runtime/useStrategyRuntime";
 import { isBulkDeleteNetworkError } from "@/shared/lib/error-utils";
+import {
+  QUERY_KEY,
+  createMutationKey,
+} from "@/features/tasks-management/model/strategies/patches/config";
 
 export const useDeleteCompletedTasksMutation = () => {
   const {
     queryClient,
-    optimisticMode,
     isServerAccessBlocked,
     syncWithOptionalToast,
     handleSync,
-  } = useTasksPatchRuntime();
+  } = useStrategyRuntime();
 
   const { addPatch, removePatch, commitPatch } = createPatchManager(
     queryClient,
-    optimisticMode,
+    QUERY_KEY,
   );
 
   return useMutation({
-    mutationKey: ["tasks", optimisticMode, "bulkDelete"],
+    mutationKey: createMutationKey("bulkDelete"),
 
     mutationFn: async ({ taskIds }: { taskIds: string[] }) => {
       if (isServerAccessBlocked) return;
@@ -32,7 +35,7 @@ export const useDeleteCompletedTasksMutation = () => {
     },
 
     onMutate: async ({ taskIds }) => {
-      await queryClient.cancelQueries({ queryKey: ["tasks", optimisticMode] });
+      await queryClient.cancelQueries({ queryKey: QUERY_KEY });
 
       const patch = addPatch(
         (tasks) => tasks.filter((task) => !taskIds.includes(task.id)),
@@ -68,7 +71,7 @@ export const useDeleteCompletedTasksMutation = () => {
         return;
       }
 
-      queryClient.setQueryData<Task[]>(["tasks", optimisticMode], (old = []) =>
+      queryClient.setQueryData<Task[]>(QUERY_KEY, (old = []) =>
         old.filter((task) => {
           const wasDeleted = vars.taskIds.includes(task.id);
           const failed = failedIds.includes(task.id);

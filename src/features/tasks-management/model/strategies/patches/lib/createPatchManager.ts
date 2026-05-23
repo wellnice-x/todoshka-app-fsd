@@ -2,12 +2,14 @@ import type {
   Patch,
   PatchOperation,
 } from "@/features/tasks-management/model/strategies/patches/types";
-import type { QueryClient } from "@tanstack/react-query";
+import type { QueryClient, QueryKey } from "@tanstack/react-query";
 import type { Task } from "@/entities/task";
+import { PATCHES_QUERY_KEY } from "@/features/tasks-management/model/strategies/patches/config";
+
 
 export const createPatchManager = (
   queryClient: QueryClient,
-  optimisticMode: string,
+  queryKey: QueryKey,
 ) => {
   const addPatch = (
     apply: Patch["apply"],
@@ -23,7 +25,7 @@ export const createPatchManager = (
       entityId,
     };
 
-    queryClient.setQueryData<Patch[]>(["tasksPatches"], (old = []) => {
+    queryClient.setQueryData<Patch[]>(PATCHES_QUERY_KEY, (old = []) => {
       const filteredOld = entityId
         ? old.filter((patch) => patch.entityId !== entityId)
         : old;
@@ -35,13 +37,13 @@ export const createPatchManager = (
   };
 
   const removePatch = (patchId: string) => {
-    queryClient.setQueryData<Patch[]>(["tasksPatches"], (old = []) =>
+    queryClient.setQueryData<Patch[]>(PATCHES_QUERY_KEY, (old = []) =>
       old.filter((patch) => patch.id !== patchId),
     );
   };
 
   const commitPatch = (patch: Patch) => {
-    queryClient.setQueryData<Task[]>(["tasks", optimisticMode], (old = []) =>
+    queryClient.setQueryData<Task[]>(queryKey, (old = []) =>
       patch.apply(old),
     );
   };

@@ -1,11 +1,12 @@
-import { QueryClient } from "@tanstack/react-query";
 import type { Patch } from "@/features/tasks-management/model/strategies/patches/types";
+import { QueryClient } from "@tanstack/react-query";
+import { PATCHES_QUERY_KEY } from "@/features/tasks-management/model/strategies/patches/config";
 
 export type HandleSyncPatchesFn = (
   syncPromise: Promise<void> | undefined,
 ) => Promise<void>;
 
-export const createHandleSync = (
+export const createSyncHandler = (
   queryClient: QueryClient,
   getUpdatedAt: () => number | undefined,
 ): HandleSyncPatchesFn => {
@@ -24,10 +25,10 @@ export const createHandleSync = (
         dataUpdatedBefore &&
         dataUpdatedAfter !== dataUpdatedBefore
       ) {
-        queryClient.setQueryData<Patch[]>(["tasksPatches"], []);
+        queryClient.setQueryData<Patch[]>(PATCHES_QUERY_KEY, []);
       }
     } catch {
-      queryClient.setQueryData<Patch[]>(["tasksPatches"], (old = []) =>
+      queryClient.setQueryData<Patch[]>(PATCHES_QUERY_KEY, (old = []) =>
         old.filter((patch) => patch.operation !== "create"),
       );
     }

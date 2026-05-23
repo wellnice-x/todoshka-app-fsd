@@ -1,11 +1,9 @@
 import type { QueryClient } from "@tanstack/react-query";
-import type { OptimisticMode } from "@/shared/types/optimisticMode";
 import type { ScheduleQuerySyncFn } from "@/shared/lib/react-query/useQuerySyncScheduler";
 import type { QuerySyncWithOptionalToastFn } from "@/shared/lib/react-query/useQuerySyncWithOptionalToast";
-import type { HandleSyncFn } from "./lib/createHandleSync";
+import type { HandleSyncFn } from "./lib/createSyncHandler";
 
-export type TasksSnapshotsRuntime = {
-  optimisticMode: OptimisticMode;
+export type StrategyRuntimeContext = {
   queryClient: QueryClient;
   isServerAccessBlocked: boolean;
   isServerAccessUncertain: boolean;

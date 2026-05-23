@@ -1,19 +1,17 @@
-import type { TasksSnapshotsRuntime } from "@/features/tasks-management/model/strategies/snapshots/types";
+import type { StrategyRuntimeContext } from "@/features/tasks-management/model/strategies/snapshots/types";
 import { useMemo } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   useQuerySyncScheduler,
   useQuerySyncWithOptionalToast,
 } from "@/shared/lib/react-query";
-import { useSettingsStore } from "@/shared/model/settings";
-import { createHandleSync } from "@/features/tasks-management/model/strategies/snapshots/lib/createHandleSync";
+import { createSyncHandler } from "@/features/tasks-management/model/strategies/snapshots/lib/createSyncHandler";
 import { useConnectionStore } from "@/shared/api/network";
 import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
+import { QUERY_KEY } from "@/features/tasks-management/model/strategies/snapshots/config";
 
-export const useTasksSnapshotsRuntime = (): TasksSnapshotsRuntime => {
+export const useStrategyRuntime = (): StrategyRuntimeContext => {
   const queryClient = useQueryClient();
-
-  const optimisticMode = useSettingsStore((s) => s.optimisticMode);
 
   const { isServerAccessBlocked, isServerAccessUncertain } =
     useServerAccessState();
@@ -22,21 +20,17 @@ export const useTasksSnapshotsRuntime = (): TasksSnapshotsRuntime => {
     (state) => state.hasConnectionJustRecovered,
   );
 
-  const { scheduleQuerySync } = useQuerySyncScheduler([
-    "tasks",
-    optimisticMode,
-  ]);
+  const { scheduleQuerySync } = useQuerySyncScheduler(QUERY_KEY);
 
   const syncWithOptionalToast =
     useQuerySyncWithOptionalToast(scheduleQuerySync);
 
   const handleSync = useMemo(
-    () => createHandleSync(queryClient, optimisticMode),
-    [queryClient, optimisticMode],
+    () => createSyncHandler(queryClient, QUERY_KEY),
+    [queryClient],
   );
 
   return {
-    optimisticMode,
     queryClient,
     isServerAccessBlocked,
     isServerAccessUncertain,

@@ -3,18 +3,18 @@ import { useMutation } from "@tanstack/react-query";
 import { tasksUseCases } from "@/entities/task";
 import { throwIfOffline } from "@/shared/lib/network";
 import { isNetworkError } from "@/shared/lib/error-utils";
-import { useTasksSnapshotsRuntime } from "@/features/tasks-management/model/strategies/snapshots/runtime/useTasksSnapshotsRuntime";
+import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/snapshots/runtime/useStrategyRuntime";
+import {
+  QUERY_KEY,
+  createMutationKey,
+} from "@/features/tasks-management/model/strategies/snapshots/config";
 
-export const useUpdateTaskMutation = () => {
-  const {
-    queryClient,
-    optimisticMode,
-    isServerAccessBlocked,
-    syncWithOptionalToast,
-  } = useTasksSnapshotsRuntime();
+export const useUpdateTaskInfoMutation = () => {
+  const { queryClient, isServerAccessBlocked, syncWithOptionalToast } =
+    useStrategyRuntime();
 
   return useMutation({
-    mutationKey: ["tasks", optimisticMode, "update"],
+    mutationKey: createMutationKey("update"),
 
     mutationFn: async ({
       taskId,
@@ -32,13 +32,13 @@ export const useUpdateTaskMutation = () => {
     },
 
     onMutate: async ({ taskId, title, description }) => {
-      await queryClient.cancelQueries({ queryKey: ["tasks", optimisticMode] });
+      await queryClient.cancelQueries({ queryKey: QUERY_KEY });
 
       const previousTask = queryClient
-        .getQueryData<Task[]>(["tasks", optimisticMode])
+        .getQueryData<Task[]>(QUERY_KEY)
         ?.find((task) => task.id === taskId);
 
-      queryClient.setQueryData<Task[]>(["tasks", optimisticMode], (old = []) =>
+      queryClient.setQueryData<Task[]>(QUERY_KEY, (old = []) =>
         old.map((task) =>
           task.id === taskId ? { ...task, title, description } : task,
         ),
@@ -55,7 +55,7 @@ export const useUpdateTaskMutation = () => {
       const previousTask = context?.previousTask;
       if (!previousTask) return;
 
-      queryClient.setQueryData<Task[]>(["tasks", optimisticMode], (old = []) =>
+      queryClient.setQueryData<Task[]>(QUERY_KEY, (old = []) =>
         old.map((task) => (task.id === vars.taskId ? previousTask : task)),
       );
     },
