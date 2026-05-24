@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { withTimeout } from "@/shared/lib/async";
 import { useUIKeyStore } from "@/entities/task";
-import { useFilterStore } from "@/features/filter-tasks";
+import { useFilterStore } from "@/shared/model/task-filter";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRuntimeStore } from "@/shared/model/runtime";
 import { useSettingsStore } from "@/shared/model/settings";
 import { useAnimationStore } from "@/shared/lib/animation";
-import { useConnectionStore } from "@/shared/api/network";
+import { useConnectionStore } from "@/shared/model/connection";
 import { useAppearanceStore } from "@/shared/model/appearance";
 import { useGlobalErrorStore } from "@/shared/model/errors";
 import { deleteServerUserData } from "./deleteUserAccount";

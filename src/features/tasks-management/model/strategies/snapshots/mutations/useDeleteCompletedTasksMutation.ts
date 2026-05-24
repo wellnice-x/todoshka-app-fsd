@@ -8,7 +8,7 @@ import { isBulkDeleteNetworkError } from "@/shared/lib/error-utils";
 import {
   QUERY_KEY,
   createMutationKey,
-} from "@/features/tasks-management/model/strategies/snapshots/config";
+} from "@/features/tasks-management/model/strategies/snapshots/queryKeys";
 
 export const useDeleteCompletedTasksMutation = () => {
   const { queryClient, isServerAccessBlocked, syncWithOptionalToast } =

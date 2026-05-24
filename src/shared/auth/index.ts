@@ -1,9 +1,8 @@
-export { getAccessToken, setAccessToken } from "./api/accessToken";
-export { setUnauthorizedHandler, handleUnauthorizedGlobal } from "./api/authBridge";
+export * from "./effects";
 
-export { useAuthCheckingToast } from "./effects/useAuthCheckingToast";
+export * from "./utils";
 
-export { getCurrentUserId } from "./lib/getCurrentUserId";
+export * from "./provider";
 
-export { AuthProvider } from "./model/AuthProvider";
-export { useAuth } from "./model/useAuth";
+export { getAccessToken, setAccessToken } from "./accessToken";
+export { handleUnauthorizedGlobal, setUnauthorizedHandler } from "./authBridge";

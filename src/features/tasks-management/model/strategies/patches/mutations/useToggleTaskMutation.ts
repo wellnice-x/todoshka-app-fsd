@@ -3,11 +3,11 @@ import { tasksUseCases } from "@/entities/task";
 import { isNetworkError } from "@/shared/lib/error-utils";
 import { throwIfOffline } from "@/shared/lib/network";
 import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/patches/runtime/useStrategyRuntime";
-import { createPatchManager } from "@/features/tasks-management/model/strategies/patches/lib/createPatchManager";
+import { createPatchManager } from "@/features/tasks-management/model/strategies/patches/runtime/createPatchManager";
 import {
   QUERY_KEY,
   createMutationKey,
-} from "@/features/tasks-management/model/strategies/patches/config";
+} from "@/features/tasks-management/model/strategies/patches/queryKeys";
 
 export const useToggleTaskMutation = () => {
   const {

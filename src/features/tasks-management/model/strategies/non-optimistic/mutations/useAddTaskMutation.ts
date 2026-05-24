@@ -6,7 +6,7 @@ import { useStrategyRuntime } from "@/features/tasks-management/model/strategies
 import {
   QUERY_KEY,
   createMutationKey,
-} from "@/features/tasks-management/model/strategies/non-optimistic/config";
+} from "@/features/tasks-management/model/strategies/non-optimistic/queryKeys";
 
 export const useAddTaskMutation = () => {
   const { queryClient, syncWithOptionalToast } = useStrategyRuntime();

@@ -1,8 +1,8 @@
 import type { Task } from "@/entities/task";
 import type { QueryClient } from "@tanstack/react-query";
-import type { ScheduleQuerySyncFn } from "@/shared/lib/react-query/useQuerySyncScheduler";
-import type { HandleSyncPatchesFn } from "./lib/createSyncHandler";
-import type { QuerySyncWithOptionalToastFn } from "@/shared/lib/react-query/useQuerySyncWithOptionalToast";
+import type { ScheduleQuerySyncFn } from "@/shared/lib/react-query";
+import type { HandleSyncPatchesFn } from "./runtime/createSyncHandler";
+import type { QuerySyncWithOptionalToastFn } from "@/shared/lib/react-query";
 
 export type PatchOperation = "create" | "update" | "delete";
 

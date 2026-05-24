@@ -7,7 +7,7 @@ import { useStrategyRuntime } from "@/features/tasks-management/model/strategies
 import {
   QUERY_KEY,
   createMutationKey,
-} from "@/features/tasks-management/model/strategies/snapshots/config";
+} from "@/features/tasks-management/model/strategies/snapshots/queryKeys";
 
 export const useToggleTaskMutation = () => {
   const { queryClient, isServerAccessBlocked, syncWithOptionalToast } =

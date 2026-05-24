@@ -4,7 +4,7 @@ import {
   useQuerySyncScheduler,
   useQuerySyncWithOptionalToast,
 } from "@/shared/lib/react-query";
-import { QUERY_KEY } from "@/features/tasks-management/model/strategies/non-optimistic/config";
+import { QUERY_KEY } from "@/features/tasks-management/model/strategies/non-optimistic/queryKeys";
 
 export const useStrategyRuntime = (): StrategyRuntimeContext => {
   const queryClient = useQueryClient();

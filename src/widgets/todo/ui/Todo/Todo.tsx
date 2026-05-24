@@ -1,15 +1,15 @@
 import styles from "./Todo.module.scss";
-import TodoList from "@/widgets/task-list";
+import TodoList from "@/widgets/todo/ui/TodoList";
 import ReactIcon from "@/shared/assets/icons/react-icon.svg?react";
 import AddTaskForm from "@/features/add-task";
 import SearchTaskForm from "@/features/search-task";
-import TodoActionsPanel from "@/widgets/todo-actions-panel";
+import TodoActionsPanel from "@/widgets/todo/ui/TodoActionsPanel";
 import { useRef } from "react";
 import { BeatLoader } from "react-spinners";
 import { PuffLoader } from "react-spinners";
 import { useIsMobile } from "@/shared/lib/device";
 import { usePageOverflow } from "@/shared/lib/page";
-import { useFilteredTasks } from "@/features/filter-tasks";
+import { useFilteredTasks } from "@/entities/task";
 import { useConsumeScrollY } from "@/shared/model/navigation";
 import { useAnimationStore } from "@/shared/lib/animation";
 import { useIsTasksMutating } from "@/features/tasks-management";

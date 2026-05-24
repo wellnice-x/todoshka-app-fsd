@@ -2,14 +2,14 @@ import type { Patch } from "@/features/tasks-management/model/strategies/patches
 import type { Task } from "@/entities/task";
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { applyPatches } from "@/features/tasks-management/model/strategies/patches/lib/applyPatches";
+import { applyPatches } from "@/features/tasks-management/model/strategies/patches/core/applyPatches";
 import { tasksUseCases } from "@/entities/task";
 import { useTasksWithUIKeys } from "@/features/tasks-management";
 import { useServerAccessState } from "@/shared/model/access";
 import {
   QUERY_KEY,
   PATCHES_QUERY_KEY,
-} from "@/features/tasks-management/model/strategies/patches/config";
+} from "@/features/tasks-management/model/strategies/patches/queryKeys";
 
 export const useUITasks = () => {
   const { isServerAccessBlocked } = useServerAccessState();

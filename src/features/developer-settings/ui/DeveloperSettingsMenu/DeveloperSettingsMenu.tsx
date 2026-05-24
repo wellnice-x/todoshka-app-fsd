@@ -1,4 +1,4 @@
-import type { OptimisticMode } from "@/shared/types";
+import type { OptimisticMode } from "@/shared/optimistic-mode";
 import toast from "react-hot-toast";
 import styles from "./DeveloperSettingsMenu.module.scss";
 import Dropdown from "@/shared/ui/Dropdown";

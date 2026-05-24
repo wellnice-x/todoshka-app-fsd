@@ -3,7 +3,7 @@ import {
   MutationCacheNotifyEvent,
   QueryCacheNotifyEvent,
 } from "@tanstack/react-query";
-import { queryClient } from "@/shared/lib/react-query/queryClient";
+import { queryClient } from "@/shared/lib/react-query";
 
 type UseQuerySubscriptions = (
   onQueryUpdate: (event: QueryCacheNotifyEvent) => void,

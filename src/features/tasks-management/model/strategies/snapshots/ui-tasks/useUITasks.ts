@@ -1,6 +1,6 @@
 import type { Task } from "@/entities/task";
 import { useQuery } from "@tanstack/react-query";
-import { QUERY_KEY } from "@/features/tasks-management/model/strategies/snapshots/config";
+import { QUERY_KEY } from "@/features/tasks-management/model/strategies/snapshots/queryKeys";
 import { tasksUseCases } from "@/entities/task";
 import { useTasksWithUIKeys } from "@/features/tasks-management";
 import { useServerAccessState } from "@/shared/model/access";

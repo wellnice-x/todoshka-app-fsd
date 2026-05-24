@@ -3,13 +3,13 @@ import { useMutation } from "@tanstack/react-query";
 import { tasksUseCases } from "@/entities/task";
 import { throwIfOffline } from "@/shared/lib/network";
 import { isBulkDeleteError } from "@/shared/lib/error-utils";
-import { createPatchManager } from "@/features/tasks-management/model/strategies/patches/lib/createPatchManager";
+import { createPatchManager } from "@/features/tasks-management/model/strategies/patches/runtime/createPatchManager";
 import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/patches/runtime/useStrategyRuntime";
 import { isBulkDeleteNetworkError } from "@/shared/lib/error-utils";
 import {
   QUERY_KEY,
   createMutationKey,
-} from "@/features/tasks-management/model/strategies/patches/config";
+} from "@/features/tasks-management/model/strategies/patches/queryKeys";
 
 export const useDeleteCompletedTasksMutation = () => {
   const {

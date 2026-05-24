@@ -1,4 +1,4 @@
-import type { SimulationConfig } from "./config/types";
+import type { SimulationConfig } from "./configuration/types";
 
 const randomTime = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min + 1)) + min;

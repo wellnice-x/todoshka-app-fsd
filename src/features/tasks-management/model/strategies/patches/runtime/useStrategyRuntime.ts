@@ -1,12 +1,12 @@
 import type { StrategyRuntimeContext } from "@/features/tasks-management/model/strategies/patches/types";
-import { QUERY_KEY } from "@/features/tasks-management/model/strategies/patches/config";
+import { QUERY_KEY } from "@/features/tasks-management/model/strategies/patches/queryKeys";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   useQuerySyncScheduler,
   useQuerySyncWithOptionalToast,
 } from "@/shared/lib/react-query";
-import { createSyncHandler } from "@/features/tasks-management/model/strategies/patches/lib/createSyncHandler";
-import { useConnectionStore } from "@/shared/api/network";
+import { createSyncHandler } from "@/features/tasks-management/model/strategies/patches/runtime/createSyncHandler";
+import { useConnectionStore } from "@/shared/model/connection";
 import { useCallback, useMemo } from "react";
 import { useServerAccessState } from "@/shared/model/access";
 

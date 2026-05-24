@@ -1,6 +1,6 @@
 import type { StrategyRuntimeContext } from "@/features/tasks-management/model/strategies/snapshots/types";
 import { useEffect } from "react";
-import { QUERY_KEY } from "@/features/tasks-management/model/strategies/snapshots/config";
+import { QUERY_KEY } from "@/features/tasks-management/model/strategies/snapshots/queryKeys";
 import { fallbackTasks } from "@/entities/task";
 
 export const useFallbackTasksEffect = (

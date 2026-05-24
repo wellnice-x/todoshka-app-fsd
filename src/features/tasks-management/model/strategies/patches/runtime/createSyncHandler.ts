@@ -1,6 +1,6 @@
 import type { Patch } from "@/features/tasks-management/model/strategies/patches/types";
 import { QueryClient } from "@tanstack/react-query";
-import { PATCHES_QUERY_KEY } from "@/features/tasks-management/model/strategies/patches/config";
+import { PATCHES_QUERY_KEY } from "@/features/tasks-management/model/strategies/patches/queryKeys";
 
 export type HandleSyncPatchesFn = (
   syncPromise: Promise<void> | undefined,

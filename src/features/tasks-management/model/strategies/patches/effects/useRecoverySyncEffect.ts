@@ -9,7 +9,7 @@ import { handlePromiseWithToast } from "@/shared/lib/toast";
 import {
   QUERY_KEY,
   PATCHES_QUERY_KEY,
-} from "@/features/tasks-management/model/strategies/patches/config";
+} from "@/features/tasks-management/model/strategies/patches/queryKeys";
 
 export const useRecoverySyncEffect = (runtime: StrategyRuntimeContext) => {
   const {

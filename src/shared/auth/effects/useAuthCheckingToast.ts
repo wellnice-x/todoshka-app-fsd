@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useAuth } from "@/shared/auth/model/useAuth";
+import { useAuth } from "@/shared/auth/provider/useAuth";
 import toast from "react-hot-toast";
 
 export const useAuthCheckingToast = () => {

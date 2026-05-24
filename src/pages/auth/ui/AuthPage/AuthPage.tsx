@@ -1,6 +1,6 @@
 import ThemeToggle from "@/shared/ui/ThemeToggle";
 import PageIntro from "@/shared/ui/PageIntro";
-import AuthForm from "@/features/auth/ui/AuthForm";
+import AuthForm from "@/features/auth";
 import MoonIcon from "@/shared/assets/icons/moon.svg?react";
 import SunIcon from "@/shared/assets/icons/sun.svg?react";
 import styles from "./AuthPage.module.scss";

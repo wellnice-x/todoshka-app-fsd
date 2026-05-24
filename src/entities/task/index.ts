@@ -3,6 +3,7 @@ export { tasksService } from "./api/tasksService";
 export type { TaskDTO, CreateTaskDTO } from "./api/tasksAPI.types";
 
 export { mapFromDTO, mapToDTO } from "./lib/taskMapper";
+export { useFilteredTasks } from "./lib/useFilteredTasks";
 
 export { fallbackTasks } from "./mocks/fallbackTasks";
 

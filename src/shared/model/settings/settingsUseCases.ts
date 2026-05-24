@@ -1,4 +1,4 @@
-import type { OptimisticMode } from "@/shared/types";
+import type { OptimisticMode } from "@/shared/optimistic-mode";
 import type { ActionResult } from "./settings.types";
 import { useSettingsStore } from "./settingsStore";
 import { useRuntimeStore } from "@/shared/model/runtime";

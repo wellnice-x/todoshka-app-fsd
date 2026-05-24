@@ -1,7 +1,7 @@
 import { isNetworkError } from "@/shared/lib/error-utils";
 import { useRuntimeStore } from "@/shared/model/runtime";
 import { handlePromiseWithToast } from "@/shared/lib/toast";
-import type { ScheduleQuerySyncFn } from "@/shared/lib/react-query/useQuerySyncScheduler";
+import type { ScheduleQuerySyncFn } from "@/shared/lib/react-query";
 
 export type QuerySyncWithOptionalToastFn = (
   error?: unknown,

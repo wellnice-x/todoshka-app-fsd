@@ -1,4 +1,4 @@
-import type { ConnectionStatus } from "@/shared/api/network/model/connectionStore";
+import type { ConnectionStatus } from "@/shared/model/connection/connectionStore";
 import {
   MutationCacheNotifyEvent,
   QueryCacheNotifyEvent,
@@ -12,8 +12,8 @@ import { useGlobalErrorStore } from "@/shared/model/errors";
 import { useNetworkListeners } from "@/shared/lib/network";
 import { useRuntimeStore } from "@/shared/model/runtime";
 import { BulkDeleteError } from "@/shared/lib/errors";
-import { useServerHealth } from "@/shared/api/health";
-import { useConnection } from "@/shared/api/network/model/connectionStore";
+import { useServerHealth } from "@/shared/api";
+import { useConnection } from "@/shared/model/connection/connectionStore";
 
 const NETWORK_ERROR_THRESHOLD = 3;
 

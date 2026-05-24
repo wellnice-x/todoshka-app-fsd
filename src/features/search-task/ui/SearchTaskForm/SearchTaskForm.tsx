@@ -2,7 +2,7 @@ import Field from "@/shared/ui/Field";
 import XIcon from "@/shared/assets/icons/x-icon.svg?react";
 import styles from "./SearchTaskForm.module.scss";
 import SearchIcon from "@/shared/assets/icons/search-icon.svg?react";
-import { useFilter } from "@/features/filter-tasks";
+import { useFilter } from "@/shared/model/task-filter";
 import { ChangeEvent, useState } from "react";
 
 type SearchTaskFormProps = {

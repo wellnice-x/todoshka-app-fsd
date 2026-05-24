@@ -5,10 +5,10 @@ import type {
 } from "@/features/tasks-management";
 import { useTasksNavigationStore } from "@/shared/model/navigation";
 import { AnimatePresence } from "motion/react";
-import { useFilter } from "@/features/filter-tasks";
+import { useFilter } from "@/shared/model/task-filter";
 import { useEffect } from "react";
-import TodoListItemMotion from "@/widgets/task-list/ui/TodoListItemMotion";
-import TodoItem from "@/widgets/task-list/ui/TodoItem";
+import TodoListItemMotion from "@/widgets/todo/ui/TodoListItemMotion";
+import TodoItem from "@/widgets/todo/ui/TodoItem";
 import styles from "./TodoList.module.scss";
 
 type TodoListProps = {

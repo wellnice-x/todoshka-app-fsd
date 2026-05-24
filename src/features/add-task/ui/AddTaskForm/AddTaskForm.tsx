@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, ChangeEvent, SubmitEvent } from "react";
 import { handleMutationError } from "@/shared/lib/error-handlers";
 import { useAnimationStore } from "@/shared/lib/animation";
 import { useIsMobile } from "@/shared/lib/device";
-import { useFilter } from "@/features/filter-tasks";
+import { useFilter } from "@/shared/model/task-filter";
 import PlusCircleIcon from "@/shared/assets/icons/plus-circle.svg?react";
 import styles from "./AddTaskForm.module.scss";
 import Button from "@/shared/ui/Button";

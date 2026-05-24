@@ -7,7 +7,7 @@ import { tasksUseCases, useUIKeyStore } from "@/entities/task";
 import {
   QUERY_KEY,
   createMutationKey,
-} from "@/features/tasks-management/model/strategies/snapshots/config";
+} from "@/features/tasks-management/model/strategies/snapshots/queryKeys";
 
 export const useAddTaskMutation = () => {
   const {
