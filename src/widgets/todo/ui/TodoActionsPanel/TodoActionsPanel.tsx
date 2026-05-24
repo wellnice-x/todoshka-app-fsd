@@ -1,10 +1,10 @@
-import type { FilterState } from "@/shared/model/task-filter";
+import type { FilterState } from "@/shared/model";
 import type {
   DeleteCompletedTasksMutation,
   MarkAllTasksCompletedMutation,
 } from "@/features/tasks-management";
 import { useState } from "react";
-import { useFilter } from "@/shared/model/task-filter";
+import { useFilter } from "@/shared/model";
 import { createPortal } from "react-dom";
 import { useAnimationStore } from "@/shared/lib/animation";
 import { useTasksBulkActions } from "@/features/tasks-bulk-actions";

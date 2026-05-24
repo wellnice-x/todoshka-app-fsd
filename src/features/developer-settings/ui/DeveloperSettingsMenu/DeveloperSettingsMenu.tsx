@@ -5,10 +5,10 @@ import Dropdown from "@/shared/ui/Dropdown";
 import ToggleButton from "@/shared/ui/ToggleButton";
 import SettingsIcon from "@/shared/assets/icons/settings-icon.svg?react";
 import MultiToggleButton from "@/shared/ui/MultiToggleButton";
-import { useSettings } from "@/shared/model/settings";
-import { settingsUseCases } from "@/shared/model/settings";
+import { useSettings } from "@/shared/model";
+import { settingsUseCases } from "@/shared/model";
 import { useAnimationStore } from "@/shared/lib/animation";
-import { useServerAccessState } from "@/shared/model/access";
+import { useServerAccessState } from "@/shared/model";
 
 type DeveloperSettingsMenuProps = {
   className?: string;

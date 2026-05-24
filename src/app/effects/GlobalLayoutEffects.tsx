@@ -6,7 +6,7 @@ import { useGlobalLoadErrorToast } from "./useGlobalLoadErrorToast";
 import {
   useOptimisticModeToast,
   useSettingsAutoDisableToast,
-} from "@/shared/model/settings";
+} from "@/shared/model";
 
 const GlobalLayoutEffects = () => {
   useSlowServerToast();

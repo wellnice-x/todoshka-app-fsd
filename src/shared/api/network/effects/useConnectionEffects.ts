@@ -1,4 +1,4 @@
-import { useConnection } from "@/shared/model/connection/connectionStore";
+import { useConnection } from "@/shared/model";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 

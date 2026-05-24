@@ -4,7 +4,7 @@ import type {
   DeleteTaskAction,
 } from "@/features/tasks-management";
 import { memo, useEffect, useRef, useState } from "react";
-import { useTasksNavigationStore } from "@/shared/model/navigation";
+import { useTasksNavigationStore } from "@/shared/model";
 import { handleMutationError } from "@/shared/lib/error-handlers";
 import { useAnimationStore } from "@/shared/lib/animation";
 import { useNavigate } from "react-router";

@@ -10,7 +10,7 @@ import { PuffLoader } from "react-spinners";
 import { useIsMobile } from "@/shared/lib/device";
 import { usePageOverflow } from "@/shared/lib/page";
 import { useFilteredTasks } from "@/entities/task";
-import { useConsumeScrollY } from "@/shared/model/navigation";
+import { useConsumeScrollY } from "@/shared/model";
 import { useAnimationStore } from "@/shared/lib/animation";
 import { useIsTasksMutating } from "@/features/tasks-management";
 import { useTaskStableActions } from "@/features/tasks-management";

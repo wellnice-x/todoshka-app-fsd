@@ -1,6 +1,6 @@
 import { tasksUseCases, type Task } from "@/entities/task";
 import { useQuery } from "@tanstack/react-query";
-import { useSettingsStore } from "@/shared/model/settings";
+import { useSettingsStore } from "@/shared/model";
 
 export const useTasksQueryState = () => {
   const optimisticMode = useSettingsStore((state) => state.optimisticMode);

@@ -1,5 +1,5 @@
 import type { SimulationConfig } from "./types";
-import { useSettingsStore } from "@/shared/model/settings";
+import { useSettingsStore } from "@/shared/model";
 
 export const getSimulationConfig = (): SimulationConfig => {
   const { isChaosMode } = useSettingsStore.getState();

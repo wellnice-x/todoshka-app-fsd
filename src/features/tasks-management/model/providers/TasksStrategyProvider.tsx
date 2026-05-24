@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from "react";
-import { useSettingsStore } from "@/shared/model/settings";
+import { useSettingsStore } from "@/shared/model";
 import { PatchStrategyProvider } from "@/features/tasks-management/model/strategies/patches";
 import { SnapshotStrategyProvider } from "@/features/tasks-management/model/strategies/snapshots";
 import { NonOptimisticStrategyProvider } from "@/features/tasks-management/model/strategies/non-optimistic";

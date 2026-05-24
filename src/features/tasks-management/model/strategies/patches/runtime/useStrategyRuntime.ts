@@ -6,9 +6,9 @@ import {
   useQuerySyncWithOptionalToast,
 } from "@/shared/lib/react-query";
 import { createSyncHandler } from "@/features/tasks-management/model/strategies/patches/runtime/createSyncHandler";
-import { useConnectionStore } from "@/shared/model/connection";
+import { useConnectionStore } from "@/shared/model";
 import { useCallback, useMemo } from "react";
-import { useServerAccessState } from "@/shared/model/access";
+import { useServerAccessState } from "@/shared/model";
 
 export const useStrategyRuntime = (): StrategyRuntimeContext => {
   const queryClient = useQueryClient();

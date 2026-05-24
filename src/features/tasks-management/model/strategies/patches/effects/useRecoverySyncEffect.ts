@@ -4,7 +4,7 @@ import type {
   StrategyRuntimeContext,
 } from "@/features/tasks-management/model/strategies/patches/types";
 import { useEffect, useRef } from "react";
-import { useRuntimeStore } from "@/shared/model/runtime";
+import { useRuntimeStore } from "@/shared/model";
 import { handlePromiseWithToast } from "@/shared/lib/toast";
 import {
   QUERY_KEY,

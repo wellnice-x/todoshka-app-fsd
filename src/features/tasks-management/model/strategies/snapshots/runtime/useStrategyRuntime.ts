@@ -7,8 +7,8 @@ import {
   useQuerySyncWithOptionalToast,
 } from "@/shared/lib/react-query";
 import { createSyncHandler } from "@/features/tasks-management/model/strategies/snapshots/runtime/createSyncHandler";
-import { useConnectionStore } from "@/shared/model/connection";
-import { useServerAccessState } from "@/shared/model/access";
+import { useConnectionStore } from "@/shared/model";
+import { useServerAccessState } from "@/shared/model";
 
 
 export const useStrategyRuntime = (): StrategyRuntimeContext => {

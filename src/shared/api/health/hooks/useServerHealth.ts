@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { checkHealth } from "@/shared/api/health/healthService";
-import { useServerAccessState } from "@/shared/model/access";
+import { useServerAccessState } from "@/shared/model";
 
 export const useServerHealth = (isAggressiveProbe: boolean) => {
   const { isServerAccessBlocked } = useServerAccessState();

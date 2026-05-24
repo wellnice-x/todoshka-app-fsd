@@ -3,9 +3,9 @@ import type {
   ToggleTaskAction,
   DeleteTaskAction,
 } from "@/features/tasks-management";
-import { useTasksNavigationStore } from "@/shared/model/navigation";
+import { useTasksNavigationStore } from "@/shared/model";
 import { AnimatePresence } from "motion/react";
-import { useFilter } from "@/shared/model/task-filter";
+import { useFilter } from "@/shared/model";
 import { useEffect } from "react";
 import TodoListItemMotion from "@/widgets/todo/ui/TodoListItemMotion";
 import TodoItem from "@/widgets/todo/ui/TodoItem";

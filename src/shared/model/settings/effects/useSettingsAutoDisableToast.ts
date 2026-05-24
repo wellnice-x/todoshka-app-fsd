@@ -1,4 +1,4 @@
-import { useRuntime } from "@/shared/model/runtime";
+import { useRuntime } from "@/shared/model/runtime/runtimeStore";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 
