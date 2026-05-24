@@ -1,5 +1,5 @@
 import { useSettingsStore } from "@/shared/model/settings";
-import { useRuntimeStore } from "@/shared/model/runtime/runtimeStore";
+import { useRuntimeStore } from "@/shared/model/runtime";
 import { useAuth } from "@/shared/auth";
 
 export const useServerAccessState = () => {

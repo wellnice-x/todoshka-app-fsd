@@ -6,7 +6,7 @@ import type {
 import { useState } from "react";
 import { useFilter } from "@/features/filter-tasks";
 import { createPortal } from "react-dom";
-import { useAnimationStore } from "@/shared/lib/animation/animationStore";
+import { useAnimationStore } from "@/shared/lib/animation";
 import { useTasksBulkActions } from "@/features/tasks-bulk-actions";
 import ConfirmModal from "@/shared/ui/ConfirmModal";
 import styles from "./TodoActionsPanel.module.scss";

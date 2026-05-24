@@ -1,4 +1,4 @@
-import type { OptimisticMode } from "@/shared/types/optimisticMode";
+import type { OptimisticMode } from "@/shared/types";
 import toast from "react-hot-toast";
 import styles from "./DeveloperSettingsMenu.module.scss";
 import Dropdown from "@/shared/ui/Dropdown";
@@ -7,8 +7,8 @@ import SettingsIcon from "@/shared/assets/icons/settings-icon.svg?react";
 import MultiToggleButton from "@/shared/ui/MultiToggleButton";
 import { useSettings } from "@/shared/model/settings";
 import { settingsUseCases } from "@/shared/model/settings";
-import { useAnimationStore } from "@/shared/lib/animation/animationStore";
-import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
+import { useAnimationStore } from "@/shared/lib/animation";
+import { useServerAccessState } from "@/shared/model/access";
 
 type DeveloperSettingsMenuProps = {
   className?: string;

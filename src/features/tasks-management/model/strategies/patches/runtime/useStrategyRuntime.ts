@@ -8,7 +8,7 @@ import {
 import { createSyncHandler } from "@/features/tasks-management/model/strategies/patches/lib/createSyncHandler";
 import { useConnectionStore } from "@/shared/api/network";
 import { useCallback, useMemo } from "react";
-import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
+import { useServerAccessState } from "@/shared/model/access";
 
 export const useStrategyRuntime = (): StrategyRuntimeContext => {
   const queryClient = useQueryClient();

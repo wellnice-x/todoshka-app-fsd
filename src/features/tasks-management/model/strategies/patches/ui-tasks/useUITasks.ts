@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { applyPatches } from "@/features/tasks-management/model/strategies/patches/lib/applyPatches";
 import { tasksUseCases } from "@/entities/task";
 import { useTasksWithUIKeys } from "@/features/tasks-management";
-import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
+import { useServerAccessState } from "@/shared/model/access";
 import {
   QUERY_KEY,
   PATCHES_QUERY_KEY,

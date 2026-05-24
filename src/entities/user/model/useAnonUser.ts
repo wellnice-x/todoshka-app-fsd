@@ -1,4 +1,4 @@
-import useLocalStorage from "@/shared/lib/storage/useLocalStorage";
+import { useLocalStorage } from "@/shared/lib/storage";
 
 export const useAnonUser = () => {
   const [userNickname, setUserNickname] = useLocalStorage<string>(

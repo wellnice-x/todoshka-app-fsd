@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { isMobileDevice } from "@/shared/lib/device/isMobileDevice";
+import { isMobileDevice } from "@/shared/lib/device";
 
 type Theme = "light" | "dark";
 

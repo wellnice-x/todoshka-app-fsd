@@ -5,9 +5,9 @@ import toast from "react-hot-toast";
 import Button from "@/shared/ui/Button";
 import styles from "./TaskUpdateForm.module.scss";
 import { useState, ChangeEvent, SubmitEvent, useEffect } from "react";
-import { useTasksNavigationStore } from "@/shared/model/navigation/tasksNavigationStore";
+import { useTasksNavigationStore } from "@/shared/model/navigation";
 import { handleMutationError } from "@/shared/lib/error-handlers";
-import { formatDate } from "@/shared/lib/date/formatDate";
+import { formatDate } from "@/shared/lib/date";
 import { ClipLoader } from "react-spinners";
 
 type TaskUpdateFormProps = {

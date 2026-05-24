@@ -3,7 +3,7 @@ import { ClipLoader } from "react-spinners";
 import { useNavigate } from "react-router";
 import { createPortal } from "react-dom";
 import { useDeleteAccount } from "@/features/delete-account";
-import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
+import { useServerAccessState } from "@/shared/model/access";
 import DeleteProfileIcon from "@/shared/assets/icons/delete-profile-icon.svg?react";
 import ConfirmModal from "@/shared/ui/ConfirmModal";
 import styles from "./DeleteAccountButton.module.scss";

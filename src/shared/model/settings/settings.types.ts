@@ -1,4 +1,4 @@
-import type { OptimisticMode } from "@/shared/types/optimisticMode";
+import type { OptimisticMode } from "@/shared/types";
 
 export type ActionResult =
   | { ok: true; enabled: boolean }

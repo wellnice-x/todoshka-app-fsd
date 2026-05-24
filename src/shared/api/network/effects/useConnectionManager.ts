@@ -7,10 +7,10 @@ import {
 import { useCallback, useEffect, useRef, useState } from "react";
 import { isSyncError, isNetworkError } from "@/shared/lib/error-utils";
 import { useQuerySubscriptions } from "@/shared/lib/react-query";
-import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
+import { useServerAccessState } from "@/shared/model/access";
 import { useGlobalErrorStore } from "@/shared/model/errors";
 import { useNetworkListeners } from "@/shared/lib/network";
-import { useRuntimeStore } from "@/shared/model/runtime/runtimeStore";
+import { useRuntimeStore } from "@/shared/model/runtime";
 import { BulkDeleteError } from "@/shared/lib/errors";
 import { useServerHealth } from "@/shared/api/health";
 import { useConnection } from "@/shared/api/network/model/connectionStore";

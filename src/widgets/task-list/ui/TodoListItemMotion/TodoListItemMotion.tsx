@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import styles from "./TodoListItemMotion.module.scss";
-import { useAnimation } from "@/shared/lib/animation/animationStore";
+import { useAnimation } from "@/shared/lib/animation";
 import { useSettingsStore } from "@/shared/model/settings";
 import { motion, type Target } from "motion/react";
 

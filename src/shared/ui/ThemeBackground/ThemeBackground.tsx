@@ -1,5 +1,5 @@
 import styles from "./ThemeBackground.module.scss";
-import useIsMobile from "@/shared/lib/device/useIsMobile";
+import { useIsMobile } from "@/shared/lib/device";
 import { useEffect, useRef } from "react";
 import { useAppearanceStore } from "@/shared/model/appearance";
 

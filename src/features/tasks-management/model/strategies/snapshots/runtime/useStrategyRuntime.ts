@@ -8,7 +8,7 @@ import {
 } from "@/shared/lib/react-query";
 import { createSyncHandler } from "@/features/tasks-management/model/strategies/snapshots/lib/createSyncHandler";
 import { useConnectionStore } from "@/shared/api/network";
-import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
+import { useServerAccessState } from "@/shared/model/access";
 
 
 export const useStrategyRuntime = (): StrategyRuntimeContext => {

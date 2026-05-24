@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { withTimeout } from "@/shared/lib/async/withTimeout";
+import { withTimeout } from "@/shared/lib/async";
 import { useUIKeyStore } from "@/entities/task";
 import { useFilterStore } from "@/features/filter-tasks";
 import { useQueryClient } from "@tanstack/react-query";
-import { useRuntimeStore } from "@/shared/model/runtime/runtimeStore";
+import { useRuntimeStore } from "@/shared/model/runtime";
 import { useSettingsStore } from "@/shared/model/settings";
-import { useAnimationStore } from "@/shared/lib/animation/animationStore";
+import { useAnimationStore } from "@/shared/lib/animation";
 import { useConnectionStore } from "@/shared/api/network";
 import { useAppearanceStore } from "@/shared/model/appearance";
 import { useGlobalErrorStore } from "@/shared/model/errors";
 import { deleteServerUserData } from "./deleteUserAccount";
-import { useTasksNavigationStore } from "@/shared/model/navigation/tasksNavigationStore";
+import { useTasksNavigationStore } from "@/shared/model/navigation";
 
 type DeleteResult = { status: "success" } | { status: "failed" };
 

@@ -2,7 +2,7 @@ import styles from "./TaskPage.module.scss";
 import Button from "@/shared/ui/Button";
 import TaskUpdateForm from "@/features/update-task/ui/TaskUpdateForm";
 import { ClipLoader } from "react-spinners";
-import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
+import { useServerAccessState } from "@/shared/model/access";
 import { useNavigate, useParams } from "react-router";
 import {
   useTasksQueryState,

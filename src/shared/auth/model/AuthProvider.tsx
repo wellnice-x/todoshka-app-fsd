@@ -1,5 +1,5 @@
 import type { AuthState, AuthContextValue } from "./types";
-import supabase from "@/shared/api/supabase/supabaseClient";
+import { supabase } from "@/shared/api";
 import {
   useState,
   useEffect,

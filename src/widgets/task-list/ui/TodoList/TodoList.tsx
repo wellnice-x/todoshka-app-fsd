@@ -3,7 +3,7 @@ import type {
   ToggleTaskAction,
   DeleteTaskAction,
 } from "@/features/tasks-management";
-import { useTasksNavigationStore } from "@/shared/model/navigation/tasksNavigationStore";
+import { useTasksNavigationStore } from "@/shared/model/navigation";
 import { AnimatePresence } from "motion/react";
 import { useFilter } from "@/features/filter-tasks";
 import { useEffect } from "react";

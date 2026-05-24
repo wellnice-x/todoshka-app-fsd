@@ -8,7 +8,7 @@ type UseLocalStorageResult<T> = [
   remove: () => void,
 ];
 
-const useLocalStorage = <T>(
+export const useLocalStorage = <T>(
   key: string,
   initialValue: T,
 ): UseLocalStorageResult<T> => {
@@ -49,5 +49,3 @@ const useLocalStorage = <T>(
 
   return [storedValue, setStoredValue, remove];
 };
-
-export default useLocalStorage;

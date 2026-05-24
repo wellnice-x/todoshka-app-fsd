@@ -1,7 +1,7 @@
 import { useSlowServerToast } from "@/shared/lib/react-query";
-import { useConnectionManager } from "@/shared/api/network";
+import { useConnectionManager } from "@/shared/api";
 import { useAuthCheckingToast } from "@/shared/auth";
-import { useConnectionEffects } from "@/shared/api/network";
+import { useConnectionEffects } from "@/shared/api";
 import { useGlobalLoadErrorToast } from "./useGlobalLoadErrorToast";
 import {
   useOptimisticModeToast,

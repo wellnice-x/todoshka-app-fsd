@@ -3,7 +3,7 @@ import type {
   MarkAllTasksCompletedMutation,
 } from "@/features/tasks-management";
 import { toast } from "react-hot-toast";
-import { useAnimationStore } from "@/shared/lib/animation/animationStore";
+import { useAnimationStore } from "@/shared/lib/animation";
 import {
   handleMutationError,
   handleBulkMutationError,

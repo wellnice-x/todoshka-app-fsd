@@ -1,4 +1,4 @@
-import type { OptimisticMode } from "@/shared/types/optimisticMode";
+import type { OptimisticMode } from "@/shared/types";
 import { useIsMutating } from "@tanstack/react-query";
 
 export const useIsTasksMutating = (optimisticMode: OptimisticMode) => {
