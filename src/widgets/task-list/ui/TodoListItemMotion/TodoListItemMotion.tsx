@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import styles from "./MotionListItem.module.scss";
+import styles from "./TodoListItemMotion.module.scss";
 import { useAnimation } from "@/shared/lib/animation/animationStore";
 import { useSettingsStore } from "@/shared/model/settings";
 import { motion, type Target } from "motion/react";
@@ -14,9 +14,9 @@ const isAddAnimation = (target: Target) =>
 
 const isExitAnimation = (target: Target) => target?.x === -300;
 
-const MotionListItem = ({ children, className }: MotionListItemProps) => {
+const TodoListItemMotion = ({ children, className }: MotionListItemProps) => {
   const { shouldTasksAnimate, blockTasksAnimation } = useAnimation();
-  
+
   const optimisticMode = useSettingsStore((state) => state.optimisticMode);
 
   return (
@@ -45,4 +45,4 @@ const MotionListItem = ({ children, className }: MotionListItemProps) => {
   );
 };
 
-export default MotionListItem;
+export default TodoListItemMotion;

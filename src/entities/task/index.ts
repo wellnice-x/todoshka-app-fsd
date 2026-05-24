@@ -10,5 +10,3 @@ export { tasksUseCases } from "./model/use-cases/tasksUseCases";
 
 export { useUIKeyStore } from "./model/uiKeyStore";
 export type { Task, UITask, CreateTaskPayload } from "./model/task.types";
-
-export { default } from "./ui/TodoItem";

@@ -7,8 +7,8 @@ import { useTasksNavigationStore } from "@/shared/model/navigation/tasksNavigati
 import { AnimatePresence } from "motion/react";
 import { useFilter } from "@/features/filter-tasks";
 import { useEffect } from "react";
-import MotionListItem from "@/shared/ui/MotionListItem";
-import TodoItem from "@/entities/task";
+import TodoListItemMotion from "@/widgets/task-list/ui/TodoListItemMotion";
+import TodoItem from "@/widgets/task-list/ui/TodoItem";
 import styles from "./TodoList.module.scss";
 
 type TodoListProps = {
@@ -64,14 +64,14 @@ const TodoList = (props: TodoListProps) => {
       <AnimatePresence key={`${activeFilter}-${searchQuery}`}>
         {hasTasks &&
           currentTasks.map((task) => (
-            <MotionListItem className={styles.item} key={task.__uiKey}>
+            <TodoListItemMotion className={styles.item} key={task.__uiKey}>
               <TodoItem
                 task={task}
                 toggleTask={toggleTask}
                 deleteTask={deleteTask}
                 isHighlighted={task.id === highlightedTaskId}
               />
-            </MotionListItem>
+            </TodoListItemMotion>
           ))}
       </AnimatePresence>
       {!hasTasks && (
