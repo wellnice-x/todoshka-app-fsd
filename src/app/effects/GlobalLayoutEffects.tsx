@@ -3,11 +3,15 @@ import { useConnectionManager } from "@/shared/api/network";
 import { useAuthCheckingToast } from "@/shared/auth";
 import { useConnectionEffects } from "@/shared/api/network";
 import { useGlobalLoadErrorToast } from "./useGlobalLoadErrorToast";
-import { useSettingsAutoDisableToast } from "@/shared/model/settings";
+import {
+  useOptimisticModeToast,
+  useSettingsAutoDisableToast,
+} from "@/shared/model/settings";
 
 const GlobalLayoutEffects = () => {
   useSlowServerToast();
   useAuthCheckingToast();
+  useOptimisticModeToast();
   useGlobalLoadErrorToast();
   useSettingsAutoDisableToast();
 

@@ -5,18 +5,16 @@ import useIsMobile from "@/shared/lib/device/useIsMobile";
 import AddTaskForm from "@/features/add-task";
 import SearchTaskForm from "@/features/search-task";
 import TodoActionsPanel from "@/widgets/todo-actions-panel";
-import { useFilter } from "@/features/filter-tasks";
+import { useRef } from "react";
 import { BeatLoader } from "react-spinners";
 import { PuffLoader } from "react-spinners";
+import { usePageOverflow } from "@/shared/lib/page/usePageOverflow";
+import { useFilteredTasks } from "@/features/filter-tasks/lib/useFilteredTasks";
+import { useConsumeScrollY } from "@/shared/model/navigation/useConsumeScrollY";
 import { useAnimationStore } from "@/shared/lib/animation/animationStore";
 import { useIsTasksMutating } from "@/features/tasks-management";
 import { useTaskStableActions } from "@/features/tasks-management";
-import { useTasksNavigationStore } from "@/shared/model/navigation/tasksNavigationStore";
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import {
-  useTasksQueryState,
-  useTasksStrategy,
-} from "@/features/tasks-management";
+import { useTasksQueryState, useTasksStrategy } from "@/features/tasks-management";
 
 const Todo = () => {
   const { isLoading: tasksIsInitLoading, isRefetching: tasksIsRefetching } =
@@ -36,16 +34,9 @@ const Todo = () => {
     deleteTaskMutation,
   });
 
-  const [isOverflowing, setIsOverflowing] = useState<boolean>(false);
-
-  const consumeScrollY = useTasksNavigationStore(
-    (state) => state.consumeScrollY,
-  );
   const shouldPanelAnimate = useAnimationStore(
     (state) => state.shouldPanelAnimate,
   );
-
-  const { activeFilter, searchQuery } = useFilter();
 
   const todoRef = useRef<HTMLDivElement>(null);
 
@@ -64,58 +55,13 @@ const Todo = () => {
 
   const uncompletedTasksCount = tasks.length - completedTaskIds.length;
 
+  const isOverflowing = usePageOverflow();
+
   const isTopPanel = isOverflowing || isMobile;
 
-  const filteredTasks = useMemo(() => {
-    let queryTasks = tasks;
+  const filteredTasks = useFilteredTasks(tasks);
 
-    if (activeFilter === "active") {
-      queryTasks = queryTasks.filter((task) => !task.isDone);
-    }
-
-    if (activeFilter === "completed") {
-      queryTasks = queryTasks.filter((task) => task.isDone);
-    }
-
-    if (searchQuery.trim() !== "") {
-      const cleanSearchQuery = searchQuery.toLowerCase().trim();
-
-      queryTasks = tasks.filter((task) =>
-        task.title.toLowerCase().trim().includes(cleanSearchQuery),
-      );
-    }
-
-    return queryTasks;
-  }, [tasks, activeFilter, searchQuery]);
-
-  useLayoutEffect(() => {
-    const checkOverflow = () => {
-      setIsOverflowing(
-        document.documentElement.scrollHeight > window.innerHeight,
-      );
-    };
-
-    checkOverflow();
-
-    const observer = new ResizeObserver(checkOverflow);
-
-    observer.observe(document.body);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    const scroll = consumeScrollY();
-
-    if (scroll !== null) {
-      window.scrollTo({
-        top: scroll,
-        behavior: "instant",
-      });
-    }
-  }, [consumeScrollY]);
+  useConsumeScrollY();
 
   return (
     <div className={styles.todo} ref={todoRef}>

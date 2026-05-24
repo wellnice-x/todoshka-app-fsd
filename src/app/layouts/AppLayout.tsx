@@ -14,6 +14,8 @@ function AppLayout() {
 
   return (
     <>
+      <GlobalLayoutEffects />
+
       <Toaster
         position="bottom-left"
         toastOptions={{ style: { maxWidth: "370px" } }}
@@ -25,11 +27,11 @@ function AppLayout() {
       />
 
       <Header />
-      <TasksStrategyProvider>
-        <GlobalLayoutEffects />
 
+      <TasksStrategyProvider>
         <Outlet />
       </TasksStrategyProvider>
+
       <Footer />
     </>
   );
