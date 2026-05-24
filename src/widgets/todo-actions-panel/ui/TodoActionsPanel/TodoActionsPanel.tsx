@@ -6,12 +6,10 @@ import type {
 import { useState } from "react";
 import { useFilter } from "@/features/filter-tasks";
 import { createPortal } from "react-dom";
-import { useAnimation } from "@/shared/lib/animation/animationStore";
-import { handleMutationError } from "@/shared/lib/error-handlers";
-import { handleBulkMutationError } from "@/shared/lib/error-handlers";
+import { useAnimationStore } from "@/shared/lib/animation/animationStore";
+import { useTasksBulkActions } from "@/features/tasks-bulk-actions";
 import ConfirmModal from "@/shared/ui/ConfirmModal";
 import styles from "./TodoActionsPanel.module.scss";
-import toast from "react-hot-toast";
 
 type ModalAction = "deleteAll" | "markAll" | null;
 
@@ -36,7 +34,14 @@ const TodoActionsPanel = (props: TodoActionsPanelProps) => {
 
   const { setSearchQuery, activeFilter, setActiveFilter } = useFilter();
 
-  const { blockTasksAnimation, allowTasksAnimation } = useAnimation();
+  const blockTasksAnimation = useAnimationStore(
+    (state) => state.blockTasksAnimation,
+  );
+
+  const { deleteCompletedTasks, markAllTasksCompleted } = useTasksBulkActions({
+    deleteCompletedTasksMutation,
+    markAllTasksCompletedMutation,
+  });
 
   const modalConfig = {
     deleteAll: {
@@ -44,7 +49,7 @@ const TodoActionsPanel = (props: TodoActionsPanelProps) => {
       question: "Are you sure you want to delete all completed tasks?",
       confirmButtonText: "Delete",
       onConfirm: () => {
-        handleDelete();
+        deleteCompletedTasks(completedTaskIds);
       },
     },
     markAll: {
@@ -52,7 +57,7 @@ const TodoActionsPanel = (props: TodoActionsPanelProps) => {
       question: "Are you sure you want to mark all tasks as completed?",
       confirmButtonText: "Yes",
       onConfirm: () => {
-        handleMarkAllCompleted();
+        markAllTasksCompleted();
       },
     },
   };
@@ -62,38 +67,6 @@ const TodoActionsPanel = (props: TodoActionsPanelProps) => {
 
     setActiveFilter(filter);
     setSearchQuery("");
-  };
-
-  const handleDelete = () => {
-    if (deleteCompletedTasksMutation.isPending) return;
-
-    allowTasksAnimation();
-
-    deleteCompletedTasksMutation.mutate(
-      {
-        taskIds: completedTaskIds,
-      },
-      {
-        onSuccess: () => {
-          toast.success("Completed tasks deleted");
-        },
-        onError: (error) => {
-          handleBulkMutationError(error);
-        },
-      },
-    );
-  };
-
-  const handleMarkAllCompleted = () => {
-    if (markAllTasksCompletedMutation.isPending) return;
-
-    markAllTasksCompletedMutation.mutate(undefined, {
-      onError: (error) => {
-        if (handleMutationError(error)) return;
-
-        toast.error("Server sync failed");
-      },
-    });
   };
 
   const itemsText = uncompletedTasksCount === 1 ? "task" : "tasks";
