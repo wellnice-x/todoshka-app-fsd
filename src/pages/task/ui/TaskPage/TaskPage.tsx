@@ -1,4 +1,4 @@
-import TaskUpdateForm from "@/features/update-task";
+import TaskUpdateForm from "../TaskUpdateForm";
 import {
   useTasksQueryState,
   useTasksStrategy,

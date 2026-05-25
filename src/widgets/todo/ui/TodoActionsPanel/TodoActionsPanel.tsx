@@ -4,7 +4,7 @@ import type {
 } from "@/features/tasks-management";
 import type { FilterState } from "@/shared/model";
 
-import { useTasksBulkActions } from "@/features/tasks-bulk-actions";
+import { useTasksBulkActions } from "@/widgets/todo/model/useTasksBulkActions";
 import { useAnimationStore } from "@/shared/lib/animation";
 import ConfirmModal from "@/shared/ui/ConfirmModal";
 import { useFilter } from "@/shared/model";

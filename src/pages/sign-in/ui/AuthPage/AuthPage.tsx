@@ -1,4 +1,4 @@
-import AuthForm from "@/features/auth";
+import AuthForm from "../AuthForm";
 import { useAnonUser } from "@/entities/user";
 import ThemeToggle from "@/shared/ui/ThemeToggle";
 import PageIntro from "@/shared/ui/PageIntro";

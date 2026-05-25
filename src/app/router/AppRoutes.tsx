@@ -1,5 +1,5 @@
 import AppLayout from "../layouts/AppLayout";
-import AuthPage from "@/pages/auth";
+import AuthPage from "@/pages/sign-in";
 import TaskPage from "@/pages/task";
 import TasksPage from "@/pages/tasks";
 import NotFoundPage from "@/pages/not-found";

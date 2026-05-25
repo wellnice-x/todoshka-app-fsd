@@ -1,4 +1,6 @@
 import TodoList from "../TodoList";
+import AddTaskForm from "../AddTaskForm";
+import SearchTaskForm from "../SearchTaskForm";
 import TodoActionsPanel from "../TodoActionsPanel";
 import { useIsTasksMutating } from "@/features/tasks-management";
 import { useTaskStableActions } from "@/features/tasks-management";
@@ -6,8 +8,6 @@ import {
   useTasksQueryState,
   useTasksStrategy,
 } from "@/features/tasks-management";
-import AddTaskForm from "@/features/add-task";
-import SearchTaskForm from "@/features/search-task";
 import { useFilteredTasks } from "@/entities/task";
 import { useIsMobile } from "@/shared/lib/device";
 import { usePageOverflow } from "@/shared/lib/page";
