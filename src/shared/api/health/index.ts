@@ -1,4 +1,4 @@
-export { useServerHealth } from "./model/useServerHealth";
+export { useServerHealth } from "./hooks/useServerHealth";
 
 export { checkHealth } from "./healthService";
 

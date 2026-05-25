@@ -1,6 +1,6 @@
 import Todo from "@/widgets/todo";
-import styles from "./TasksPage.module.scss";
 import GoToTopButton from "@/shared/ui/GoToTopButton";
+import styles from "./TasksPage.module.scss";
 
 const TasksPage = () => {
   return (

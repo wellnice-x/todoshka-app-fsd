@@ -1,5 +1,5 @@
-import { useEffect } from "react";
 import { useIsMutating } from "@tanstack/react-query";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 
 export const useSlowServerToast = () => {

@@ -1,13 +1,17 @@
 import { useSlowServerToast } from "@/shared/lib/react-query";
-import { useConnectionManager } from "@/shared/api/network";
+import { useConnectionManager } from "@/shared/api";
+import { useConnectionEffects } from "@/shared/api";
 import { useAuthCheckingToast } from "@/shared/auth";
-import { useConnectionEffects } from "@/shared/api/network";
+import {
+  useOptimisticModeToast,
+  useSettingsAutoDisableToast,
+} from "@/shared/model";
 import { useGlobalLoadErrorToast } from "./useGlobalLoadErrorToast";
-import { useSettingsAutoDisableToast } from "@/shared/model/settings";
 
 const GlobalLayoutEffects = () => {
   useSlowServerToast();
   useAuthCheckingToast();
+  useOptimisticModeToast();
   useGlobalLoadErrorToast();
   useSettingsAutoDisableToast();
 

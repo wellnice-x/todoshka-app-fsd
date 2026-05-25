@@ -10,12 +10,10 @@ type RetryableRequest = AxiosRequestConfig & {
   _retry?: boolean;
 };
 
-const axiosClient = axios.create({
+export const axiosClient = axios.create({
   baseURL: `${URL}/rest/v1`,
   timeout: 12000,
 });
-
-export default axiosClient;
 
 axiosClient.interceptors.request.use((config) => {
   const accessToken = getAccessToken();

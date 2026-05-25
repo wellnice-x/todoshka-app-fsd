@@ -1,7 +1,8 @@
+import type { SettingsStore } from "./settings.types";
+
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { useShallow } from "zustand/shallow";
-import type { SettingsStore } from "./settings.types";
 
 export const useSettingsStore = create<SettingsStore>()(
   persist(

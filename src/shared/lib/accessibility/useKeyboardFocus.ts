@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const useKeyboardFocus = () => {
+export const useKeyboardFocus = () => {
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Tab") {
@@ -21,5 +21,3 @@ const useKeyboardFocus = () => {
     };
   }, []);
 };
-
-export default useKeyboardFocus;

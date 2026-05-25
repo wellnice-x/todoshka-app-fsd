@@ -1,21 +1,27 @@
-import styles from "./TaskPage.module.scss";
+import TaskUpdateForm from "../TaskUpdateForm";
+import {
+  useTasksQueryState,
+  useTasksStrategy,
+} from "@/features/tasks-management";
 import Button from "@/shared/ui/Button";
-import TaskUpdateForm from "@/features/update-task/ui/TaskUpdateForm";
-import { useTasks } from "@/features/tasks-management";
-import { ClipLoader } from "react-spinners";
-import { useServerAccessState } from "@/shared/model/access/useServerAccessState";
+import { useServerAccessState } from "@/shared/model";
 import { useNavigate, useParams } from "react-router";
+import { ClipLoader } from "react-spinners";
+import styles from "./TaskPage.module.scss";
 
 const TaskPage = () => {
   const navigate = useNavigate();
 
-  const { tasks, tasksIsInitLoading, updateTaskInfoMutation } = useTasks();
+  const { uiTasks, updateTaskInfoMutation } = useTasksStrategy();
 
-  const { isServerAccessBlocked, isServerAccessUncertain } = useServerAccessState();
+  const { isLoading: tasksIsInitLoading } = useTasksQueryState();
+
+  const { isServerAccessBlocked, isServerAccessUncertain } =
+    useServerAccessState();
 
   const { id } = useParams();
 
-  const task = id ? tasks.find((task) => task.id === id) : undefined;
+  const task = id ? uiTasks.find((task) => task.id === id) : undefined;
 
   const handleNavigate = () => {
     navigate("/tasks");

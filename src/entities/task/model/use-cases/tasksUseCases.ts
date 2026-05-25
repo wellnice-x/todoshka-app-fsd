@@ -1,8 +1,9 @@
-import type { CreateTaskPayload } from "@/entities/task/model/task.types";
-import { mapFromDTO, mapToDTO } from "@/entities/task/lib/taskMapper";
+import type { CreateTaskPayload } from "../task.types";
+
 import { ensureCanMutate } from "./ensureCanMutate";
-import { BulkDeleteError } from "@/shared/lib/errors";
+import { mapFromDTO, mapToDTO } from "@/entities/task/lib/taskMapper";
 import { tasksService } from "@/entities/task/api/tasksService";
+import { BulkDeleteError } from "@/shared/lib/errors";
 
 export type TasksUseCases = typeof tasksUseCases;
 
@@ -82,9 +83,9 @@ export const tasksUseCases = {
     return results;
   },
 
-  markAllCompleted: async () => {
+  markAllTasksCompleted: async () => {
     await ensureCanMutate();
 
-    return tasksService.markAllCompleted();
+    return tasksService.markAllTasksCompleted();
   },
 };

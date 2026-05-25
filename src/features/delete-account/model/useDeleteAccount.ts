@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { withTimeout } from "@/shared/lib/async/withTimeout";
-import { useUIKeyStore } from "@/entities/task";
-import { useFilterStore } from "@/features/filter-tasks";
-import { useQueryClient } from "@tanstack/react-query";
-import { useRuntimeStore } from "@/shared/model/runtime/runtimeStore";
-import { useSettingsStore } from "@/shared/model/settings";
-import { useAnimationStore } from "@/shared/lib/animation/animationStore";
-import { useConnectionStore } from "@/shared/api/network";
-import { useAppearanceStore } from "@/shared/model/appearance";
-import { useGlobalErrorStore } from "@/shared/model/errors";
 import { deleteServerUserData } from "./deleteUserAccount";
-import { useTasksNavigationStore } from "@/features/tasks-navigation";
+import { useUIKeyStore } from "@/entities/task";
+import { useFilterStore } from "@/shared/model";
+import { useRuntimeStore } from "@/shared/model";
+import { useSettingsStore } from "@/shared/model";
+import { useConnectionStore } from "@/shared/model";
+import { useAppearanceStore } from "@/shared/model";
+import { useGlobalErrorStore } from "@/shared/model";
+import { useTasksNavigationStore } from "@/shared/model";
+import { useAnimationStore } from "@/shared/lib/animation";
+import { withTimeout } from "@/shared/lib/async";
+import { useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
 
 type DeleteResult = { status: "success" } | { status: "failed" };
 

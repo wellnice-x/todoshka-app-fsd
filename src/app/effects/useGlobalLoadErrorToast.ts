@@ -1,15 +1,17 @@
-import toast from "react-hot-toast";
-import { useTasks } from "@/features/tasks-management";
+import { useTasksQueryState } from "@/features/tasks-management";
+import { useLoadErrorStatus } from "@/shared/model";
+import { useGlobalErrorStore } from "@/shared/model";
 import { useEffect } from "react";
-import { useLoadErrorStatus } from "@/shared/model/errors";
-import { useGlobalErrorStore } from "@/shared/model/errors";
+import toast from "react-hot-toast";
 
 export const useGlobalLoadErrorToast = () => {
-  const { error, tasksIsFetching } = useTasks();
+  const { error, isFetching: tasksIsFetching } = useTasksQueryState();
 
   const loadError = useLoadErrorStatus(tasksIsFetching ? null : error);
 
-  const setLoadErrorShown = useGlobalErrorStore((state) => state.setLoadErrorShown);
+  const setLoadErrorShown = useGlobalErrorStore(
+    (state) => state.setLoadErrorShown,
+  );
 
   const showErrorToast = (title: string) => {
     toast.error(title, {
@@ -50,4 +52,4 @@ export const useGlobalLoadErrorToast = () => {
       );
     }
   }, [loadError, setLoadErrorShown]);
-}
+};

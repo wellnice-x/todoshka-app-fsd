@@ -1,4 +1,4 @@
-import { useSettingsStore } from "@/shared/model/settings";
+import { useSettingsStore } from "@/shared/model";
 import { SimulatedBlockedMutationError } from "@/shared/lib/errors";
 
 export const ensureCanMutate = async () => {

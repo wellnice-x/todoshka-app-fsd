@@ -1,5 +1,6 @@
-import axiosClient from "@/shared/api/base/axiosClient";
 import type { TaskDTO, CreateTaskDTO } from "./tasksAPI.types";
+
+import { axiosClient } from "@/shared/api";
 
 export const tasksAPI = {
   getAll: () => axiosClient.get<TaskDTO[]>(`/tasks?order=order_index.asc`),
@@ -27,11 +28,10 @@ export const tasksAPI = {
 
   deleteTask: (taskId: string) => axiosClient.delete(`/tasks?id=eq.${taskId}`),
 
-  markAllCompleted: (userId: string) =>
-    axiosClient.patch<TaskDTO[]>(
-      `/tasks?user_id=eq.${userId}`,
-      { is_done: true },
-    ),
+  markAllTasksCompleted: (userId: string) =>
+    axiosClient.patch<TaskDTO[]>(`/tasks?user_id=eq.${userId}`, {
+      is_done: true,
+    }),
 
   deleteAllTasks: (userId: string) =>
     axiosClient.delete(`/tasks?user_id=eq.${userId}`),

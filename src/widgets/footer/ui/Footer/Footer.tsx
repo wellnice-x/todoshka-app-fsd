@@ -1,7 +1,7 @@
 import styles from "./Footer.module.scss";
 import FilledCircle from "@/shared/assets/icons/filled-circle.svg?react";
-import { useAppearanceStore } from "@/shared/model/appearance";
-import { useConnectionStore } from "@/shared/api/network";
+import { useAppearanceStore } from "@/shared/model";
+import { useConnectionStore } from "@/shared/model";
 
 type FooterProps = {
   className?: string;

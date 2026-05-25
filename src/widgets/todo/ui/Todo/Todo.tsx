@@ -1,47 +1,45 @@
-import styles from "./Todo.module.scss";
-import TodoList from "@/widgets/task-list";
+import TodoList from "../TodoList";
+import AddTaskForm from "../AddTaskForm";
+import SearchTaskForm from "../SearchTaskForm";
+import TodoActionsPanel from "../TodoActionsPanel";
+import { useIsTasksMutating } from "@/features/tasks-management";
+import { useTaskStableActions } from "@/features/tasks-management";
+import {
+  useTasksQueryState,
+  useTasksStrategy,
+} from "@/features/tasks-management";
+import { useFilteredTasks } from "@/entities/task";
+import { useIsMobile } from "@/shared/lib/device";
+import { usePageOverflow } from "@/shared/lib/page";
+import { useAnimationStore } from "@/shared/lib/animation";
+import { useConsumeScrollY } from "@/shared/model";
 import ReactIcon from "@/shared/assets/icons/react-icon.svg?react";
-import useIsMobile from "@/shared/lib/device/useIsMobile";
-import AddTaskForm from "@/features/add-task";
-import SearchTaskForm from "@/features/search-task";
-import TodoActionsPanel from "@/widgets/todo-actions-panel";
-import { useIsTasksMutating } from "@/entities/task";
-import { useTasks } from "@/features/tasks-management";
-import { useFilter } from "@/features/filter-tasks";
 import { BeatLoader } from "react-spinners";
 import { PuffLoader } from "react-spinners";
-import { useAnimationStore } from "@/shared/lib/animation/animationStore";
-import { useTaskStableActions } from "@/entities/task";
-import { useTasksNavigationStore } from "@/features/tasks-navigation";
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useRef } from "react";
+import styles from "./Todo.module.scss";
 
 const Todo = () => {
+  const { isLoading: tasksIsInitLoading, isRefetching: tasksIsRefetching } =
+    useTasksQueryState();
+
   const {
-    tasks,
+    uiTasks: tasks,
     addTaskMutation,
     deleteTaskMutation,
     toggleTaskMutation,
     deleteCompletedTasksMutation,
-    markAllCompletedMutation,
-    tasksIsInitLoading,
-    tasksIsRefetching,
-  } = useTasks();
+    markAllTasksCompletedMutation,
+  } = useTasksStrategy();
 
   const { toggleTask, deleteTask } = useTaskStableActions({
     toggleTaskMutation,
     deleteTaskMutation,
   });
 
-  const [isOverflowing, setIsOverflowing] = useState<boolean>(false);
-
-  const consumeScrollY = useTasksNavigationStore(
-    (state) => state.consumeScrollY,
-  );
   const shouldPanelAnimate = useAnimationStore(
     (state) => state.shouldPanelAnimate,
   );
-
-  const { activeFilter, searchQuery } = useFilter();
 
   const todoRef = useRef<HTMLDivElement>(null);
 
@@ -60,58 +58,13 @@ const Todo = () => {
 
   const uncompletedTasksCount = tasks.length - completedTaskIds.length;
 
+  const isOverflowing = usePageOverflow();
+
   const isTopPanel = isOverflowing || isMobile;
 
-  const filteredTasks = useMemo(() => {
-    let queryTasks = tasks;
+  const filteredTasks = useFilteredTasks(tasks);
 
-    if (activeFilter === "active") {
-      queryTasks = queryTasks.filter((task) => !task.isDone);
-    }
-
-    if (activeFilter === "completed") {
-      queryTasks = queryTasks.filter((task) => task.isDone);
-    }
-
-    if (searchQuery.trim() !== "") {
-      const cleanSearchQuery = searchQuery.toLowerCase().trim();
-
-      queryTasks = tasks.filter((task) =>
-        task.title.toLowerCase().trim().includes(cleanSearchQuery),
-      );
-    }
-
-    return queryTasks;
-  }, [tasks, activeFilter, searchQuery]);
-
-  useLayoutEffect(() => {
-    const checkOverflow = () => {
-      setIsOverflowing(
-        document.documentElement.scrollHeight > window.innerHeight,
-      );
-    };
-
-    checkOverflow();
-
-    const observer = new ResizeObserver(checkOverflow);
-
-    observer.observe(document.body);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    const scroll = consumeScrollY();
-
-    if (scroll !== null) {
-      window.scrollTo({
-        top: scroll,
-        behavior: "instant",
-      });
-    }
-  }, [consumeScrollY]);
+  useConsumeScrollY();
 
   return (
     <div className={styles.todo} ref={todoRef}>
@@ -137,7 +90,7 @@ const Todo = () => {
         `}
         completedTaskIds={completedTaskIds}
         deleteCompletedTasksMutation={deleteCompletedTasksMutation}
-        markAllCompletedMutation={markAllCompletedMutation}
+        markAllTasksCompletedMutation={markAllTasksCompletedMutation}
         uncompletedTasksCount={uncompletedTasksCount}
       />
       {tasksIsInitLoading && (
