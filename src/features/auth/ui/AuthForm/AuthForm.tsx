@@ -1,12 +1,13 @@
-import toast from "react-hot-toast";
+import type { FieldHandle } from "@/shared/ui/Field";
+
+import { useAnonUser } from "@/entities/user";
 import Field from "@/shared/ui/Field";
 import Button from "@/shared/ui/Button";
-import styles from "./AuthForm.module.scss";
 import { useAuth } from "@/shared/auth";
-import { useAnonUser } from "@/entities/user";
 import { useNavigate } from "react-router";
 import { useState, useRef, useEffect, SubmitEvent, ChangeEvent } from "react";
-import type { FieldHandle } from "@/shared/ui/Field";
+import styles from "./AuthForm.module.scss";
+import toast from "react-hot-toast";
 
 type AuthFormProps = {
   className?: string;

@@ -1,14 +1,15 @@
-import type { UITask } from "@/entities/task";
 import type {
   ToggleTaskAction,
   DeleteTaskAction,
 } from "@/features/tasks-management";
+import type { UITask } from "@/entities/task";
+
+import TodoListItemMotion from "../TodoListItemMotion";
+import TodoItem from "../TodoItem";
 import { useTasksNavigationStore } from "@/shared/model";
-import { AnimatePresence } from "motion/react";
 import { useFilter } from "@/shared/model";
 import { useEffect } from "react";
-import TodoListItemMotion from "@/widgets/todo/ui/TodoListItemMotion";
-import TodoItem from "@/widgets/todo/ui/TodoItem";
+import { AnimatePresence } from "motion/react";
 import styles from "./TodoList.module.scss";
 
 type TodoListProps = {

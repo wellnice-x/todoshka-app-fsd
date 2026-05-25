@@ -1,4 +1,5 @@
 import type { SimulationConfig } from "./types";
+
 import { useSettingsStore } from "@/shared/model";
 
 export const getSimulationConfig = (): SimulationConfig => {

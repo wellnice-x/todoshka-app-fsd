@@ -1,13 +1,13 @@
-import styles from "./TaskPage.module.scss";
-import Button from "@/shared/ui/Button";
 import TaskUpdateForm from "@/features/update-task";
-import { ClipLoader } from "react-spinners";
-import { useServerAccessState } from "@/shared/model";
-import { useNavigate, useParams } from "react-router";
 import {
   useTasksQueryState,
   useTasksStrategy,
 } from "@/features/tasks-management";
+import Button from "@/shared/ui/Button";
+import { useServerAccessState } from "@/shared/model";
+import { useNavigate, useParams } from "react-router";
+import { ClipLoader } from "react-spinners";
+import styles from "./TaskPage.module.scss";
 
 const TaskPage = () => {
   const navigate = useNavigate();

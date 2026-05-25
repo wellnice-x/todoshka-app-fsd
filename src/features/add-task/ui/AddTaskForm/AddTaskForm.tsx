@@ -1,16 +1,17 @@
-import type { FieldHandle } from "@/shared/ui/Field";
 import type { AddTaskMutation } from "@/features/tasks-management";
-import { useState, useRef, useEffect, ChangeEvent, SubmitEvent } from "react";
+import type { FieldHandle } from "@/shared/ui/Field";
+
 import { handleMutationError } from "@/shared/lib/error-handlers";
 import { useAnimationStore } from "@/shared/lib/animation";
 import { useIsMobile } from "@/shared/lib/device";
 import { useFilter } from "@/shared/model";
 import PlusCircleIcon from "@/shared/assets/icons/plus-circle.svg?react";
-import styles from "./AddTaskForm.module.scss";
-import Button from "@/shared/ui/Button";
 import XIcon from "@/shared/assets/icons/x-icon.svg?react";
+import Button from "@/shared/ui/Button";
 import Field from "@/shared/ui/Field";
 import toast from "react-hot-toast";
+import styles from "./AddTaskForm.module.scss";
+import { useState, useRef, useEffect, ChangeEvent, SubmitEvent } from "react";
 
 type AddTaskFormProps = {
   className?: string;

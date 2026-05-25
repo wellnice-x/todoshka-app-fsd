@@ -1,13 +1,10 @@
-import { useMutation } from "@tanstack/react-query";
+import { QUERY_KEY, createMutationKey } from "../queryKeys";
+import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/patches/runtime/useStrategyRuntime";
+import { createPatchManager } from "@/features/tasks-management/model/strategies/patches/runtime/createPatchManager";
 import { tasksUseCases } from "@/entities/task";
 import { isNetworkError } from "@/shared/lib/error-utils";
 import { throwIfOffline } from "@/shared/lib/network";
-import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/patches/runtime/useStrategyRuntime";
-import { createPatchManager } from "@/features/tasks-management/model/strategies/patches/runtime/createPatchManager";
-import {
-  QUERY_KEY,
-  createMutationKey,
-} from "@/features/tasks-management/model/strategies/patches/queryKeys";
+import { useMutation } from "@tanstack/react-query";
 
 export const useDeleteTaskMutation = () => {
   const {

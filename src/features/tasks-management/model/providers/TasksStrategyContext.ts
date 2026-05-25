@@ -6,7 +6,8 @@ import type {
   UpdateTaskInfoMutation,
   DeleteCompletedTasksMutation,
   MarkAllTasksCompletedMutation,
-} from "@/features/tasks-management/model/types/mutations";
+} from "../types";
+
 import { createContext } from "react";
 
 export type TasksStrategyContextValue = {

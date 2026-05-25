@@ -1,5 +1,5 @@
-import type { Task } from "@/entities/task/model/task.types";
-import type { TaskDTO } from "@/entities/task/api/tasksAPI.types";
+import type { Task } from "../model/task.types";
+import type { TaskDTO } from "../api/tasksAPI.types";
 
 export const mapFromDTO = (task: TaskDTO): Task => ({
   id: task.id,

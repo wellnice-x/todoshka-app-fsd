@@ -1,6 +1,8 @@
 import type { Task, UITask } from "@/entities/task";
-import { useMemo, useRef } from "react";
+
 import { useUIKeyStore } from "@/entities/task";
+import { useMemo, useRef } from "react";
+
 
 const isSameTask = (a: Task, b: Task) =>
   a.title === b.title &&

@@ -1,7 +1,8 @@
 import type { UITask } from "@/entities/task";
-import { useEffect } from "react";
+
+import { useStrategyRuntime } from "../runtime/useStrategyRuntime";
 import { useUIKeyStore } from "@/entities/task";
-import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/non-optimistic/runtime/useStrategyRuntime";
+import { useEffect } from "react";
 
 export const useInitStrategy = (uiTasks: UITask[]) => {
   const runtime = useStrategyRuntime();

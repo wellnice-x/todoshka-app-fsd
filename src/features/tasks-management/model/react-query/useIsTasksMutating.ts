@@ -1,4 +1,5 @@
 import type { OptimisticMode } from "@/shared/optimistic-mode";
+
 import { useIsMutating } from "@tanstack/react-query";
 
 export const useIsTasksMutating = (optimisticMode: OptimisticMode) => {

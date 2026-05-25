@@ -1,4 +1,5 @@
 import type { SimulationConfig } from "./configuration/types";
+
 import { SimulatedNetworkLikeError } from "@/shared/lib/errors";
 import { simulateDelay } from "./simulateDelay";
 

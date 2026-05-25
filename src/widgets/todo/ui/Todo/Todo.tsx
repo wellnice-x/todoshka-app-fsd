@@ -1,20 +1,23 @@
-import styles from "./Todo.module.scss";
-import TodoList from "@/widgets/todo/ui/TodoList";
-import ReactIcon from "@/shared/assets/icons/react-icon.svg?react";
-import AddTaskForm from "@/features/add-task";
-import SearchTaskForm from "@/features/search-task";
-import TodoActionsPanel from "@/widgets/todo/ui/TodoActionsPanel";
-import { useRef } from "react";
-import { BeatLoader } from "react-spinners";
-import { PuffLoader } from "react-spinners";
-import { useIsMobile } from "@/shared/lib/device";
-import { usePageOverflow } from "@/shared/lib/page";
-import { useFilteredTasks } from "@/entities/task";
-import { useConsumeScrollY } from "@/shared/model";
-import { useAnimationStore } from "@/shared/lib/animation";
+import TodoList from "../TodoList";
+import TodoActionsPanel from "../TodoActionsPanel";
 import { useIsTasksMutating } from "@/features/tasks-management";
 import { useTaskStableActions } from "@/features/tasks-management";
-import { useTasksQueryState, useTasksStrategy } from "@/features/tasks-management";
+import {
+  useTasksQueryState,
+  useTasksStrategy,
+} from "@/features/tasks-management";
+import AddTaskForm from "@/features/add-task";
+import SearchTaskForm from "@/features/search-task";
+import { useFilteredTasks } from "@/entities/task";
+import { useIsMobile } from "@/shared/lib/device";
+import { usePageOverflow } from "@/shared/lib/page";
+import { useAnimationStore } from "@/shared/lib/animation";
+import { useConsumeScrollY } from "@/shared/model";
+import ReactIcon from "@/shared/assets/icons/react-icon.svg?react";
+import { BeatLoader } from "react-spinners";
+import { PuffLoader } from "react-spinners";
+import { useRef } from "react";
+import styles from "./Todo.module.scss";
 
 const Todo = () => {
   const { isLoading: tasksIsInitLoading, isRefetching: tasksIsRefetching } =

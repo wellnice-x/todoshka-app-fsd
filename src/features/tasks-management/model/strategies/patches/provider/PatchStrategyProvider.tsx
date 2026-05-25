@@ -1,17 +1,18 @@
 import type { PropsWithChildren } from "react";
-import { useMemo } from "react";
-import { useUITasks } from "@/features/tasks-management/model/strategies/patches/ui-tasks/useUITasks";
-import { useAddTaskMutation } from "@/features/tasks-management/model/strategies/patches/mutations/useAddTaskMutation";
+
 import {
   TasksStrategyContext,
   TasksStrategyContextValue,
 } from "@/features/tasks-management/model/providers/TasksStrategyContext";
-import { useInitStrategy } from "@/features/tasks-management/model/strategies/patches/lifecycle/useInitStrategy";
-import { useDeleteTaskMutation } from "@/features/tasks-management/model/strategies/patches/mutations/useDeleteTaskMutation";
-import { useToggleTaskMutation } from "@/features/tasks-management/model/strategies/patches/mutations/useToggleTaskMutation";
-import { useUpdateTaskInfoMutation } from "@/features/tasks-management/model/strategies/patches/mutations/useUpdateTaskInfoMutation";
-import { useDeleteCompletedTasksMutation } from "@/features/tasks-management/model/strategies/patches/mutations/useDeleteCompletedTasksMutation";
-import { useMarkAllTasksCompletedMutation } from "@/features/tasks-management/model/strategies/patches/mutations/useMarkAllTasksCompletedMutation";
+import { useInitStrategy } from "../lifecycle/useInitStrategy";
+import { useAddTaskMutation } from "../mutations/useAddTaskMutation";
+import { useDeleteTaskMutation } from "../mutations/useDeleteTaskMutation";
+import { useToggleTaskMutation } from "../mutations/useToggleTaskMutation";
+import { useUpdateTaskInfoMutation } from "../mutations/useUpdateTaskInfoMutation";
+import { useDeleteCompletedTasksMutation } from "../mutations/useDeleteCompletedTasksMutation";
+import { useMarkAllTasksCompletedMutation } from "../mutations/useMarkAllTasksCompletedMutation";
+import { useUITasks } from "../ui-tasks/useUITasks";
+import { useMemo } from "react";
 
 export const PatchStrategyProvider = ({ children }: PropsWithChildren) => {
   const uiTasks = useUITasks();

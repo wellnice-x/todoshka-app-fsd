@@ -1,14 +1,15 @@
-import type { FilterState } from "@/shared/model";
 import type {
   DeleteCompletedTasksMutation,
   MarkAllTasksCompletedMutation,
 } from "@/features/tasks-management";
-import { useState } from "react";
+import type { FilterState } from "@/shared/model";
+
+import { useTasksBulkActions } from "@/features/tasks-bulk-actions";
+import { useAnimationStore } from "@/shared/lib/animation";
+import ConfirmModal from "@/shared/ui/ConfirmModal";
 import { useFilter } from "@/shared/model";
 import { createPortal } from "react-dom";
-import { useAnimationStore } from "@/shared/lib/animation";
-import { useTasksBulkActions } from "@/features/tasks-bulk-actions";
-import ConfirmModal from "@/shared/ui/ConfirmModal";
+import { useState } from "react";
 import styles from "./TodoActionsPanel.module.scss";
 
 type ModalAction = "deleteAll" | "markAll" | null;

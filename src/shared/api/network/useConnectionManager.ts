@@ -1,19 +1,20 @@
 import type { ConnectionStatus } from "@/shared/model";
+
+import { isSyncError, isNetworkError } from "@/shared/lib/error-utils";
+import { useQuerySubscriptions } from "@/shared/lib/react-query";
+import { useNetworkListeners } from "@/shared/lib/network";
+import { BulkDeleteError } from "@/shared/lib/errors";
+import { useServerAccessState } from "@/shared/model";
+import { useGlobalErrorStore } from "@/shared/model";
+import { useRuntimeStore } from "@/shared/model";
+import { useConnection } from "@/shared/model";
+import { useServerHealth } from "@/shared/api/health";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   MutationCacheNotifyEvent,
   QueryCacheNotifyEvent,
   useQueryClient,
 } from "@tanstack/react-query";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { isSyncError, isNetworkError } from "@/shared/lib/error-utils";
-import { useQuerySubscriptions } from "@/shared/lib/react-query";
-import { useServerAccessState } from "@/shared/model";
-import { useGlobalErrorStore } from "@/shared/model";
-import { useNetworkListeners } from "@/shared/lib/network";
-import { useRuntimeStore } from "@/shared/model";
-import { BulkDeleteError } from "@/shared/lib/errors";
-import { useServerHealth } from "@/shared/api";
-import { useConnection } from "@/shared/model";
 
 const NETWORK_ERROR_THRESHOLD = 3;
 

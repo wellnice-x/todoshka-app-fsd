@@ -1,9 +1,9 @@
 import Field from "@/shared/ui/Field";
 import XIcon from "@/shared/assets/icons/x-icon.svg?react";
-import styles from "./SearchTaskForm.module.scss";
 import SearchIcon from "@/shared/assets/icons/search-icon.svg?react";
 import { useFilter } from "@/shared/model";
 import { ChangeEvent, useState } from "react";
+import styles from "./SearchTaskForm.module.scss";
 
 type SearchTaskFormProps = {
   className?: string;

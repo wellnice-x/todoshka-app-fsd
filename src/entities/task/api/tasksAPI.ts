@@ -1,5 +1,6 @@
-import { axiosClient } from "@/shared/api";
 import type { TaskDTO, CreateTaskDTO } from "./tasksAPI.types";
+
+import { axiosClient } from "@/shared/api";
 
 export const tasksAPI = {
   getAll: () => axiosClient.get<TaskDTO[]>(`/tasks?order=order_index.asc`),

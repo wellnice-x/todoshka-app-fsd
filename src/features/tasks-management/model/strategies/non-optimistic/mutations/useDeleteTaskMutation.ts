@@ -1,12 +1,10 @@
 import type { Task } from "@/entities/task";
-import { useMutation } from "@tanstack/react-query";
+
+import { useStrategyRuntime } from "../runtime/useStrategyRuntime";
+import { QUERY_KEY, createMutationKey } from "../queryKeys";
 import { tasksUseCases } from "@/entities/task";
 import { throwIfOffline } from "@/shared/lib/network";
-import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/non-optimistic/runtime/useStrategyRuntime";
-import {
-  QUERY_KEY,
-  createMutationKey,
-} from "@/features/tasks-management/model/strategies/non-optimistic/queryKeys";
+import { useMutation } from "@tanstack/react-query";
 
 export const useDeleteTaskMutation = () => {
   const { queryClient, syncWithOptionalToast } = useStrategyRuntime();

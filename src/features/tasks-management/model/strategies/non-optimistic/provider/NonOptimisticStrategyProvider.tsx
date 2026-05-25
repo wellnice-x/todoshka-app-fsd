@@ -1,17 +1,18 @@
 import type { PropsWithChildren } from "react";
-import { useMemo } from "react";
-import { useUITasks } from "@/features/tasks-management/model/strategies/non-optimistic/ui-tasks/useUITasks";
-import { useAddTaskMutation } from "@/features/tasks-management/model/strategies/non-optimistic/mutations/useAddTaskMutation";
+
 import {
   TasksStrategyContext,
   TasksStrategyContextValue,
 } from "@/features/tasks-management/model/providers/TasksStrategyContext";
-import { useInitStrategy } from "@/features/tasks-management/model/strategies/non-optimistic/lifecycle/useInitStrategy";
-import { useDeleteTaskMutation } from "@/features/tasks-management/model/strategies/non-optimistic/mutations/useDeleteTaskMutation";
-import { useToggleTaskMutation } from "@/features/tasks-management/model/strategies/non-optimistic/mutations/useToggleTaskMutation";
-import { useUpdateTaskInfoMutation } from "@/features/tasks-management/model/strategies/non-optimistic/mutations/useUpdateTaskInfoMutation";
-import { useDeleteCompletedTasksMutation } from "@/features/tasks-management/model/strategies/non-optimistic/mutations/useDeleteCompletedTasksMutation";
-import { useMarkAllTasksCompletedMutation } from "@/features/tasks-management/model/strategies/non-optimistic/mutations/useMarkAllTasksCompletedMutation";
+import { useUITasks } from "../ui-tasks/useUITasks";
+import { useAddTaskMutation } from "../mutations/useAddTaskMutation";
+import { useDeleteTaskMutation } from "../mutations/useDeleteTaskMutation";
+import { useToggleTaskMutation } from "../mutations/useToggleTaskMutation";
+import { useUpdateTaskInfoMutation } from "../mutations/useUpdateTaskInfoMutation";
+import { useDeleteCompletedTasksMutation } from "../mutations/useDeleteCompletedTasksMutation";
+import { useMarkAllTasksCompletedMutation } from "../mutations/useMarkAllTasksCompletedMutation";
+import { useInitStrategy } from "../lifecycle/useInitStrategy";
+import { useMemo } from "react";
 
 export const NonOptimisticStrategyProvider = ({
   children,

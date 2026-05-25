@@ -1,10 +1,10 @@
-import GlobalLayoutEffects from "@/app/effects/GlobalLayoutEffects";
-import lightBackground from "@/shared/assets/images/bg-decor.webp";
-import ThemeBackground from "@/shared/ui/ThemeBackground";
-import darkBackground from "@/shared/assets/images/bg-decor-alt.webp";
+import GlobalLayoutEffects from "../effects/GlobalLayoutEffects";
 import Header from "@/widgets/header";
 import Footer from "@/widgets/footer";
 import { TasksStrategyProvider } from "@/features/tasks-management";
+import lightBackground from "@/shared/assets/images/bg-decor.webp";
+import darkBackground from "@/shared/assets/images/bg-decor-alt.webp";
+import ThemeBackground from "@/shared/ui/ThemeBackground";
 import { useKeyboardFocus } from "@/shared/lib/accessibility";
 import { Toaster } from "react-hot-toast";
 import { Outlet } from "react-router";

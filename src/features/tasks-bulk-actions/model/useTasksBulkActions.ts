@@ -2,12 +2,13 @@ import type {
   DeleteCompletedTasksMutation,
   MarkAllTasksCompletedMutation,
 } from "@/features/tasks-management";
-import { toast } from "react-hot-toast";
+
 import { useAnimationStore } from "@/shared/lib/animation";
 import {
   handleMutationError,
   handleBulkMutationError,
 } from "@/shared/lib/error-handlers";
+import { toast } from "react-hot-toast";
 
 type Mutations = {
   deleteCompletedTasksMutation: DeleteCompletedTasksMutation;

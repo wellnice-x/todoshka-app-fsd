@@ -1,13 +1,11 @@
 import type { Task } from "@/entities/task";
-import { useMutation } from "@tanstack/react-query";
+
+import { QUERY_KEY, createMutationKey } from "../queryKeys";
+import { useStrategyRuntime } from "../runtime/useStrategyRuntime";
 import { tasksUseCases } from "@/entities/task";
 import { throwIfOffline } from "@/shared/lib/network";
 import { isNetworkError } from "@/shared/lib/error-utils";
-import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/snapshots/runtime/useStrategyRuntime";
-import {
-  QUERY_KEY,
-  createMutationKey,
-} from "@/features/tasks-management/model/strategies/snapshots/queryKeys";
+import { useMutation } from "@tanstack/react-query";
 
 export const useUpdateTaskInfoMutation = () => {
   const { queryClient, isServerAccessBlocked, syncWithOptionalToast } =

@@ -1,6 +1,7 @@
 import type { UITask } from "@/entities/task";
-import { useMemo } from "react";
+
 import { useFilter } from "@/shared/model";
+import { useMemo } from "react";
 
 export const useFilteredTasks = (tasks: UITask[]) => {
   const { activeFilter, searchQuery } = useFilter();

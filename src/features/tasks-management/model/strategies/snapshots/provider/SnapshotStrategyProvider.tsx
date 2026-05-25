@@ -1,17 +1,18 @@
 import type { PropsWithChildren } from "react";
-import { useMemo } from "react";
-import { useUITasks } from "@/features/tasks-management/model/strategies/snapshots/ui-tasks/useUITasks";
-import { useInitStrategy } from "@/features/tasks-management/model/strategies/snapshots/lifecycle/useInitStrategy";
-import { useAddTaskMutation } from "@/features/tasks-management/model/strategies/snapshots/mutations/useAddTaskMutation";
+
 import {
   TasksStrategyContext,
   TasksStrategyContextValue,
 } from "@/features/tasks-management/model/providers/TasksStrategyContext";
-import { useDeleteTaskMutation } from "@/features/tasks-management/model/strategies/snapshots/mutations/useDeleteTaskMutation";
-import { useToggleTaskMutation } from "@/features/tasks-management/model/strategies/snapshots/mutations/useToggleTaskMutation";
-import { useUpdateTaskInfoMutation } from "@/features/tasks-management/model/strategies/snapshots/mutations/useUpdateTaskInfoMutation";
-import { useDeleteCompletedTasksMutation } from "@/features/tasks-management/model/strategies/snapshots/mutations/useDeleteCompletedTasksMutation";
-import { useMarkAllTasksCompletedMutation } from "@/features/tasks-management/model/strategies/snapshots/mutations/useMarkAllTasksCompletedMutation";
+import { useUITasks } from "../ui-tasks/useUITasks";
+import { useInitStrategy } from "../lifecycle/useInitStrategy";
+import { useAddTaskMutation } from "../mutations/useAddTaskMutation";
+import { useDeleteTaskMutation } from "../mutations/useDeleteTaskMutation";
+import { useToggleTaskMutation } from "../mutations/useToggleTaskMutation";
+import { useUpdateTaskInfoMutation } from "../mutations/useUpdateTaskInfoMutation";
+import { useDeleteCompletedTasksMutation } from "../mutations/useDeleteCompletedTasksMutation";
+import { useMarkAllTasksCompletedMutation } from "../mutations/useMarkAllTasksCompletedMutation";
+import { useMemo } from "react";
 
 export const SnapshotStrategyProvider = ({ children }: PropsWithChildren) => {
   const uiTasks = useUITasks();

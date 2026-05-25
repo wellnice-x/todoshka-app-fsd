@@ -1,5 +1,5 @@
-import { useQueryClient, QueryKey } from "@tanstack/react-query";
 import { assertServerReachable } from "@/shared/lib/network";
+import { useQueryClient, QueryKey } from "@tanstack/react-query";
 import { useCallback, useEffect, useRef } from "react";
 
 export type ScheduleQuerySyncFn = (

@@ -1,5 +1,5 @@
-import type { QueryClient, QueryKey } from "@tanstack/react-query";
 import type { Task } from "@/entities/task";
+import type { QueryClient, QueryKey } from "@tanstack/react-query";
 
 export type HandleSyncFn = (
   syncPromise: Promise<void> | undefined,

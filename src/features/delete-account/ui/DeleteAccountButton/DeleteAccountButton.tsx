@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { ClipLoader } from "react-spinners";
-import { useNavigate } from "react-router";
-import { createPortal } from "react-dom";
-import { useDeleteAccount } from "@/features/delete-account";
+import { useDeleteAccount } from "@/features/delete-account/model/useDeleteAccount";
 import { useServerAccessState } from "@/shared/model";
 import DeleteProfileIcon from "@/shared/assets/icons/delete-profile-icon.svg?react";
 import ConfirmModal from "@/shared/ui/ConfirmModal";
 import styles from "./DeleteAccountButton.module.scss";
+import { useState } from "react";
+import { ClipLoader } from "react-spinners";
+import { useNavigate } from "react-router";
+import { createPortal } from "react-dom";
 
 type ModalAction = "deleteConfirm" | "deleteForce" | null;
 

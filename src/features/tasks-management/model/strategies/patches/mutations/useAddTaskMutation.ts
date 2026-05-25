@@ -1,11 +1,13 @@
 import type { Task } from "@/entities/task";
+
+import { useUITasks } from "../ui-tasks/useUITasks";
+import { useStrategyRuntime } from "../runtime/useStrategyRuntime";
+import { createPatchManager } from "../runtime/createPatchManager";
 import { tasksUseCases, useUIKeyStore } from "@/entities/task";
-import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/patches/runtime/useStrategyRuntime";
-import { createPatchManager } from "@/features/tasks-management/model/strategies/patches/runtime/createPatchManager";
 import { isNetworkError } from "@/shared/lib/error-utils";
 import { throwIfOffline } from "@/shared/lib/network";
 import { useMutation } from "@tanstack/react-query";
-import { useUITasks } from "@/features/tasks-management/model/strategies/patches/ui-tasks/useUITasks";
+
 import {
   QUERY_KEY,
   createMutationKey,

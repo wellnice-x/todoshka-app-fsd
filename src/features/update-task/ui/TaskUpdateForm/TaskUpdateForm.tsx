@@ -1,14 +1,15 @@
 import type { UpdateTaskInfoMutation } from "@/features/tasks-management";
 import type { Task } from "@/entities/task";
+
 import Field from "@/shared/ui/Field";
-import toast from "react-hot-toast";
 import Button from "@/shared/ui/Button";
-import styles from "./TaskUpdateForm.module.scss";
-import { useState, ChangeEvent, SubmitEvent, useEffect } from "react";
 import { useTasksNavigationStore } from "@/shared/model";
 import { handleMutationError } from "@/shared/lib/error-handlers";
 import { formatDate } from "@/shared/lib/date";
+import { useState, ChangeEvent, SubmitEvent, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
+import styles from "./TaskUpdateForm.module.scss";
+import toast from "react-hot-toast";
 
 type TaskUpdateFormProps = {
   className?: string;

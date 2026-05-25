@@ -1,13 +1,11 @@
 import type { Task } from "@/entities/task";
-import { useMutation } from "@tanstack/react-query";
+
+import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/snapshots/runtime/useStrategyRuntime";
+import { QUERY_KEY, createMutationKey } from "../queryKeys";
+import { tasksUseCases, useUIKeyStore } from "@/entities/task";
 import { isNetworkError } from "@/shared/lib/error-utils";
 import { throwIfOffline } from "@/shared/lib/network";
-import { useStrategyRuntime } from "@/features/tasks-management/model/strategies/snapshots/runtime/useStrategyRuntime";
-import { tasksUseCases, useUIKeyStore } from "@/entities/task";
-import {
-  QUERY_KEY,
-  createMutationKey,
-} from "@/features/tasks-management/model/strategies/snapshots/queryKeys";
+import { useMutation } from "@tanstack/react-query";
 
 export const useAddTaskMutation = () => {
   const {

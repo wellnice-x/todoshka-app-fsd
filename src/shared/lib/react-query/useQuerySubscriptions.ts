@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+import { queryClient } from "./queryClient";
 import {
   MutationCacheNotifyEvent,
   QueryCacheNotifyEvent,
 } from "@tanstack/react-query";
-import { queryClient } from "@/shared/lib/react-query";
+import { useEffect } from "react";
 
 type UseQuerySubscriptions = (
   onQueryUpdate: (event: QueryCacheNotifyEvent) => void,

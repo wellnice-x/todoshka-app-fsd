@@ -1,10 +1,8 @@
-import type {
-  Patch,
-  PatchOperation,
-} from "@/features/tasks-management/model/strategies/patches/types";
-import type { QueryClient, QueryKey } from "@tanstack/react-query";
+import type { Patch, PatchOperation } from "../types";
 import type { Task } from "@/entities/task";
-import { PATCHES_QUERY_KEY } from "@/features/tasks-management/model/strategies/patches/queryKeys";
+import type { QueryClient, QueryKey } from "@tanstack/react-query";
+
+import { PATCHES_QUERY_KEY } from "../queryKeys";
 
 export const createPatchManager = (
   queryClient: QueryClient,
@@ -42,9 +40,7 @@ export const createPatchManager = (
   };
 
   const commitPatch = (patch: Patch) => {
-    queryClient.setQueryData<Task[]>(queryKey, (old = []) =>
-      patch.apply(old),
-    );
+    queryClient.setQueryData<Task[]>(queryKey, (old = []) => patch.apply(old));
   };
 
   return {

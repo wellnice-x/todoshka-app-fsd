@@ -1,13 +1,13 @@
-import styles from "./Header.module.scss";
-import SunIcon from "@/shared/assets/icons/sun.svg?react";
-import MoonIcon from "@/shared/assets/icons/moon.svg?react";
-import ThemeToggle from "@/shared/ui/ThemeToggle";
-import ParallaxToggle from "@/shared/ui/ParallaxToggle";
-import ParallaxOnIcon from "@/shared/assets/icons/parallax-on-icon.svg?react";
-import ParallaxOffIcon from "@/shared/assets/icons/parallax-off-icon.svg?react";
 import DeleteAccountButton from "@/features/delete-account";
 import DeveloperSettingsMenu from "@/features/developer-settings";
 import { useAnonUser } from "@/entities/user";
+import ThemeToggle from "@/shared/ui/ThemeToggle";
+import ParallaxToggle from "@/shared/ui/ParallaxToggle";
+import SunIcon from "@/shared/assets/icons/sun.svg?react";
+import MoonIcon from "@/shared/assets/icons/moon.svg?react";
+import ParallaxOnIcon from "@/shared/assets/icons/parallax-on-icon.svg?react";
+import ParallaxOffIcon from "@/shared/assets/icons/parallax-off-icon.svg?react";
+import styles from "./Header.module.scss";
 
 type HeaderProps = {
   className?: string;

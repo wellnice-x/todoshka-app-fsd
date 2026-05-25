@@ -1,15 +1,16 @@
-import type { UITask } from "@/entities/task";
 import type {
   ToggleTaskAction,
   DeleteTaskAction,
 } from "@/features/tasks-management";
-import { memo, useEffect, useRef, useState } from "react";
+import type { UITask } from "@/entities/task";
+
 import { useTasksNavigationStore } from "@/shared/model";
 import { handleMutationError } from "@/shared/lib/error-handlers";
 import { useAnimationStore } from "@/shared/lib/animation";
-import { useNavigate } from "react-router";
 import DeleteIcon from "@/shared/assets/icons/delete-icon.svg?react";
 import GoToIcon from "@/shared/assets/icons/chevrons-left.svg?react";
+import { memo, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router";
 import styles from "./TodoItem.module.scss";
 import toast from "react-hot-toast";
 

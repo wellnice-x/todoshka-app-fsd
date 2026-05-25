@@ -1,5 +1,5 @@
-import { useContext } from "react";
 import { TasksStrategyContext } from "./TasksStrategyContext";
+import { useContext } from "react";
 
 export const useTasksStrategy = () => {
   const context = useContext(TasksStrategyContext);

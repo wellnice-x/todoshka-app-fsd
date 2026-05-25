@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useRef } from "react";
 import type {
   ToggleTaskMutation,
   DeleteTaskMutation,
   ToggleTaskAction,
   DeleteTaskAction,
 } from "@/features/tasks-management";
+
+import { useCallback, useEffect, useRef } from "react";
 
 type Mutations = {
   toggleTaskMutation: ToggleTaskMutation;

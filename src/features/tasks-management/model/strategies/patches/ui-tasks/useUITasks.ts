@@ -1,15 +1,13 @@
-import type { Patch } from "@/features/tasks-management/model/strategies/patches/types";
+import type { Patch } from "../types";
 import type { Task } from "@/entities/task";
+
+import { QUERY_KEY, PATCHES_QUERY_KEY } from "../queryKeys";
+import { applyPatches } from "../core/applyPatches";
+import { useTasksWithUIKeys } from "@/features/tasks-management";
+import { tasksUseCases } from "@/entities/task";
+import { useServerAccessState } from "@/shared/model";
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { applyPatches } from "@/features/tasks-management/model/strategies/patches/core/applyPatches";
-import { tasksUseCases } from "@/entities/task";
-import { useTasksWithUIKeys } from "@/features/tasks-management";
-import { useServerAccessState } from "@/shared/model";
-import {
-  QUERY_KEY,
-  PATCHES_QUERY_KEY,
-} from "@/features/tasks-management/model/strategies/patches/queryKeys";
 
 export const useUITasks = () => {
   const { isServerAccessBlocked } = useServerAccessState();

@@ -1,10 +1,11 @@
 import type { StrategyRuntimeContext } from "@/features/tasks-management/model/strategies/non-optimistic/types";
-import { useQueryClient } from "@tanstack/react-query";
+
+import { QUERY_KEY } from "../queryKeys";
 import {
   useQuerySyncScheduler,
   useQuerySyncWithOptionalToast,
 } from "@/shared/lib/react-query";
-import { QUERY_KEY } from "@/features/tasks-management/model/strategies/non-optimistic/queryKeys";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const useStrategyRuntime = (): StrategyRuntimeContext => {
   const queryClient = useQueryClient();

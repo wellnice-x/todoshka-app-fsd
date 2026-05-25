@@ -1,8 +1,8 @@
-import toast from "react-hot-toast";
-import { useEffect } from "react";
 import { useTasksQueryState } from "@/features/tasks-management";
 import { useLoadErrorStatus } from "@/shared/model";
 import { useGlobalErrorStore } from "@/shared/model";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 export const useGlobalLoadErrorToast = () => {
   const { error, isFetching: tasksIsFetching } = useTasksQueryState();
