@@ -7,6 +7,7 @@ import { useState } from "react";
 import { ClipLoader } from "react-spinners";
 import { useNavigate } from "react-router";
 import { createPortal } from "react-dom";
+import toast from "react-hot-toast";
 
 type ModalAction = "deleteConfirm" | "deleteForce" | null;
 
@@ -27,6 +28,8 @@ const DeleteAccountButton = ({ className }: DeleteAccountButtonProps) => {
   const handleForceDelete = () => {
     deleteLocalUserData();
 
+    toast.remove();
+
     navigate("/auth");
   };
 
@@ -42,6 +45,8 @@ const DeleteAccountButton = ({ className }: DeleteAccountButtonProps) => {
     const result = await deleteAllData();
 
     if (result.status === "success") {
+      toast.remove();
+
       navigate("/auth");
     }
 

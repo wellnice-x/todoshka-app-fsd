@@ -16,8 +16,7 @@ const TaskPage = () => {
 
   const { isLoading: tasksIsInitLoading } = useTasksQueryState();
 
-  const { isServerAccessBlocked, isServerAccessUncertain } =
-    useServerAccessState();
+  const { isServerAccessBlocked } = useServerAccessState();
 
   const { id } = useParams();
 
@@ -27,8 +26,7 @@ const TaskPage = () => {
     navigate("/tasks");
   };
 
-  const isNotReady =
-    isServerAccessUncertain || (!isServerAccessBlocked && tasksIsInitLoading);
+  const isNotReady = !isServerAccessBlocked && tasksIsInitLoading;
 
   const BackButton = (
     <Button

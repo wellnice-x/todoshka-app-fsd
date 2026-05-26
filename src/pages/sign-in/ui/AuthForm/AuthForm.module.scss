@@ -17,8 +17,22 @@
   font-size: 18px;
 }
 
-.button {
-  padding-block: 10px;
+.authButton,
+.extraButton {
   width: 100%;
   text-transform: capitalize;
+}
+
+.authButton {
+  padding-block: 10px;
+}
+
+.extraButton {
+  display: none;
+  padding-block: 6px;
+  font-size: 14px;
+
+  &.visible {
+    display: flex;
+  }
 }

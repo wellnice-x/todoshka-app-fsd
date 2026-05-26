@@ -7,14 +7,15 @@ export const useServerAccessState = () => {
   const isNoInternetConnection = useRuntimeStore(
     (state) => state.isNoInternetConnection,
   );
+  const isTestMode = useRuntimeStore((state) => state.isTestMode);
 
   const { isAuthenticated, isUncertain } = useAuth();
 
   return {
-    isServerAccessBlocked: isOfflineMode || !isAuthenticated,
+    isServerAccessBlocked: isOfflineMode || !isAuthenticated || isTestMode,
     isServerBlockedByAuth: !isAuthenticated,
     isServerBlockedByUser: isOfflineMode,
     isServerAccessUncertain: isUncertain,
-    canAccessServer: !isNoInternetConnection && isAuthenticated,
+    canAccessServer: !isNoInternetConnection && isAuthenticated && !isTestMode,
   };
 };

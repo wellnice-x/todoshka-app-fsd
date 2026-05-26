@@ -19,6 +19,15 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
   const isRefreshingRef = useRef(false);
   const wasUnauthorizedRef = useRef(false);
+  const authDisabledRef = useRef(false);
+
+  const pauseAuthHandling = () => {
+    authDisabledRef.current = true;
+  };
+
+  const resumeAuthHandling = () => {
+    authDisabledRef.current = false;
+  };
 
   const setStatus = useCallback((status: AuthState["authStatus"]) => {
     setAuthState({ authStatus: status });
@@ -26,6 +35,8 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
   const handleSession = useCallback(
     (session: Session | null) => {
+      if (authDisabledRef.current) return;
+
       if (wasUnauthorizedRef.current && !session) return;
 
       if (session?.access_token) {
@@ -64,6 +75,8 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   }, [handleSession, setStatus]);
 
   const handleUnauthorized = useCallback(async () => {
+    if (authDisabledRef.current) return;
+
     if (isRefreshingRef.current) return;
 
     isRefreshingRef.current = true;
@@ -84,18 +97,6 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     setStatus("checking");
 
     try {
-      const { data, error } = await supabase.auth.getSession();
-
-      if (error) {
-        throw error;
-      }
-
-      if (data.session) {
-        handleSession(data.session);
-
-        return;
-      }
-
       const { data: anonData, error: anonError } =
         await supabase.auth.signInAnonymously();
 
@@ -108,6 +109,8 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       console.error("Auth init failed:", error);
 
       setStatus("unauthenticated");
+
+      throw error;
     }
   }, [handleSession, setStatus]);
 
@@ -133,6 +136,8 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       isUncertain:
         authState.authStatus === "init" || authState.authStatus === "checking",
       isAuthenticated: authState.authStatus === "authenticated",
+      pauseAuthHandling,
+      resumeAuthHandling,
       authAnonymously,
     }),
     [authState, authAnonymously],
