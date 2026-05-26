@@ -149,7 +149,7 @@ const AuthForm = (props: AuthFormProps) => {
         value={nickname}
         onChange={handleChange}
         multiline={false}
-        maxLength={30}
+        maxLength={22}
         isLabelHidden={true}
         error={error}
         ref={fieldHandleRef}

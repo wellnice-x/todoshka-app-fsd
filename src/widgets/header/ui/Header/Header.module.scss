@@ -31,6 +31,7 @@
   @include fluid-text(25, 16);
 
   text-align: end;
+  overflow-wrap: anywhere;
 }
 
 .appActions {
