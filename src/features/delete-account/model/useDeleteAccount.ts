@@ -41,7 +41,7 @@ export const useDeleteAccount = () => {
     setIsDataDeleting(true);
 
     try {
-      await withTimeout(deleteServerUserData(), 20000);
+      await withTimeout(deleteServerUserData(), 40000);
 
       deleteLocalUserData();
 
