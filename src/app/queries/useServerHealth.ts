@@ -1,4 +1,4 @@
-import { checkHealth } from "../healthService";
+import { checkHealth } from "@/shared/api";
 import { useServerAccessState } from "@/shared/model";
 import { useQuery } from "@tanstack/react-query";
 

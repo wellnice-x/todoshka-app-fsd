@@ -1,4 +1,4 @@
-import { useAuth } from "../provider/useAuth";
+import { useAuth } from "../provider";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 

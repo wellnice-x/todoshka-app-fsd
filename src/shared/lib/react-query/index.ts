@@ -1,5 +1,3 @@
-export { useSlowServerToast } from "./effects/useSlowServerToast";
-
 export { queryClient } from "./queryClient";
 export { useQuerySubscriptions } from "./useQuerySubscriptions";
 

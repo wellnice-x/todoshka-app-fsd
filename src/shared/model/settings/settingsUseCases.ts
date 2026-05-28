@@ -2,7 +2,7 @@ import type { OptimisticMode } from "@/shared/optimistic-mode";
 import type { ActionResult } from "./settings.types";
 
 import { useSettingsStore } from "./settingsStore";
-import { useRuntimeStore } from "../runtime/runtimeStore";
+import { useRuntimeStore } from "../runtime";
 
 export const settingsUseCases = {
   toggleOfflineMode(canAccessServer: boolean): ActionResult {

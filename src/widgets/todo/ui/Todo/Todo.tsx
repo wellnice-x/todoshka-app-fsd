@@ -2,6 +2,7 @@ import TodoList from "../TodoList";
 import AddTaskForm from "../AddTaskForm";
 import SearchTaskForm from "../SearchTaskForm";
 import TodoActionsPanel from "../TodoActionsPanel";
+import { useConsumeScrollY } from "@/widgets/todo/model/useConsumeScrollY";
 import { useIsTasksMutating } from "@/features/tasks-management";
 import { useTaskStableActions } from "@/features/tasks-management";
 import {
@@ -12,7 +13,7 @@ import { useFilteredTasks } from "@/entities/task";
 import { useIsMobile } from "@/shared/lib/device";
 import { usePageOverflow } from "@/shared/lib/page";
 import { useAnimationStore } from "@/shared/lib/animation";
-import { useConsumeScrollY } from "@/shared/model";
+
 import ReactIcon from "@/shared/assets/icons/react-icon.svg?react";
 import { BeatLoader } from "react-spinners";
 import { PuffLoader } from "react-spinners";

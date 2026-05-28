@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useTasksNavigationStore } from "./tasksNavigationStore";
+import { useTasksNavigationStore } from "@/shared/model";
 
 export const useConsumeScrollY = () => {
   const consumeScrollY = useTasksNavigationStore(

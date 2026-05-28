@@ -1,5 +1,6 @@
 import type { ConnectionStatus } from "@/shared/model";
 
+import { useServerHealth } from "@/app/queries/useServerHealth";
 import { isSyncError, isNetworkError } from "@/shared/lib/error-utils";
 import { useQuerySubscriptions } from "@/shared/lib/react-query";
 import { useNetworkListeners } from "@/shared/lib/network";
@@ -8,7 +9,6 @@ import { useServerAccessState } from "@/shared/model";
 import { useGlobalErrorStore } from "@/shared/model";
 import { useRuntimeStore } from "@/shared/model";
 import { useConnection } from "@/shared/model";
-import { useServerHealth } from "@/shared/api/health";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   MutationCacheNotifyEvent,

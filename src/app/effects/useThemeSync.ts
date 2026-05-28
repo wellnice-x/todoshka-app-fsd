@@ -1,4 +1,4 @@
-import { useAppearanceStore } from "../appearanceStore";
+import { useAppearanceStore } from "@/shared/model";
 import { useEffect } from "react";
 
 export const useThemeSync = () => {

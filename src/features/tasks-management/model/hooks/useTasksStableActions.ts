@@ -3,7 +3,7 @@ import type {
   DeleteTaskMutation,
   ToggleTaskAction,
   DeleteTaskAction,
-} from "@/features/tasks-management";
+} from "@/features/tasks-management/model/types";
 
 import { useCallback, useEffect, useRef } from "react";
 
