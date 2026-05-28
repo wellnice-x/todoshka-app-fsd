@@ -1,3 +1,5 @@
+Важно: интернет-провайдеры могут ограничивать доступ к сервисам Supabase, из-за чего возможны перебои соединения с базой данных приложения.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
