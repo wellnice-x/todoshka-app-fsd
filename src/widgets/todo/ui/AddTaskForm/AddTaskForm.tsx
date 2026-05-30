@@ -1,6 +1,7 @@
 import type { AddTaskMutation } from "@/features/tasks-management";
 import type { FieldHandle } from "@/shared/ui/Field";
 
+import { validateRequiredText } from "@/shared/lib/validation";
 import { handleMutationError } from "@/shared/lib/error-handlers";
 import { useAnimationStore } from "@/shared/lib/animation";
 import { useIsMobile } from "@/shared/lib/device";
@@ -17,16 +18,6 @@ type AddTaskFormProps = {
   className?: string;
   addTaskMutation: AddTaskMutation;
   shouldShowToast?: boolean;
-};
-
-const validateTaskTitle = (value: string): string => {
-  if (!value.trim()) {
-    return value.length
-      ? "The field cannot contain only spaces"
-      : "The field cannot be empty";
-  }
-
-  return "";
 };
 
 const AddTaskForm = (props: AddTaskFormProps) => {
@@ -70,7 +61,7 @@ const AddTaskForm = (props: AddTaskFormProps) => {
       allowTasksAnimation();
     });
 
-    const validationError = validateTaskTitle(newTaskTitle);
+    const validationError = validateRequiredText(newTaskTitle);
 
     if (validationError) {
       setErrorWithTimeout(validationError);
@@ -110,7 +101,7 @@ const AddTaskForm = (props: AddTaskFormProps) => {
       clearTimeout(timeoutRef.current);
     }
 
-    setError(value ? validateTaskTitle(value) : "");
+    setError(value ? validateRequiredText(value) : "");
   };
 
   const clearTitle = () => {

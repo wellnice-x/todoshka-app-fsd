@@ -4,6 +4,7 @@ import type { Task } from "@/entities/task";
 import Field from "@/shared/ui/Field";
 import Button from "@/shared/ui/Button";
 import { useTasksNavigationStore } from "@/shared/model";
+import { validateRequiredText } from "@/shared/lib/validation";
 import { handleMutationError } from "@/shared/lib/error-handlers";
 import { formatDate } from "@/shared/lib/date";
 import { useState, ChangeEvent, SubmitEvent, useEffect } from "react";
@@ -16,16 +17,6 @@ type TaskUpdateFormProps = {
   task: Task;
   updateTaskInfoMutation: UpdateTaskInfoMutation;
   onSuccess?: () => void;
-};
-
-const validateTaskTitle = (value: string): string => {
-  if (!value.trim()) {
-    return value.length
-      ? "The field cannot contain only spaces"
-      : "The field cannot be empty";
-  }
-
-  return "";
 };
 
 const TaskUpdateForm = (props: TaskUpdateFormProps) => {
@@ -46,7 +37,7 @@ const TaskUpdateForm = (props: TaskUpdateFormProps) => {
 
     if (isUpdatingTask) return;
 
-    const validationError = validateTaskTitle(newTaskTitle);
+    const validationError = validateRequiredText(newTaskTitle);
 
     if (validationError) {
       setError(validationError);
@@ -91,7 +82,7 @@ const TaskUpdateForm = (props: TaskUpdateFormProps) => {
 
     setNewTaskTitle(value);
 
-    setError(value ? validateTaskTitle(value) : "");
+    setError(value ? validateRequiredText(value) : "");
   };
 
   const handleDescriptionChange = (
