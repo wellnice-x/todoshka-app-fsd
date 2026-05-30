@@ -6,6 +6,7 @@ import Button from "@/shared/ui/Button";
 import { useAuth } from "@/shared/auth";
 import { withTimeout } from "@/shared/lib/async";
 import { TimeoutError } from "@/shared/lib/errors";
+import { validateRequiredText } from "@/shared/lib/validation";
 import { useRuntimeStore } from "@/shared/model";
 import { useState, useRef, useEffect, SubmitEvent, ChangeEvent } from "react";
 import { useNavigate } from "react-router";
@@ -15,16 +16,6 @@ import toast from "react-hot-toast";
 
 type AuthFormProps = {
   className?: string;
-};
-
-const validateUserNickname = (value: string): string => {
-  if (!value.trim()) {
-    return value.length
-      ? "The field cannot contain only spaces"
-      : "The field cannot be empty";
-  }
-
-  return "";
 };
 
 const AuthForm = (props: AuthFormProps) => {
@@ -48,7 +39,7 @@ const AuthForm = (props: AuthFormProps) => {
   const handleSubmit = async (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const validationError = validateUserNickname(nickname);
+    const validationError = validateRequiredText(nickname);
 
     if (validationError) {
       setError(validationError);
@@ -98,7 +89,7 @@ const AuthForm = (props: AuthFormProps) => {
   };
 
   const handleTestModeEntrance = async () => {
-    const validationError = validateUserNickname(nickname);
+    const validationError = validateRequiredText(nickname);
 
     if (validationError) {
       setUserNickname("Anonymous");
@@ -128,7 +119,7 @@ const AuthForm = (props: AuthFormProps) => {
 
     setNickname(value);
 
-    setError(value ? validateUserNickname(value) : "");
+    setError(value ? validateRequiredText(value) : "");
   };
 
   useEffect(() => {

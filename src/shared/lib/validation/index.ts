@@ -1,0 +1,1 @@
+export { validateRequiredText } from "./validateRequiredText";
