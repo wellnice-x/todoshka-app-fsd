@@ -110,7 +110,12 @@ const AddTaskForm = (props: AddTaskFormProps) => {
   };
 
   const clearButton = (
-    <button className={styles.clearButton} type="button" onClick={clearTitle}>
+    <button
+      className={styles.clearButton}
+      type="button"
+      onClick={clearTitle}
+      aria-label="Clear title"
+    >
       <XIcon />
     </button>
   );
