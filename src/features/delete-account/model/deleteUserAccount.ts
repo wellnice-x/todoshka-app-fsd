@@ -7,7 +7,6 @@ export const deleteServerUserData = async (): Promise<void> => {
   const { error } = await supabase.auth.signOut();
 
   if (error) {
-    console.error("Supabase sign out failed: ", error);
     throw error;
   }
 };
