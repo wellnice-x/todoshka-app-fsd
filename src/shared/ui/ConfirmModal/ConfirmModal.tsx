@@ -61,10 +61,10 @@ const ConfirmModal = (props: ConfirmModalProps) => {
         {question}
       </p>
       <div className={styles.buttonGroup}>
-        <Button type="button" onClick={handleConfirm} autoFocus>
+        <Button type="button" onClick={handleConfirm} aria-label="confirm" autoFocus>
           {leftButtonTitle}
         </Button>
-        <Button type="button" onClick={() => onClose?.()}>
+        <Button type="button" onClick={() => onClose?.()} aria-label="cancel">
           {rightButtonTitle}
         </Button>
       </div>
