@@ -1,4 +1,6 @@
-import { http, HttpResponse } from "msw";
+import { http, HttpResponse, delay } from "msw";
+
+let nextId = 1;
 
 export const handlers = [
   http.get("*/tasks", () => {
@@ -9,6 +11,20 @@ export const handlers = [
         description: "",
         is_done: false,
         order_index: 1,
+        created_at: new Date().toISOString(),
+      },
+    ]);
+  }),
+  http.post("*/tasks", async () => {
+    await delay(150);
+
+    return HttpResponse.json([
+      {
+        id: `server-id-${String(nextId++)}`,
+        title: "New task",
+        description: "",
+        is_done: false,
+        order_index: nextId - 1,
         created_at: new Date().toISOString(),
       },
     ]);
