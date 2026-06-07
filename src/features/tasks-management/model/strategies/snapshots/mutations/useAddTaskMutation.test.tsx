@@ -167,7 +167,7 @@ describe("useAddTaskMutation Snapshots", () => {
       wrapper,
     });
 
-    result.current
+    const mutationPromise = result.current
       .mutateAsync({
         title: "New task",
       })
@@ -177,16 +177,14 @@ describe("useAddTaskMutation Snapshots", () => {
       const tasks = queryClient.getQueryData<Task[]>(QUERY_KEY) ?? [];
 
       expect(tasks).toHaveLength(1);
-
       expect(tasks[0].id.startsWith("optimistic-")).toBe(true);
     });
 
-    await new Promise((resolve) => setTimeout(resolve, 150));
+    await mutationPromise;
 
     const tasks = queryClient.getQueryData<Task[]>(QUERY_KEY) ?? [];
 
     expect(tasks).toHaveLength(1);
-
     expect(tasks[0].id.startsWith("optimistic-")).toBe(true);
   });
 });
