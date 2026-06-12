@@ -93,7 +93,7 @@ describe("useMarkAllTasksCompletedMutation Snapshots", () => {
     expect(tasks.map((task) => task.isDone)).toEqual([true, true, true]);
   });
 
-  it("roll backs task completion when request fails", async () => {
+  it("rolls back task completion when request fails", async () => {
     server.use(
       http.patch("*/tasks", async () => {
         await delay(100);

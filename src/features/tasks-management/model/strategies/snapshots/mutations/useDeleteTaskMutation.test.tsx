@@ -143,7 +143,7 @@ describe("useDeleteTaskMutation Snapshots", () => {
     });
   });
 
-  it("roll backs deleted tasks in correct order when request fails", async () => {
+  it("rolls back deleted tasks in correct order when request fails", async () => {
     server.use(
       http.delete("*/tasks", async () => {
         await delay(100);
