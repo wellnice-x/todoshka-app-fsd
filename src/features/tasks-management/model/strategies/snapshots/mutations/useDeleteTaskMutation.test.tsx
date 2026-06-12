@@ -90,6 +90,59 @@ describe("useDeleteTaskMutation Snapshots", () => {
     });
   });
 
+  it("removes tasks", async () => {
+    queryClient.setQueryData<Task[]>(QUERY_KEY, [
+      {
+        id: "0",
+        title: "First task",
+        description: "",
+        isDone: false,
+        orderIndex: 0,
+        createdAt: new Date(),
+      },
+      {
+        id: "1",
+        title: "Second task",
+        description: "",
+        isDone: false,
+        orderIndex: 1,
+        createdAt: new Date(),
+      },
+      {
+        id: "2",
+        title: "Third task",
+        description: "",
+        isDone: false,
+        orderIndex: 2,
+        createdAt: new Date(),
+      },
+    ]);
+
+    const { result } = renderHook(() => useDeleteTaskMutation(), {
+      wrapper,
+    });
+
+    result.current
+      .mutateAsync({
+        taskId: "0",
+      })
+      .catch(() => {});
+
+    result.current
+      .mutateAsync({
+        taskId: "2",
+      })
+      .catch(() => {});
+
+    await waitFor(() => {
+      const tasks = queryClient.getQueryData<Task[]>(QUERY_KEY) ?? [];
+
+      expect(tasks).toHaveLength(1);
+
+      expect(tasks.map((task) => task.id)).toEqual(["1"]);
+    });
+  });
+
   it("roll backs deleted tasks in correct order when request fails", async () => {
     server.use(
       http.delete("*/tasks", async () => {
