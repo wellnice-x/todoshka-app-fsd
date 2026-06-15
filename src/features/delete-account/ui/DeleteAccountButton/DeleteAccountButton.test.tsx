@@ -49,7 +49,7 @@ describe("DeleteAccountButton", () => {
     await user.click(button);
 
     await screen.findByText(
-      /delete only your local data and close the session?/i,
+      /delete only your local data and close the session/i,
     );
 
     const modalConfirmButton = screen.getByRole("button", { name: /confirm/i });
@@ -88,7 +88,7 @@ describe("DeleteAccountButton", () => {
 
     await user.click(button);
 
-    await screen.findByText(/delete all your data permanently?/i);
+    await screen.findByText(/delete all your data permanently/i);
 
     const modalConfirmButton = screen.getByRole("button", { name: /confirm/i });
 
@@ -127,7 +127,7 @@ describe("DeleteAccountButton", () => {
 
     await user.click(button);
 
-    await screen.findByText(/delete all your data permanently?/i);
+    await screen.findByText(/delete all your data permanently/i);
 
     await user.click(screen.getByRole("button", { name: /confirm/i }));
 
