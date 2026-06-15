@@ -15,6 +15,19 @@ Object.defineProperty(window, "matchMedia", {
   }),
 });
 
+class ResizeObserverMock {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+
+global.ResizeObserver = ResizeObserverMock;
+
+Object.defineProperty(window, "scrollTo", {
+  value: vi.fn(),
+  writable: true,
+});
+
 beforeAll(() => {
   HTMLDialogElement.prototype.show = vi.fn();
   HTMLDialogElement.prototype.showModal = vi.fn(function (
