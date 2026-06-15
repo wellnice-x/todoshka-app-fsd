@@ -13,7 +13,6 @@ import { useFilteredTasks } from "@/entities/task";
 import { useIsMobile } from "@/shared/lib/device";
 import { usePageOverflow } from "@/shared/lib/page";
 import { useAnimationStore } from "@/shared/lib/animation";
-
 import ReactIcon from "@/shared/assets/icons/react-icon.svg?react";
 import { BeatLoader } from "react-spinners";
 import { PuffLoader } from "react-spinners";
