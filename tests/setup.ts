@@ -3,16 +3,16 @@ import "./msw/setup";
 
 Object.defineProperty(window, "matchMedia", {
   writable: true,
-  value: (query: string) => ({
+  value: vi.fn((query: string) => ({
     matches: false,
     media: query,
     onchange: null,
-    addListener: () => {},
-    removeListener: () => {},
-    addEventListener: () => {},
-    removeEventListener: () => {},
-    dispatchEvent: () => false,
-  }),
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(() => false),
+  })),
 });
 
 class ResizeObserverMock {
@@ -23,16 +23,14 @@ class ResizeObserverMock {
 
 global.ResizeObserver = ResizeObserverMock;
 
-Object.defineProperty(window, "scrollTo", {
-  value: vi.fn(),
-  writable: true,
-});
-
 beforeAll(() => {
+  Object.defineProperty(window, "scrollTo", {
+    value: vi.fn(),
+    writable: true,
+  });
+
   HTMLDialogElement.prototype.show = vi.fn();
-  HTMLDialogElement.prototype.showModal = vi.fn(function (
-    this: HTMLDialogElement,
-  ) {
+  HTMLDialogElement.prototype.showModal = vi.fn(function (this: HTMLDialogElement) {
     this.setAttribute("open", "");
   });
   HTMLDialogElement.prototype.close = vi.fn(function (this: HTMLDialogElement) {

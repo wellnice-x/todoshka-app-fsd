@@ -30,12 +30,12 @@ export const handlers = [
     ]);
   }),
   http.delete("*/tasks", async () => {
-  await delay(150);
+    await delay(150);
 
-  return new HttpResponse(null, {
-    status: 204,
-  });
-}),
+    return new HttpResponse(null, {
+      status: 204,
+    });
+  }),
   http.patch("*/tasks", async () => {
     await delay(150);
 
